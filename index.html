@@ -507,7 +507,18 @@ header.show-menu {
             letter-spacing: 1px;
             margin-bottom: 0.5rem;
         }
-
+.ring-frame{
+    position:absolute;
+    width:340px;
+    height:340px;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    object-fit:contain;
+    pointer-events:none;
+    z-index:12;
+    opacity:.85;
+}
         /* Responsive */
         @media (max-width: 768px) {
             nav ul {
@@ -626,10 +637,10 @@ header.show-menu {
     <!-- Hero Section -->
     <section class="hero">
         <div class="hero-content">
-            <div class="photo-frame">
-                <div class="snowflake-circle" id="snowflakeCircle"></div>
-                <img src="https://imgur.com/yyFHxei.jpg" alt="Δημήτρης & Χρύσα">
-            </div>
+<div class="photo-frame">
+    <img class="ring-frame" src="ring.png" alt="">
+    <img src="https://imgur.com/yyFHxei.jpg" alt="Δημήτρης & Χρύσα">
+</div>
 
             <div>
                 <p class="hero-subtitle">We are in love, celebrating</p>
