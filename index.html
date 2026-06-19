@@ -166,6 +166,9 @@
             transform: translate(-50%, -50%);
             z-index: 10;
             box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
+            .ring-photo {
+    transition: opacity 0.25s ease;
+}
         }
 
         .ring-a,
@@ -831,6 +834,37 @@
     </footer>
 
     <script>
+        const ringImages = [
+  "https://imgur.com/yyFHxei.jpg",
+  "https://imgur.com/t1udfVy.jpg",
+  "https://imgur.com/iuGRu0A.jpg",
+  "https://imgur.com/NCbKQp6.jpg",
+  "https://imgur.com/rYmjEcu.jpg",
+  "https://imgur.com/rOEyzfJ.jpg",
+  "https://imgur.com/mvWi9Xn.jpg",
+  "https://imgur.com/kE0Gj0n.jpg"
+];
+
+let ringIndex = 0;
+        function startRingCarousel() {
+  const img = document.querySelector(".ring-photo");
+
+  setInterval(() => {
+    ringIndex = (ringIndex + 1) % ringImages.length;
+
+    // smooth fade
+    img.style.opacity = 0;
+
+    setTimeout(() => {
+      img.src = ringImages[ringIndex];
+      img.style.opacity = 1;
+    }, 250);
+
+  }, 4000);
+}
+
+window.addEventListener("load", startRingCarousel);
+        
         function createSnowflakes() {
             const chars = ['❄', '❅', '❆'];
             setInterval(() => {
