@@ -154,23 +154,25 @@
             position: relative;
         }
 
-        .ring-photo {
-            position: absolute;
-            width: 330px;
-            height: 330px;
-            border-radius: 50%;
-            object-fit: cover;
-            object-position: center;
-            left: 50%;
-            top: 260px;
-            transform: translate(-50%, -50%);
-            z-index: 10;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
-            .ring-photo {
-    transition: opacity 0.25s ease;
+.ring-photo {
+    position: absolute;
+    width: 330px;
+    height: 330px;
+    border-radius: 50%;
+    object-fit: cover;
+    object-position: center;
+    left: 50%;
+    top: 260px;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
+    transition: opacity 0.4s ease;
 }
-        }
 
+
+.ring-photo.shift {
+    object-position: 50% 30%;
+}
         .ring-a,
         .ring-b {
             position: absolute;
@@ -848,18 +850,20 @@
 let ringIndex = 0;
         function startRingCarousel() {
   const img = document.querySelector(".ring-photo");
+  if (!img) return;
 
   setInterval(() => {
     ringIndex = (ringIndex + 1) % ringImages.length;
 
-    // smooth fade
     img.style.opacity = 0;
 
     setTimeout(() => {
       img.src = ringImages[ringIndex];
-      img.style.opacity = 1;
-    }, 250);
-
+      img.onload = () => {
+        img.style.opacity = 1;
+        img.classList.toggle("shift", ringIndex !== 0);
+      };
+    }, 400);
   }, 4000);
 }
 
