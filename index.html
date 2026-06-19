@@ -14,17 +14,9 @@
             0% { transform: translateY(-10vh) translateX(0) rotate(0deg); opacity: 0.9; }
             100% { transform: translateY(100vh) translateX(100px) rotate(360deg); opacity: 0; }
         }
-        .snowflake {
-            position: fixed; top: -10vh; z-index: 5; pointer-events: none;
-            font-size: 1.5rem; opacity: 0.7; animation: snowfall linear infinite;
-        }
+        .snowflake { position: fixed; top: -10vh; z-index: 5; pointer-events: none; font-size: 1.5rem; opacity: 0.7; animation: snowfall linear infinite; }
 
-        header {
-            position: fixed; width: 100%; top: 0; z-index: 100;
-            background: rgba(255,255,255,0.98); backdrop-filter: blur(10px);
-            border-bottom: 1px solid #ddd; padding: 1.5rem 2rem;
-            transform: translateY(-100%); transition: transform 0.3s ease;
-        }
+        header { position: fixed; width: 100%; top: 0; z-index: 100; background: rgba(255,255,255,0.98); backdrop-filter: blur(10px); border-bottom: 1px solid #ddd; padding: 1.5rem 2rem; transform: translateY(-100%); transition: transform 0.3s ease; }
         header.show-menu { transform: translateY(0); }
         nav { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
         .logo { font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; font-weight: 400; letter-spacing: 2px; color: #333; text-transform: uppercase; }
@@ -41,43 +33,43 @@
             display: flex; flex-direction: column; justify-content: center; align-items: center;
             text-align: center; color: #fff; position: relative; overflow: hidden;
         }
-        .hero::before {
-            content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0;
-            background: radial-gradient(circle at 50% 50%, rgba(255,255,255,0.05) 0%, rgba(0,0,0,0.25) 100%);
-            z-index: 2; pointer-events: none;
-        }
+        .hero::before { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: radial-gradient(circle at 50% 50%, rgba(255,255,255,0.05) 0%, rgba(0,0,0,0.25) 100%); z-index: 2; pointer-events: none; }
         .hero-content { z-index: 10; position: relative; display: flex; flex-direction: column; align-items: center; gap: 2.5rem; }
 
-        /* ── Photo + Ring frame ── */
+        /*
+          Layout:
+          - SVG canvas: 360 × 420
+          - Ring band circle centre: (180, 240), radius 152
+            → inner radius ≈ 147  → photo diameter = 294px, perfectly filling the inner hole
+          - Band top point: (180, 88)
+          - Diamond + setting sit above that, roughly y = 8..88
+        */
         .photo-frame {
             position: relative;
-            /* The ring band is ~296px diameter; we add room for the diamond setting on top */
-            width: 340px;
-            height: 380px; /* extra height for diamond above the ring */
+            width: 360px;
+            height: 420px;
             z-index: 10;
         }
 
-        /* Circular photo — perfectly fitted inside the ring band */
+        /* Photo fills the inner circle of the ring band */
         .photo-frame img.main-photo {
             position: absolute;
-            /* ring inner radius ≈ 138px → diameter 276px */
-            width: 276px;
-            height: 276px;
+            width: 298px;
+            height: 298px;
             border-radius: 50%;
             object-fit: cover;
             object-position: center;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
-            /* centre of band is at (170, 198) */
+            box-shadow: 0 20px 60px rgba(0,0,0,0.35);
             left: 50%;
-            top: 198px;
+            top: 240px; /* ring centre y */
             transform: translate(-50%, -50%);
             z-index: 11;
         }
 
         .ring-frame-svg {
             position: absolute;
-            width: 340px;
-            height: 380px;
+            width: 360px;
+            height: 420px;
             top: 0; left: 0;
             pointer-events: none;
             z-index: 12;
@@ -91,27 +83,21 @@
 
         .scroll-indicator { position: absolute; bottom: 30px; left: 50%; transform: translateX(-50%); z-index: 10; animation: bounce 2s infinite; }
         .scroll-indicator svg { width: 24px; height: 24px; stroke: #fff; fill: none; stroke-width: 1.5; }
-        @keyframes bounce {
-            0%, 100% { transform: translateX(-50%) translateY(0); }
-            50% { transform: translateX(-50%) translateY(10px); }
-        }
+        @keyframes bounce { 0%, 100% { transform: translateX(-50%) translateY(0); } 50% { transform: translateX(-50%) translateY(10px); } }
 
         main { position: relative; z-index: 10; }
         section { padding: 5rem 2rem; max-width: 1000px; margin: 0 auto; }
         section h2 { font-family: 'Cormorant Garamond', serif; font-size: 2.8rem; font-weight: 400; text-align: center; margin-bottom: 1rem; color: #333; letter-spacing: 2px; }
         .section-divider { width: 50px; height: 1px; background: #ddd; margin: 0 auto 2.5rem; }
-
         .events-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 3rem; margin-top: 3rem; }
         .event-card { text-align: center; padding: 2rem; background: #fff; border: 1px solid #e0e0e0; border-radius: 2px; transition: all 0.3s ease; }
         .event-card:hover { box-shadow: 0 10px 30px rgba(0,0,0,0.1); border-color: #999; }
         .event-card h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; margin-bottom: 1rem; color: #333; font-weight: 400; letter-spacing: 1px; }
         .event-card p { color: #666; font-size: 0.95rem; line-height: 1.8; }
-
         .gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1.5rem; margin-top: 3rem; }
         .gallery-item { overflow: hidden; border-radius: 2px; aspect-ratio: 1; }
         .gallery img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s ease; }
         .gallery img:hover { transform: scale(1.05); }
-
         .rsvp-section { background: #fff; border: 1px solid #e0e0e0; border-radius: 2px; padding: 3rem; margin-top: 3rem; }
         .form-group { margin-bottom: 1.5rem; }
         label { display: block; margin-bottom: 0.6rem; color: #333; font-size: 0.9rem; letter-spacing: 0.5px; font-weight: 500; text-transform: uppercase; }
@@ -122,38 +108,31 @@
         .success { display: none; background: #f0f0f0; color: #333; padding: 1rem; border-left: 3px solid #333; margin-bottom: 1.5rem; border-radius: 2px; }
         .success.show { display: block; animation: slideDown 0.3s ease; }
         @keyframes slideDown { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
-
         .tips-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2.5rem; margin-top: 3rem; }
         .tip-card { background: #fff; padding: 2rem; border-left: 3px solid #333; border-radius: 2px; transition: all 0.3s ease; }
         .tip-card:hover { box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
         .tip-card h4 { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; margin-bottom: 1rem; color: #333; font-weight: 400; letter-spacing: 1px; }
         .tip-card p { color: #666; font-size: 0.9rem; line-height: 1.7; }
-
         footer { background: #333; color: #fff; text-align: center; padding: 3rem 2rem; margin-top: 4rem; border-top: 1px solid #444; }
         footer p { font-size: 0.9rem; letter-spacing: 1px; margin-bottom: 0.5rem; }
 
         @media (max-width: 768px) {
-            nav ul { gap: 1rem; }
-            nav a { font-size: 0.75rem; }
-            .hero h1 { font-size: 2.5rem; }
-            .photo-frame { width: 270px; height: 305px; }
-            .photo-frame img.main-photo { width: 218px; height: 218px; top: 158px; }
-            .ring-frame-svg { width: 270px; height: 305px; }
-            section { padding: 3rem 1.5rem; }
-            section h2 { font-size: 2rem; }
+            nav ul { gap: 1rem; } nav a { font-size: 0.75rem; } .hero h1 { font-size: 2.5rem; }
+            .photo-frame { width: 290px; height: 340px; }
+            .photo-frame img.main-photo { width: 240px; height: 240px; top: 194px; }
+            .ring-frame-svg { width: 290px; height: 340px; }
+            section { padding: 3rem 1.5rem; } section h2 { font-size: 2rem; }
             .gallery { grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); }
             .rsvp-section { padding: 2rem; }
         }
         @media (max-width: 480px) {
-            header { padding: 1rem; }
-            nav { flex-direction: column; gap: 1rem; }
+            header { padding: 1rem; } nav { flex-direction: column; gap: 1rem; }
             nav ul { flex-direction: column; gap: 0.5rem; width: 100%; }
             .hero h1 { font-size: 2rem; }
-            .photo-frame { width: 220px; height: 250px; }
-            .photo-frame img.main-photo { width: 178px; height: 178px; top: 130px; }
-            .ring-frame-svg { width: 220px; height: 250px; }
-            section { padding: 2rem 1rem; }
-            section h2 { font-size: 1.5rem; }
+            .photo-frame { width: 240px; height: 280px; }
+            .photo-frame img.main-photo { width: 198px; height: 198px; top: 160px; }
+            .ring-frame-svg { width: 240px; height: 280px; }
+            section { padding: 2rem 1rem; } section h2 { font-size: 1.5rem; }
             .events-grid { grid-template-columns: 1fr; }
         }
     </style>
@@ -177,132 +156,176 @@
     <div class="hero-content">
         <div class="photo-frame">
 
-            <!-- Photo — fits exactly inside the ring inner circle -->
             <img class="main-photo" src="https://imgur.com/yyFHxei.jpg" alt="Δημήτρης & Χρύσα">
 
             <!--
-                Ring viewed from the side: a perfect circle (band) with a solitaire diamond
-                sitting upright at the top — exactly like the reference photo.
+              SVG 360×420
+              Ring centre: cx=180, cy=240  radius=149
+              Band stroke=11  → outer r=154.5, inner r=143.5 → photo=287px  (we use 294 for near-perfect fill)
+              Band top: y = 240-149 = 91
 
-                Coordinate system (340 × 380):
-                  • Ring centre: (170, 205)   ← shifted down to give room for diamond above
-                  • Band radius: 143px  (stroke 10 → outer 148, inner 138 → photo fits in 276px ✓)
-                  • Diamond centre: top of band = (170, 205-143) = (170, 62)
-                  • Prong basket rises from ~(170, 62) up to diamond top ~(170, 8)
+              DIAMOND SIDE-PROFILE VIEW (as in reference photo):
+              - Viewed from the side: diamond appears as a rounded-top shape
+              - Setting: two large curved prong "wings" opening left and right from the band top
+              - Diamond: dome on top, pointed culet at bottom sitting in the cup
             -->
-            <svg class="ring-frame-svg" viewBox="0 0 340 380" xmlns="http://www.w3.org/2000/svg">
+            <svg class="ring-frame-svg" viewBox="0 0 360 420" xmlns="http://www.w3.org/2000/svg">
                 <defs>
-                    <!-- Silver gradient for ring band -->
-                    <linearGradient id="bandGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                        <stop offset="0%"   stop-color="#f8f8f8"/>
-                        <stop offset="20%"  stop-color="#d4d4d4"/>
-                        <stop offset="50%"  stop-color="#f0f0f0"/>
-                        <stop offset="80%"  stop-color="#b8b8b8"/>
-                        <stop offset="100%" stop-color="#e0e0e0"/>
+                    <!-- Band silver gradient — light top-left, dark bottom-right -->
+                    <linearGradient id="bandG" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%"   stop-color="#f9f9f9"/>
+                        <stop offset="18%"  stop-color="#e0e0e0"/>
+                        <stop offset="40%"  stop-color="#f5f5f5"/>
+                        <stop offset="65%"  stop-color="#c8c8c8"/>
+                        <stop offset="85%"  stop-color="#e8e8e8"/>
+                        <stop offset="100%" stop-color="#d4d4d4"/>
                     </linearGradient>
-                    <!-- Silver for prongs / setting -->
-                    <linearGradient id="prongGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+
+                    <!-- Prong/setting silver — slightly warmer -->
+                    <linearGradient id="prongG" x1="0%" y1="0%" x2="60%" y2="100%">
                         <stop offset="0%"   stop-color="#ffffff"/>
-                        <stop offset="50%"  stop-color="#cccccc"/>
-                        <stop offset="100%" stop-color="#e8e8e8"/>
+                        <stop offset="35%"  stop-color="#dcdcdc"/>
+                        <stop offset="70%"  stop-color="#f0f0f0"/>
+                        <stop offset="100%" stop-color="#c8c8c8"/>
                     </linearGradient>
-                    <!-- Diamond fill -->
-                    <linearGradient id="diamGrad" x1="20%" y1="0%" x2="80%" y2="100%">
+
+                    <!-- Dark inner shadow of prong concave -->
+                    <linearGradient id="prongDark" x1="0%" y1="0%" x2="100%" y2="0%">
+                        <stop offset="0%"   stop-color="#a0a0a0"/>
+                        <stop offset="50%"  stop-color="#787878"/>
+                        <stop offset="100%" stop-color="#a0a0a0"/>
+                    </linearGradient>
+
+                    <!-- Diamond fill: icy blue-white -->
+                    <radialGradient id="diamG" cx="38%" cy="30%" r="70%">
                         <stop offset="0%"   stop-color="#ffffff"/>
-                        <stop offset="35%"  stop-color="#e6f5ff"/>
-                        <stop offset="70%"  stop-color="#c8ecff"/>
-                        <stop offset="100%" stop-color="#ffffff"/>
-                    </linearGradient>
-                    <!-- Diamond highlight -->
-                    <radialGradient id="diamShine" cx="30%" cy="25%" r="65%">
+                        <stop offset="30%"  stop-color="#eaf5ff"/>
+                        <stop offset="65%"  stop-color="#cce8fa"/>
+                        <stop offset="100%" stop-color="#b0d8f5"/>
+                    </radialGradient>
+
+                    <!-- Diamond shine spot -->
+                    <radialGradient id="diamShine" cx="32%" cy="22%" r="55%">
                         <stop offset="0%"   stop-color="#ffffff" stop-opacity="1"/>
-                        <stop offset="60%"  stop-color="#ffffff" stop-opacity="0.15"/>
+                        <stop offset="70%"  stop-color="#ffffff" stop-opacity="0.1"/>
                         <stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
                     </radialGradient>
-                    <!-- Clip diamond to circle shape -->
+
+                    <!-- clip diamond to its silhouette -->
                     <clipPath id="diamClip">
-                        <circle cx="170" cy="55" r="46"/>
+                        <!-- Side-profile of a round brilliant: dome top, pointed bottom -->
+                        <!-- Centre at (180, 52), dome radius ~40, total height ~72 -->
+                        <path d="M 140,55
+                                 A 40,38 0 0,1 220,55
+                                 L 180,95 Z"/>
                     </clipPath>
+
+                    <!-- shadow under setting -->
+                    <filter id="dropShadow" x="-20%" y="-20%" width="140%" height="140%">
+                        <feDropShadow dx="0" dy="3" stdDeviation="4" flood-color="rgba(0,0,0,0.25)"/>
+                    </filter>
                 </defs>
 
-                <!-- ═══ RING BAND (vertical circle, frontal view) ═══ -->
-                <!-- Outer glow / shadow -->
-                <circle cx="170" cy="205" r="143" fill="none" stroke="rgba(0,0,0,0.18)" stroke-width="14"/>
-                <!-- Main band -->
-                <circle cx="170" cy="205" r="143" fill="none" stroke="url(#bandGrad)" stroke-width="10"/>
-                <!-- Inner highlight line -->
-                <circle cx="170" cy="205" r="143" fill="none" stroke="rgba(255,255,255,0.55)" stroke-width="2"/>
+                <!-- ══════════════ RING BAND ══════════════ -->
+                <!-- subtle outer shadow -->
+                <circle cx="180" cy="240" r="149" fill="none" stroke="rgba(0,0,0,0.20)" stroke-width="15"/>
+                <!-- main band -->
+                <circle cx="180" cy="240" r="149" fill="none" stroke="url(#bandG)" stroke-width="11"/>
+                <!-- inner highlight -->
+                <circle cx="180" cy="240" r="149" fill="none" stroke="rgba(255,255,255,0.6)" stroke-width="2.5" stroke-dasharray="6 10" stroke-dashoffset="3"/>
 
-                <!-- ═══ PRONG BASKET (rises from top of ring up to hold diamond) ═══
-                     Modelled after the reference photo: two curved "arms" split from the
-                     band top, go up and inward, then curve outward to grip the stone. -->
+                <!-- ══════════════ SETTING + PRONGS ══════════════
+                     Reference photo analysis:
+                     - Two thick curved "wings" sweep up and outward from the band-top (y≈91)
+                     - They form a V/triangle negative space in the middle
+                     - The wings grip the diamond at roughly mid-height
+                     - Total setting width ≈ 2× diamond radius + prong overhang
+                -->
 
-                <!-- Left arm of basket -->
-                <path d="M 148,68
-                         C 140,80 134,90 136,102
-                         C 138,112 148,116 148,116"
-                      fill="none" stroke="url(#prongGrad)" stroke-width="9" stroke-linecap="round"/>
+                <!-- LEFT WING prong arm — curves up-left from band, sweeps inward to grip stone -->
+                <!-- Outer (bright) face of left arm -->
+                <path d="M 158,95
+                         C 148,88  128,72  118,52
+                         C 113,42  116,30  126,26
+                         C 136,22  145,32  148,42
+                         C 151,52  154,62  158,68"
+                      fill="url(#prongG)" stroke="#c0c0c0" stroke-width="1" filter="url(#dropShadow)"/>
 
-                <!-- Right arm of basket -->
-                <path d="M 192,68
-                         C 200,80 206,90 204,102
-                         C 202,112 192,116 192,116"
-                      fill="none" stroke="url(#prongGrad)" stroke-width="9" stroke-linecap="round"/>
+                <!-- Inner (shadow) concave face of left arm -->
+                <path d="M 158,95
+                         C 152,88  138,72  134,52
+                         C 131,40  135,30  142,28
+                         C 148,26  152,34  153,44
+                         C 155,56  156,64  158,68"
+                      fill="#b0b0b0" opacity="0.55"/>
 
-                <!-- Triangular "window" between arms (like the reference photo shadow) -->
-                <path d="M 150,74 L 170,105 L 190,74" fill="rgba(180,180,180,0.18)" stroke="none"/>
+                <!-- RIGHT WING prong arm — mirror -->
+                <path d="M 202,95
+                         C 212,88  232,72  242,52
+                         C 247,42  244,30  234,26
+                         C 224,22  215,32  212,42
+                         C 209,52  206,62  202,68"
+                      fill="url(#prongG)" stroke="#c0c0c0" stroke-width="1" filter="url(#dropShadow)"/>
 
-                <!-- ═══ DIAMOND (large round brilliant at top of setting) ═══ -->
-                <g>
-                    <!-- Diamond circle base -->
-                    <circle cx="170" cy="55" r="46" fill="url(#diamGrad)" stroke="#b8b8b8" stroke-width="1.5"/>
+                <!-- Inner shadow right arm -->
+                <path d="M 202,95
+                         C 208,88  222,72  226,52
+                         C 229,40  225,30  218,28
+                         C 212,26  208,34  207,44
+                         C 205,56  204,64  202,68"
+                      fill="#b0b0b0" opacity="0.55"/>
 
-                    <!-- Brilliant-cut facet lines -->
-                    <g clip-path="url(#diamClip)" opacity="0.7">
-                        <!-- Table octagon -->
-                        <polygon points="170,18 188,29 194,50 188,71 170,82 152,71 146,50 152,29"
-                                 fill="none" stroke="#9cc8e0" stroke-width="0.8"/>
-                        <!-- Star facets (8 kite-shaped) -->
-                        <line x1="170" y1="9"  x2="170" y2="18" stroke="#b0d8ef" stroke-width="0.7"/>
-                        <line x1="197" y1="28" x2="188" y2="29" stroke="#b0d8ef" stroke-width="0.7"/>
-                        <line x1="201" y1="55" x2="194" y2="50" stroke="#b0d8ef" stroke-width="0.7"/>
-                        <line x1="197" y1="82" x2="188" y2="71" stroke="#b0d8ef" stroke-width="0.7"/>
-                        <line x1="170" y1="101" x2="170" y2="82" stroke="#b0d8ef" stroke-width="0.7"/>
-                        <line x1="143" y1="82" x2="152" y2="71" stroke="#b0d8ef" stroke-width="0.7"/>
-                        <line x1="139" y1="55" x2="146" y2="50" stroke="#b0d8ef" stroke-width="0.7"/>
-                        <line x1="143" y1="28" x2="152" y2="29" stroke="#b0d8ef" stroke-width="0.7"/>
-                        <!-- Lower half pavilion lines to culet -->
-                        <line x1="170" y1="82" x2="170" y2="55" stroke="#a8d4ec" stroke-width="0.6"/>
-                        <line x1="188" y1="71" x2="170" y2="55" stroke="#a8d4ec" stroke-width="0.6"/>
-                        <line x1="194" y1="50" x2="170" y2="55" stroke="#a8d4ec" stroke-width="0.6"/>
-                        <line x1="188" y1="29" x2="170" y2="55" stroke="#a8d4ec" stroke-width="0.6"/>
-                        <line x1="170" y1="18" x2="170" y2="55" stroke="#a8d4ec" stroke-width="0.6"/>
-                        <line x1="152" y1="29" x2="170" y2="55" stroke="#a8d4ec" stroke-width="0.6"/>
-                        <line x1="146" y1="50" x2="170" y2="55" stroke="#a8d4ec" stroke-width="0.6"/>
-                        <line x1="152" y1="71" x2="170" y2="55" stroke="#a8d4ec" stroke-width="0.6"/>
-                    </g>
+                <!-- Triangular negative space / shadow between the two wings -->
+                <path d="M 158,95 L 180,68 L 202,95"
+                      fill="rgba(60,60,60,0.25)"/>
 
-                    <!-- Shine overlay -->
-                    <circle cx="170" cy="55" r="46" fill="url(#diamShine)"/>
+                <!-- ══════════════ DIAMOND — side profile ══════════════
+                     Shape: semicircular dome on top, triangular point at bottom (culet)
+                     Sits between the two prong wings, centred at x=180, top ≈ y=16, culet ≈ y=90
+                -->
 
-                    <!-- Sparkle star top-left -->
-                    <g opacity="0.9">
-                        <path d="M 148,18 l2,6 l2,-6 l-2,-6 Z" fill="white"/>
-                        <path d="M 142,24 l6,2 l-6,2 l-6,-2 Z" fill="white" opacity="0.8"/>
-                    </g>
-                    <!-- Small sparkle right -->
-                    <circle cx="204" cy="35" r="2" fill="white" opacity="0.85"/>
+                <!-- Diamond silhouette (side view of round brilliant) -->
+                <g filter="url(#dropShadow)">
+                    <path d="M 138,57
+                             A 42,40 0 0,1 222,57
+                             L 180,93 Z"
+                          fill="url(#diamG)" stroke="#a8cce0" stroke-width="1.2"/>
                 </g>
 
-                <!-- ═══ FOUR PRONGS gripping the diamond ═══ -->
-                <!-- Top-left prong -->
-                <line x1="152" y1="29" x2="143" y2="14" stroke="#d8d8d8" stroke-width="7" stroke-linecap="round"/>
-                <!-- Top-right prong -->
-                <line x1="188" y1="29" x2="197" y2="14" stroke="#d8d8d8" stroke-width="7" stroke-linecap="round"/>
-                <!-- Bottom-left prong -->
-                <line x1="148" y1="80" x2="140" y2="94" stroke="#c0c0c0" stroke-width="7" stroke-linecap="round"/>
-                <!-- Bottom-right prong -->
-                <line x1="192" y1="80" x2="200" y2="94" stroke="#c0c0c0" stroke-width="7" stroke-linecap="round"/>
+                <!-- Facet lines clipped to diamond shape -->
+                <g clip-path="url(#diamClip)" opacity="0.65">
+                    <!-- Crown main facets (above girdle at y≈57) -->
+                    <line x1="180" y1="17"  x2="180" y2="57" stroke="#8ac4e0" stroke-width="0.9"/>
+                    <line x1="138" y1="57"  x2="180" y2="38" stroke="#8ac4e0" stroke-width="0.8"/>
+                    <line x1="222" y1="57"  x2="180" y2="38" stroke="#8ac4e0" stroke-width="0.8"/>
+                    <line x1="152" y1="28"  x2="180" y2="57" stroke="#9dd0e8" stroke-width="0.7"/>
+                    <line x1="208" y1="28"  x2="180" y2="57" stroke="#9dd0e8" stroke-width="0.7"/>
+                    <line x1="138" y1="57"  x2="165" y2="30" stroke="#9dd0e8" stroke-width="0.6"/>
+                    <line x1="222" y1="57"  x2="195" y2="30" stroke="#9dd0e8" stroke-width="0.6"/>
+                    <!-- Pavilion lines (below girdle, to culet at y=93) -->
+                    <line x1="138" y1="57"  x2="180" y2="93" stroke="#7ab8d8" stroke-width="0.8"/>
+                    <line x1="222" y1="57"  x2="180" y2="93" stroke="#7ab8d8" stroke-width="0.8"/>
+                    <line x1="155" y1="57"  x2="180" y2="93" stroke="#7ab8d8" stroke-width="0.6"/>
+                    <line x1="205" y1="57"  x2="180" y2="93" stroke="#7ab8d8" stroke-width="0.6"/>
+                    <!-- Girdle line -->
+                    <line x1="138" y1="57" x2="222" y2="57" stroke="#b0d8f0" stroke-width="1.0"/>
+                </g>
+
+                <!-- Diamond shine overlay -->
+                <path d="M 138,57 A 42,40 0 0,1 222,57 L 180,93 Z"
+                      fill="url(#diamShine)"/>
+
+                <!-- Small highlight glint -->
+                <ellipse cx="158" cy="38" rx="8" ry="5" fill="white" opacity="0.7" transform="rotate(-25,158,38)"/>
+                <circle  cx="168" cy="27" r="3"  fill="white" opacity="0.8"/>
+
+                <!-- ══ Sparkle above diamond ══ -->
+                <g opacity="0.9">
+                    <path d="M 180,8 l2.5,8 l2.5,-8 l-2.5,-8 Z" fill="white"/>
+                    <path d="M 170,12 l7,2.5 l-7,2.5 l-7,-2.5 Z" fill="white" opacity="0.7"/>
+                    <circle cx="225" cy="22" r="2" fill="white" opacity="0.85"/>
+                    <circle cx="136" cy="28" r="1.5" fill="white" opacity="0.8"/>
+                </g>
 
             </svg>
         </div>
@@ -340,18 +363,9 @@
         <h2>Το Πρόγραμμα</h2>
         <div class="section-divider"></div>
         <div class="events-grid">
-            <div class="event-card">
-                <h3>⛪ Τέλεση</h3>
-                <p><strong>15:30</strong><br><br>Εκκλησία του Μουζακίου</p>
-            </div>
-            <div class="event-card">
-                <h3>🎉 Δεξίωση</h3>
-                <p><strong>20:30</strong><br><br>Ονείρων Έπαυλις<br>Πηγή Τρικάλων</p>
-            </div>
-            <div class="event-card">
-                <h3>📅 Ημερομηνία</h3>
-                <p><strong>Πέμπτη</strong><br>26 Δεκεμβρίου<br>2026</p>
-            </div>
+            <div class="event-card"><h3>⛪ Τέλεση</h3><p><strong>15:30</strong><br><br>Εκκλησία του Μουζακίου</p></div>
+            <div class="event-card"><h3>🎉 Δεξίωση</h3><p><strong>20:30</strong><br><br>Ονείρων Έπαυλις<br>Πηγή Τρικάλων</p></div>
+            <div class="event-card"><h3>📅 Ημερομηνία</h3><p><strong>Πέμπτη</strong><br>26 Δεκεμβρίου<br>2026</p></div>
         </div>
     </section>
 
@@ -375,34 +389,18 @@
         <div class="rsvp-section">
             <div class="success" id="successMsg">✓ Ευχαριστούμε! Λάβαμε την επιβεβαίωσή σας</div>
             <form id="rsvpForm">
-                <div class="form-group">
-                    <label for="name">Ονοματεπώνυμο *</label>
-                    <input type="text" id="name" name="name" required>
-                </div>
-                <div class="form-group">
-                    <label for="guests">Αριθμός Ατόμων *</label>
+                <div class="form-group"><label for="name">Ονοματεπώνυμο *</label><input type="text" id="name" name="name" required></div>
+                <div class="form-group"><label for="guests">Αριθμός Ατόμων *</label>
                     <select id="guests" name="guests" required>
                         <option value="">Επιλέξτε...</option>
-                        <option value="1">1 άτομο</option>
-                        <option value="2">2 άτομα</option>
-                        <option value="3">3 άτομα</option>
-                        <option value="4">4 άτομα</option>
-                        <option value="5">5 άτομα</option>
-                        <option value="6+">6+ άτομα</option>
+                        <option value="1">1 άτομο</option><option value="2">2 άτομα</option>
+                        <option value="3">3 άτομα</option><option value="4">4 άτομα</option>
+                        <option value="5">5 άτομα</option><option value="6+">6+ άτομα</option>
                     </select>
                 </div>
-                <div class="form-group">
-                    <label for="email">Email *</label>
-                    <input type="email" id="email" name="email" required>
-                </div>
-                <div class="form-group">
-                    <label for="phone">Τηλέφωνο</label>
-                    <input type="tel" id="phone" name="phone" placeholder="+30 6XX XXX XXXX">
-                </div>
-                <div class="form-group">
-                    <label for="dietary">Διατροφικές Προτιμήσεις</label>
-                    <textarea id="dietary" name="dietary" placeholder="π.χ. Χορτοφαγία, αλλεργίες..." rows="3"></textarea>
-                </div>
+                <div class="form-group"><label for="email">Email *</label><input type="email" id="email" name="email" required></div>
+                <div class="form-group"><label for="phone">Τηλέφωνο</label><input type="tel" id="phone" name="phone" placeholder="+30 6XX XXX XXXX"></div>
+                <div class="form-group"><label for="dietary">Διατροφικές Προτιμήσεις</label><textarea id="dietary" name="dietary" placeholder="π.χ. Χορτοφαγία, αλλεργίες..." rows="3"></textarea></div>
                 <button type="submit" class="submit-btn">Αποστολή</button>
             </form>
         </div>
@@ -412,22 +410,10 @@
         <h2>Πληροφορίες Επίσκεψης</h2>
         <div class="section-divider"></div>
         <div class="tips-grid">
-            <div class="tip-card">
-                <h4>🚗 Πώς να Φτάσετε</h4>
-                <p>Το Μουζάκι βρίσκεται περίπου 40 λεπτά από Τρίκαλα και μιάμιση ώρα από Βόλο. Συστήνουμε Google Maps με πηγή "Εκκλησία Μουζακίου". Οδηγείστε προσεκτικά, οι δρόμοι του χωριού είναι στενοί.</p>
-            </div>
-            <div class="tip-card">
-                <h4>⭐ Τι να Δείτε</h4>
-                <p>Δείτε τα σπήλαια Μετεώρων, επισκευτείτε τον μύλο των ξωτικών, τις ιστορικές μονές και την πανέμορφη φύση. Η Πηγή Τρικάλων είναι ιδανική για χαλαρές βόλτες και φωτογραφίες.</p>
-            </div>
-            <div class="tip-card">
-                <h4>🍽️ Τοπικά Φαγητά</h4>
-                <p>Δοκιμάστε τις παραδοσιακές ταβέρνες του χωριού. Το Μουζάκι είναι γνωστό για τα νοστιμότατα φαγητά και το ζεστό φιλόξενο περιβάλλον.</p>
-            </div>
-            <div class="tip-card">
-                <h4>🏨 Διαμονή</h4>
-                <p>Συστήνουμε ξενοδοχεία στα Τρίκαλα και Καλαμπάκα. Υπάρχουν επίσης airbnb δωμάτια στο Μουζάκι και τις γύρω περιοχές.</p>
-            </div>
+            <div class="tip-card"><h4>🚗 Πώς να Φτάσετε</h4><p>Το Μουζάκι βρίσκεται περίπου 40 λεπτά από Τρίκαλα και μιάμιση ώρα από Βόλο. Συστήνουμε Google Maps με πηγή "Εκκλησία Μουζακίου". Οδηγείστε προσεκτικά, οι δρόμοι του χωριού είναι στενοί.</p></div>
+            <div class="tip-card"><h4>⭐ Τι να Δείτε</h4><p>Δείτε τα σπήλαια Μετεώρων, επισκευτείτε τον μύλο των ξωτικών, τις ιστορικές μονές και την πανέμορφη φύση. Η Πηγή Τρικάλων είναι ιδανική για χαλαρές βόλτες και φωτογραφίες.</p></div>
+            <div class="tip-card"><h4>🍽️ Τοπικά Φαγητά</h4><p>Δοκιμάστε τις παραδοσιακές ταβέρνες του χωριού. Το Μουζάκι είναι γνωστό για τα νοστιμότατα φαγητά και το ζεστό φιλόξενο περιβάλλον.</p></div>
+            <div class="tip-card"><h4>🏨 Διαμονή</h4><p>Συστήνουμε ξενοδοχεία στα Τρίκαλα και Καλαμπάκα. Υπάρχουν επίσης airbnb δωμάτια στο Μουζάκι και τις γύρω περιοχές.</p></div>
         </div>
     </section>
 </main>
@@ -444,8 +430,7 @@
             const s = document.createElement('div');
             s.classList.add('snowflake');
             s.textContent = chars[Math.floor(Math.random()*chars.length)];
-            const dur = 8 + Math.random()*4;
-            const delay = Math.random()*0.5;
+            const dur = 8 + Math.random()*4, delay = Math.random()*0.5;
             s.style.left = (Math.random()*100)+'%';
             s.style.animationDuration = dur+'s';
             s.style.animationDelay = delay+'s';
@@ -454,18 +439,15 @@
             setTimeout(()=>s.remove(),(dur+delay)*1000);
         }, 333);
     }
-
     window.addEventListener('load', createSnowflakes);
 
     document.getElementById('rsvpForm').addEventListener('submit', async function(e) {
         e.preventDefault();
-        const formData = new FormData(this);
-        const data = { name: formData.get('name'), guests: formData.get('guests'), email: formData.get('email'), phone: formData.get('phone'), dietary: formData.get('dietary') };
+        const fd = new FormData(this);
+        const data = { name:fd.get('name'), guests:fd.get('guests'), email:fd.get('email'), phone:fd.get('phone'), dietary:fd.get('dietary') };
         try {
-            const response = await fetch('https://formsubmit.co/ajax/xalatsis.dimitrios@gmail.com', {
-                method: 'POST', headers: {'Content-Type':'application/json'}, body: JSON.stringify(data)
-            });
-            if (response.ok) {
+            const r = await fetch('https://formsubmit.co/ajax/xalatsis.dimitrios@gmail.com', { method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify(data) });
+            if (r.ok) {
                 document.getElementById('successMsg').classList.add('show');
                 this.reset();
                 setTimeout(()=>document.getElementById('successMsg').classList.remove('show'), 4000);
@@ -473,26 +455,22 @@
         } catch(err) { alert('Σφάλμα. Παρακαλούμε δοκιμάστε ξανά.'); }
     });
 
-    document.querySelectorAll('a[href^="#"]').forEach(link => {
-        link.addEventListener('click', e => {
-            e.preventDefault();
-            const t = document.querySelector(link.getAttribute('href'));
-            if (t) t.scrollIntoView({behavior:'smooth'});
-        });
+    document.querySelectorAll('a[href^="#"]').forEach(l => {
+        l.addEventListener('click', e => { e.preventDefault(); const t=document.querySelector(l.getAttribute('href')); if(t) t.scrollIntoView({behavior:'smooth'}); });
     });
 
-    let lastScrollTop = 0;
-    const header = document.querySelector('header');
-    function handleMobileMenu() {
-        if (window.innerWidth > 768) { header.classList.add('show-menu'); return; }
+    let lastST = 0;
+    const hdr = document.querySelector('header');
+    function handleMenu() {
+        if (window.innerWidth > 768) { hdr.classList.add('show-menu'); return; }
         window.addEventListener('scroll', () => {
             const cur = window.pageYOffset || document.documentElement.scrollTop;
-            if (cur > 50 && cur > lastScrollTop) header.classList.add('show-menu');
-            else header.classList.remove('show-menu');
-            lastScrollTop = cur <= 0 ? 0 : cur;
+            if (cur > 50 && cur > lastST) hdr.classList.add('show-menu');
+            else hdr.classList.remove('show-menu');
+            lastST = cur <= 0 ? 0 : cur;
         });
     }
-    window.addEventListener('load', handleMobileMenu);
+    window.addEventListener('load', handleMenu);
 </script>
 </body>
 </html>
