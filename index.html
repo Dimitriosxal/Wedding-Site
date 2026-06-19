@@ -199,7 +199,6 @@ header.show-menu {
             border-radius: 50%;
             object-fit: cover;
             box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-            border: 8px solid rgba(255, 255, 255, 0.9);
             position: absolute;
             top: 50%;
             left: 50%;
@@ -665,7 +664,7 @@ header.show-menu {
             <div class="photo-frame">
                 <img class="main-photo" src="https://imgur.com/yyFHxei.jpg" alt="Δημήτρης & Χρύσα">
 
-                <!-- Ring frame: full circular band, straight/frontal, 4 prongs holding a diamond on top -->
+                <!-- Ring frame: full circular band, straight/frontal, 6 prongs holding a round-cut diamond on top -->
                 <svg class="ring-frame-svg" viewBox="0 0 340 340" xmlns="http://www.w3.org/2000/svg">
                     <defs>
                         <linearGradient id="ringSilver" x1="0%" y1="0%" x2="100%" y2="100%">
@@ -675,38 +674,60 @@ header.show-menu {
                             <stop offset="75%" stop-color="#b8b8b8"/>
                             <stop offset="100%" stop-color="#e8e8e8"/>
                         </linearGradient>
-                        <linearGradient id="ringDiamond" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <linearGradient id="ringDiamond" x1="20%" y1="0%" x2="80%" y2="100%">
                             <stop offset="0%" stop-color="#ffffff"/>
-                            <stop offset="40%" stop-color="#eaf6ff"/>
-                            <stop offset="70%" stop-color="#cfeeff"/>
+                            <stop offset="35%" stop-color="#e3f4ff"/>
+                            <stop offset="60%" stop-color="#bfe8fb"/>
                             <stop offset="100%" stop-color="#ffffff"/>
                         </linearGradient>
+                        <radialGradient id="ringDiamondShine" cx="35%" cy="25%" r="70%">
+                            <stop offset="0%" stop-color="#ffffff" stop-opacity="0.95"/>
+                            <stop offset="50%" stop-color="#ffffff" stop-opacity="0.2"/>
+                            <stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
+                        </radialGradient>
                     </defs>
 
                     <!-- Ring band: full circle, frontal/straight, wraps the photo -->
                     <circle cx="170" cy="185" r="148" fill="none" stroke="url(#ringSilver)" stroke-width="10"/>
                     <circle cx="170" cy="185" r="148" fill="none" stroke="#ffffff" stroke-width="2" opacity="0.5"/>
 
-                    <!-- 4 prongs holding the diamond, centered at the top of the ring -->
-                    <line x1="146" y1="44" x2="153" y2="14" stroke="#d8d8d8" stroke-width="7" stroke-linecap="round"/>
-                    <line x1="194" y1="44" x2="187" y2="14" stroke="#d8d8d8" stroke-width="7" stroke-linecap="round"/>
-                    <line x1="134" y1="54" x2="148" y2="22" stroke="#d8d8d8" stroke-width="7" stroke-linecap="round"/>
-                    <line x1="206" y1="54" x2="192" y2="22" stroke="#d8d8d8" stroke-width="7" stroke-linecap="round"/>
+                    <!-- ===== Diamond setting: 6 prongs wrapping a round-brilliant gem ===== -->
+                    <g transform="translate(170,32)">
+                        <!-- side/back prongs (behind the gem) -->
+                        <line x1="-38" y1="16" x2="-30" y2="-9" stroke="#cfcfcf" stroke-width="7.5" stroke-linecap="round"/>
+                        <line x1="38" y1="16" x2="30" y2="-9" stroke="#cfcfcf" stroke-width="7.5" stroke-linecap="round"/>
 
-                    <!-- diamond base setting -->
-                    <ellipse cx="170" cy="46" rx="32" ry="11" fill="url(#ringSilver)" opacity="0.7"/>
+                        <!-- base/setting cup -->
+                        <ellipse cx="0" cy="28" rx="42" ry="12" fill="url(#ringSilver)" opacity="0.6"/>
 
-                    <!-- big diamond -->
-                    <polygon points="170,-12 207,26 170,64 133,26" fill="url(#ringDiamond)" stroke="#c0c0c0" stroke-width="2"/>
-                    <polyline points="170,-12 170,64" stroke="#ffffff" stroke-width="1" opacity="0.8"/>
-                    <polyline points="133,26 207,26" stroke="#ffffff" stroke-width="1" opacity="0.8"/>
-                    <polygon points="170,-12 192,12 170,26 148,12" fill="#ffffff" opacity="0.55"/>
-                    <polygon points="170,26 192,12 207,26 170,64" fill="#ffffff" opacity="0.15"/>
+                        <!-- round brilliant-cut diamond, snowflake-like facets -->
+                        <g>
+                            <circle cx="0" cy="0" r="38" fill="url(#ringDiamond)" stroke="#c5c5c5" stroke-width="1.5"/>
+                            <polygon points="0,-38 11,-11 0,-4 -11,-11" fill="#ffffff" opacity="0.55"/>
+                            <polygon points="27,-27 11,-11 20,-1 33,-13" fill="#eaf7ff" opacity="0.6"/>
+                            <polygon points="38,0 20,-1 27,11 33,13" fill="#dff2ff" opacity="0.55"/>
+                            <polygon points="27,27 33,13 20,1 11,11" fill="#eaf7ff" opacity="0.5"/>
+                            <polygon points="0,38 11,11 0,4 -11,11" fill="#d7eefc" opacity="0.5"/>
+                            <polygon points="-27,27 -11,11 -20,1 -33,13" fill="#eaf7ff" opacity="0.5"/>
+                            <polygon points="-38,0 -20,1 -27,-11 -33,-13" fill="#dff2ff" opacity="0.55"/>
+                            <polygon points="-27,-27 -33,-13 -20,-1 -11,-11" fill="#eaf7ff" opacity="0.55"/>
+                            <polygon points="11,-11 20,-1 11,11 0,4 -11,11 -20,-1 -11,-11 0,-4" fill="#ffffff" stroke="#d8eef9" stroke-width="0.5" opacity="0.85"/>
+                            <polygon points="11,-11 20,-1 11,11 -11,11 -20,-1 -11,-11" fill="none" stroke="#c9e7f7" stroke-width="0.7" opacity="0.8"/>
+                            <circle cx="0" cy="0" r="38" fill="url(#ringDiamondShine)"/>
+                        </g>
 
-                    <!-- sparkle accents -->
-                    <g opacity="0.9">
-                        <path d="M170,-20 l3,8 l-3,8 l-3,-8 Z" fill="#ffffff"/>
-                        <path d="M212,20 l-6,2 l-6,-2 l6,-2 Z" fill="#ffffff" opacity="0.7"/>
+                        <!-- sparkle accents -->
+                        <g opacity="0.95">
+                            <path d="M0,-52 l3.5,10 l-3.5,10 l-3.5,-10 Z" fill="#ffffff"/>
+                            <path d="M50,-2 l-8,3 l-8,-3 l8,-3 Z" fill="#ffffff" opacity="0.8"/>
+                            <circle cx="-42" cy="-22" r="2.3" fill="#ffffff" opacity="0.9"/>
+                        </g>
+
+                        <!-- front prongs (on top of the gem edges, all 4 corners visible) -->
+                        <line x1="-16" y1="-33" x2="-21" y2="-50" stroke="#e6e6e6" stroke-width="7.5" stroke-linecap="round"/>
+                        <line x1="16" y1="-33" x2="21" y2="-50" stroke="#e6e6e6" stroke-width="7.5" stroke-linecap="round"/>
+                        <line x1="-16" y1="33" x2="-24" y2="48" stroke="#c2c2c2" stroke-width="7.5" stroke-linecap="round"/>
+                        <line x1="16" y1="33" x2="24" y2="48" stroke="#c2c2c2" stroke-width="7.5" stroke-linecap="round"/>
                     </g>
                 </svg>
             </div>
