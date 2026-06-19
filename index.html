@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Δημήτρης & Χρύσα</title>
+    <title>Δημήτρης &amp; Χρύσα</title>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
         * {
@@ -175,14 +175,14 @@ header.show-menu {
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 2rem;
+            gap: 2.5rem;
         }
 
         /* Photo Frame */
         .photo-frame {
             position: relative;
-            width: 280px;
-            height: 280px;
+            width: 340px;
+            height: 360px;
             z-index: 10;
         }
 
@@ -193,32 +193,33 @@ header.show-menu {
             pointer-events: none;
         }
 
-        .photo-frame img {
+        .photo-frame img.main-photo {
             width: 280px;
             height: 280px;
             border-radius: 50%;
             object-fit: cover;
             box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
             border: 8px solid rgba(255, 255, 255, 0.9);
-            position: relative;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
             z-index: 11;
         }
-.ring-frame{
-    width:340px !important;
-    height:340px !important;
-    border:none !important;
-    border-radius:0 !important;
-    box-shadow:none !important;
 
-    position:absolute;
-    top:50%;
-    left:50%;
-    transform:translate(-50%,-50%);
-    object-fit:contain;
-    pointer-events:none;
-    z-index:12;
-    opacity:.85;
-}
+        /* Ring frame SVG wrapping the photo - full circle, straight/frontal, 4 prongs + diamond on top */
+        .ring-frame-svg {
+            position: absolute;
+            width: 340px;
+            height: 340px;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            pointer-events: none;
+            z-index: 12;
+            overflow: visible;
+        }
+
         /* Snowflake Circle Frame */
         .snowflake-circle {
             position: absolute;
@@ -522,18 +523,7 @@ header.show-menu {
             letter-spacing: 1px;
             margin-bottom: 0.5rem;
         }
-.ring-frame{
-    position:absolute;
-    width:340px;
-    height:340px;
-    top:50%;
-    left:50%;
-    transform:translate(-50%,-50%);
-    object-fit:contain;
-    pointer-events:none;
-    z-index:12;
-    opacity:.85;
-}
+
         /* Responsive */
         @media (max-width: 768px) {
             nav ul {
@@ -548,9 +538,19 @@ header.show-menu {
                 font-size: 2.5rem;
             }
 
-            .photo-frame img {
+            .photo-frame {
+                width: 268px;
+                height: 290px;
+            }
+
+            .photo-frame img.main-photo {
                 width: 220px;
                 height: 220px;
+            }
+
+            .ring-frame-svg {
+                width: 268px;
+                height: 268px;
             }
 
             .snowflake-circle {
@@ -599,9 +599,19 @@ header.show-menu {
                 font-size: 0.8rem;
             }
 
-            .photo-frame img {
+            .photo-frame {
+                width: 220px;
+                height: 240px;
+            }
+
+            .photo-frame img.main-photo {
                 width: 180px;
                 height: 180px;
+            }
+
+            .ring-frame-svg {
+                width: 220px;
+                height: 220px;
             }
 
             .snowflake-circle {
@@ -652,10 +662,54 @@ header.show-menu {
     <!-- Hero Section -->
     <section class="hero">
         <div class="hero-content">
-<div class="photo-frame">
-    <img class="ring-frame" src="ring.png" alt="">
-    <img src="https://imgur.com/yyFHxei.jpg" alt="Δημήτρης & Χρύσα">
-</div>
+            <div class="photo-frame">
+                <img class="main-photo" src="https://imgur.com/yyFHxei.jpg" alt="Δημήτρης & Χρύσα">
+
+                <!-- Ring frame: full circular band, straight/frontal, 4 prongs holding a diamond on top -->
+                <svg class="ring-frame-svg" viewBox="0 0 340 340" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <linearGradient id="ringSilver" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" stop-color="#fdfdfd"/>
+                            <stop offset="25%" stop-color="#c9c9c9"/>
+                            <stop offset="50%" stop-color="#f5f5f5"/>
+                            <stop offset="75%" stop-color="#b8b8b8"/>
+                            <stop offset="100%" stop-color="#e8e8e8"/>
+                        </linearGradient>
+                        <linearGradient id="ringDiamond" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" stop-color="#ffffff"/>
+                            <stop offset="40%" stop-color="#eaf6ff"/>
+                            <stop offset="70%" stop-color="#cfeeff"/>
+                            <stop offset="100%" stop-color="#ffffff"/>
+                        </linearGradient>
+                    </defs>
+
+                    <!-- Ring band: full circle, frontal/straight, wraps the photo -->
+                    <circle cx="170" cy="185" r="148" fill="none" stroke="url(#ringSilver)" stroke-width="10"/>
+                    <circle cx="170" cy="185" r="148" fill="none" stroke="#ffffff" stroke-width="2" opacity="0.5"/>
+
+                    <!-- 4 prongs holding the diamond, centered at the top of the ring -->
+                    <line x1="146" y1="44" x2="153" y2="14" stroke="#d8d8d8" stroke-width="7" stroke-linecap="round"/>
+                    <line x1="194" y1="44" x2="187" y2="14" stroke="#d8d8d8" stroke-width="7" stroke-linecap="round"/>
+                    <line x1="134" y1="54" x2="148" y2="22" stroke="#d8d8d8" stroke-width="7" stroke-linecap="round"/>
+                    <line x1="206" y1="54" x2="192" y2="22" stroke="#d8d8d8" stroke-width="7" stroke-linecap="round"/>
+
+                    <!-- diamond base setting -->
+                    <ellipse cx="170" cy="46" rx="32" ry="11" fill="url(#ringSilver)" opacity="0.7"/>
+
+                    <!-- big diamond -->
+                    <polygon points="170,-12 207,26 170,64 133,26" fill="url(#ringDiamond)" stroke="#c0c0c0" stroke-width="2"/>
+                    <polyline points="170,-12 170,64" stroke="#ffffff" stroke-width="1" opacity="0.8"/>
+                    <polyline points="133,26 207,26" stroke="#ffffff" stroke-width="1" opacity="0.8"/>
+                    <polygon points="170,-12 192,12 170,26 148,12" fill="#ffffff" opacity="0.55"/>
+                    <polygon points="170,26 192,12 207,26 170,64" fill="#ffffff" opacity="0.15"/>
+
+                    <!-- sparkle accents -->
+                    <g opacity="0.9">
+                        <path d="M170,-20 l3,8 l-3,8 l-3,-8 Z" fill="#ffffff"/>
+                        <path d="M212,20 l-6,2 l-6,-2 l6,-2 Z" fill="#ffffff" opacity="0.7"/>
+                    </g>
+                </svg>
+            </div>
 
             <div>
                 <p class="hero-subtitle">We are getting MARRIED</p>
