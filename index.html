@@ -1,887 +1,185 @@
 <!DOCTYPE html>
 <html lang="el">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Δημήτρης & Χρύσα - 26 Δεκεμβρίου 2026</title>
-    <link href="https://fonts.googleapis.com/css2?family=Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Lato:wght@300;400;600&display=swap" rel="stylesheet">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Lato', sans-serif;
-            background: linear-gradient(135deg, #F8F6F1 0%, #F0EAE0 100%);
-            color: #2B2B2B;
-            line-height: 1.8;
-            position: relative;
-            overflow-x: hidden;
-        }
-
-        /* Animated Snow Background */
-        .snowflakes {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 1;
-        }
-
-        .snowflake {
-            position: absolute;
-            color: #FFFFFF;
-            font-size: 1.5em;
-            opacity: 0.7;
-            text-shadow: 0 0 5px rgba(255,255,255,0.5);
-            animation: fall linear infinite;
-        }
-
-        @keyframes fall {
-            from {
-                top: -10vh;
-                opacity: 0;
-            }
-            to {
-                top: 100vh;
-                opacity: 0.3;
-            }
-        }
-
-        /* Pine Branch Decorations */
-        .pine-branch {
-            position: fixed;
-            font-size: 3rem;
-            opacity: 0.15;
-            z-index: 0;
-            pointer-events: none;
-        }
-
-        .pine-tl {
-            top: 10vh;
-            left: 2vw;
-            transform: rotate(-20deg);
-        }
-
-        .pine-tr {
-            top: 15vh;
-            right: 2vw;
-            transform: rotate(20deg) scaleX(-1);
-        }
-
-        .pine-bl {
-            bottom: 20vh;
-            left: 3vw;
-            transform: rotate(20deg);
-        }
-
-        .pine-br {
-            bottom: 15vh;
-            right: 3vw;
-            transform: rotate(-20deg) scaleX(-1);
-        }
-
-        /* Navigation */
-        nav {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background: linear-gradient(135deg, rgba(107, 29, 46, 0.98) 0%, rgba(13, 59, 39, 0.98) 100%);
-            backdrop-filter: blur(20px);
-            padding: 1.2rem 2rem;
-            z-index: 100;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.15);
-            border-bottom: 1px solid rgba(199, 168, 125, 0.2);
-        }
-
-        nav .container {
-            max-width: 1400px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        nav .logo {
-            font-size: 1.4rem;
-            font-weight: 600;
-            color: #C7A87D;
-            font-family: 'Garamond', serif;
-            letter-spacing: 1px;
-        }
-
-        nav .links {
-            display: flex;
-            gap: 2.5rem;
-        }
-
-        nav a {
-            text-decoration: none;
-            color: #F8F6F1;
-            font-size: 0.9rem;
-            transition: all 0.3s ease;
-            position: relative;
-            font-weight: 500;
-            letter-spacing: 0.5px;
-        }
-
-        nav a:hover {
-            color: #C7A87D;
-        }
-
-        nav a::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: #C7A87D;
-            transition: width 0.3s ease;
-        }
-
-        nav a:hover::after {
-            width: 100%;
-        }
-
-        @media (max-width: 768px) {
-            nav .links {
-                display: none;
-            }
-        }
-
-        /* Main Content - Position relative to be above snow */
-        main {
-            position: relative;
-            z-index: 10;
-        }
-
-        /* Sections */
-        section {
-            padding: 6rem 2rem;
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
-        section.hero {
-            padding-top: 9rem;
-            padding-bottom: 8rem;
-            text-align: center;
-            background: linear-gradient(135deg, transparent 0%, rgba(107, 29, 46, 0.05) 100%);
-        }
-
-        h1 {
-            font-family: 'Garamond', serif;
-            font-size: 4.5rem;
-            font-weight: 400;
-            margin-bottom: 1rem;
-            color: #6B1D2E;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            font-style: italic;
-        }
-
-        h2 {
-            font-family: 'Garamond', serif;
-            font-size: 3rem;
-            font-weight: 400;
-            margin-bottom: 2rem;
-            color: #6B1D2E;
-            letter-spacing: 1px;
-            text-align: center;
-        }
-
-        .subtitle {
-            font-size: 1.2rem;
-            color: #666;
-            margin-bottom: 3rem;
-            font-weight: 300;
-            letter-spacing: 1px;
-        }
-
-        .emoji-large {
-            font-size: 4rem;
-            margin-bottom: 2rem;
-            animation: float 3s ease-in-out infinite;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-15px); }
-        }
-
-        /* Info Card - Premium Design */
-        .info-card {
-            background: linear-gradient(135deg, #FFFFFF 0%, #F8F6F1 100%);
-            border: 2px solid #C7A87D;
-            border-radius: 2px;
-            padding: 4rem;
-            max-width: 650px;
-            margin: 3rem auto;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.12),
-                        inset 0 1px 0 rgba(255,255,255,0.8);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .info-card::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            right: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(199, 168, 125, 0.1) 0%, transparent 70%);
-            pointer-events: none;
-        }
-
-        .info-card .date {
-            font-family: 'Garamond', serif;
-            font-size: 3.5rem;
-            color: #8B1538;
-            margin-bottom: 0.5rem;
-            font-weight: 400;
-            letter-spacing: 1px;
-        }
-
-        .info-card .day {
-            font-size: 1rem;
-            color: #999;
-            margin-bottom: 2.5rem;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-        }
-
-        .info-item {
-            display: flex;
-            align-items: flex-start;
-            gap: 1.5rem;
-            margin-bottom: 2.5rem;
-            text-align: left;
-            padding-bottom: 2.5rem;
-            border-bottom: 1px solid rgba(107, 29, 46, 0.1);
-        }
-
-        .info-item:last-child {
-            border-bottom: none;
-        }
-
-        .info-item .icon {
-            font-size: 2rem;
-            min-width: 50px;
-        }
-
-        .info-item p {
-            margin: 0;
-        }
-
-        .info-item .label {
-            font-weight: 600;
-            color: #6B1D2E;
-            font-size: 1.1rem;
-            margin-bottom: 0.3rem;
-            letter-spacing: 0.5px;
-        }
-
-        .info-item .details {
-            color: #666;
-            font-size: 0.95rem;
-            line-height: 1.6;
-        }
-
-        /* Photo Gallery - Premium */
-        .gallery {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
-            margin-bottom: 2rem;
-        }
-
-        .gallery img {
-            width: 100%;
-            height: 350px;
-            object-fit: cover;
-            border-radius: 2px;
-            box-shadow: 0 15px 50px rgba(0,0,0,0.2),
-                        0 0 0 1px rgba(199, 168, 125, 0.3);
-            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-            position: relative;
-        }
-
-        .gallery img:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 25px 70px rgba(0,0,0,0.3),
-                        0 0 0 1px rgba(199, 168, 125, 0.5);
-        }
-
-        .photo-note {
-            text-align: center;
-            color: #999;
-            font-size: 0.85rem;
-            margin-top: 1.5rem;
-            letter-spacing: 0.5px;
-        }
-
-        /* Gallery Section Background */
-        section#photos {
-            background: linear-gradient(135deg, rgba(13, 59, 39, 0.02) 0%, rgba(107, 29, 46, 0.02) 100%);
-        }
-
-        /* RSVP Form */
-        section.rsvp {
-            background: linear-gradient(135deg, #F8F6F1 0%, #FFF5F0 100%);
-            border-top: 1px solid rgba(199, 168, 125, 0.2);
-        }
-
-        .form-container {
-            max-width: 550px;
-            margin: 0 auto;
-        }
-
-        form {
-            display: flex;
-            flex-direction: column;
-            gap: 2rem;
-        }
-
-        label {
-            display: block;
-            font-weight: 600;
-            margin-bottom: 0.6rem;
-            color: #6B1D2E;
-            font-size: 0.95rem;
-            letter-spacing: 0.5px;
-            text-transform: uppercase;
-        }
-
-        input, select, textarea {
-            width: 100%;
-            padding: 1rem;
-            border: 2px solid #C7A87D;
-            border-radius: 2px;
-            background: #FFFFFF;
-            font-size: 0.95rem;
-            font-family: 'Lato', sans-serif;
-            transition: all 0.3s ease;
-            color: #2B2B2B;
-        }
-
-        input:focus, select:focus, textarea:focus {
-            outline: none;
-            border-color: #8B1538;
-            box-shadow: inset 0 0 0 3px rgba(139, 21, 56, 0.05),
-                        0 0 0 3px rgba(139, 21, 56, 0.1);
-        }
-
-        button {
-            padding: 1rem 2rem;
-            background: linear-gradient(135deg, #8B1538 0%, #6B1D2E 100%);
-            color: #FFFFFF;
-            border: none;
-            border-radius: 2px;
-            font-size: 1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            margin-top: 1rem;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            box-shadow: 0 10px 30px rgba(139, 21, 56, 0.2);
-        }
-
-        button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 15px 40px rgba(139, 21, 56, 0.3);
-        }
-
-        button:active {
-            transform: translateY(0);
-        }
-
-        .success-message {
-            display: none;
-            background: linear-gradient(135deg, #0D3B27 0%, #1a5c4a 100%);
-            color: white;
-            padding: 1.2rem;
-            border-radius: 2px;
-            text-align: center;
-            margin-bottom: 1.5rem;
-            box-shadow: 0 10px 30px rgba(13, 59, 39, 0.2);
-            letter-spacing: 0.5px;
-        }
-
-        .success-message.show {
-            display: block;
-            animation: slideIn 0.4s ease;
-        }
-
-        @keyframes slideIn {
-            from {
-                opacity: 0;
-                transform: translateY(-10px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* Tips Section */
-        section#info {
-            background: linear-gradient(135deg, #FFFFFF 0%, #F8F6F1 100%);
-        }
-
-        .tips-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2.5rem;
-        }
-
-        .tip-card {
-            padding: 2.5rem;
-            border-radius: 2px;
-            border-left: 4px solid;
-            background: #FFFFFF;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
-            transition: all 0.3s ease;
-        }
-
-        .tip-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 50px rgba(0,0,0,0.12);
-        }
-
-        .tip-card h3 {
-            font-family: 'Garamond', serif;
-            font-size: 1.3rem;
-            margin-bottom: 1rem;
-            color: #2B2B2B;
-        }
-
-        .tip-card p {
-            font-size: 0.95rem;
-            color: #666;
-            line-height: 1.7;
-        }
-
-        .tip-card.green {
-            border-color: #0D3B27;
-            background: linear-gradient(135deg, #F8F6F1 0%, rgba(13, 59, 39, 0.03) 100%);
-        }
-
-        .tip-card.green h3 {
-            color: #0D3B27;
-        }
-
-        .tip-card.red {
-            border-color: #8B1538;
-            background: linear-gradient(135deg, #FFF9F0 0%, rgba(139, 21, 56, 0.03) 100%);
-        }
-
-        .tip-card.red h3 {
-            color: #8B1538;
-        }
-
-        .tip-card.gold {
-            border-color: #C7A87D;
-            background: linear-gradient(135deg, #FFFAF5 0%, rgba(199, 168, 125, 0.05) 100%);
-        }
-
-        .tip-card.gold h3 {
-            color: #8B1538;
-        }
-
-        /* Footer - Contact */
-        section.contact {
-            background: linear-gradient(135deg, #6B1D2E 0%, #0D3B27 100%);
-            color: #FFFFFF;
-            text-align: center;
-            position: relative;
-        }
-
-        section.contact h3 {
-            font-family: 'Garamond', serif;
-            font-size: 2rem;
-            margin-bottom: 2rem;
-            letter-spacing: 1px;
-        }
-
-        section.contact p {
-            margin-bottom: 0.8rem;
-            font-size: 1rem;
-            letter-spacing: 0.5px;
-        }
-
-        section.contact strong {
-            color: #C7A87D;
-        }
-
-        footer {
-            background: linear-gradient(135deg, #2B2B2B 0%, #1a1a1a 100%);
-            padding: 2rem;
-            text-align: center;
-            color: #C7A87D;
-            font-size: 0.9rem;
-            letter-spacing: 1px;
-            border-top: 1px solid rgba(199, 168, 125, 0.2);
-        }
-
-        /* Responsive */
-        @media (max-width: 1024px) {
-            h1 {
-                font-size: 3.5rem;
-            }
-
-            h2 {
-                font-size: 2.2rem;
-            }
-
-            section {
-                padding: 4rem 2rem;
-            }
-
-            .info-card {
-                padding: 3rem;
-            }
-        }
-
-        @media (max-width: 768px) {
-            h1 {
-                font-size: 2.5rem;
-                letter-spacing: 1px;
-            }
-
-            h2 {
-                font-size: 1.8rem;
-            }
-
-            .info-card {
-                padding: 2.5rem;
-                margin: 2rem 1rem;
-            }
-
-            .info-card .date {
-                font-size: 2.5rem;
-            }
-
-            section {
-                padding: 3rem 1.5rem;
-            }
-
-            .gallery {
-                gap: 1rem;
-            }
-
-            .gallery img {
-                height: 280px;
-            }
-
-            .tips-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .tip-card {
-                padding: 2rem;
-            }
-
-            nav .container {
-                flex-direction: column;
-                gap: 1rem;
-            }
-
-            nav .logo {
-                font-size: 1.2rem;
-            }
-        }
-
-        @media (max-width: 480px) {
-            h1 {
-                font-size: 1.8rem;
-                letter-spacing: 0.5px;
-            }
-
-            h2 {
-                font-size: 1.4rem;
-            }
-
-            .emoji-large {
-                font-size: 2.5rem;
-            }
-
-            .info-card .date {
-                font-size: 2rem;
-            }
-
-            section {
-                padding: 2rem 1rem;
-            }
-
-            .info-card {
-                padding: 1.5rem;
-            }
-
-            .gallery img {
-                height: 200px;
-            }
-
-            button {
-                padding: 0.8rem 1.5rem;
-                font-size: 0.9rem;
-            }
-        }
-    </style>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Δημήτρης & Χρύσα | Wedding Invitation</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: "Georgia", serif;
+    background: #0b1f14;
+    color: #fff;
+}
+
+/* HERO */
+.hero {
+    height: 100vh;
+    background: url('https://i.imgur.com/yyFHxei.jpg') center/cover no-repeat;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    position: relative;
+}
+
+.hero::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.55);
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+}
+
+h1 {
+    font-size: 60px;
+    color: #d4af37;
+    margin: 0;
+    letter-spacing: 2px;
+}
+
+p {
+    font-size: 18px;
+    color: #fff;
+}
+
+/* NAV */
+nav {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background: rgba(10,30,20,0.85);
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+    padding: 15px;
+    z-index: 10;
+}
+
+nav a {
+    color: #d4af37;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+/* SECTIONS */
+section {
+    padding: 80px 20px;
+    max-width: 900px;
+    margin: auto;
+}
+
+h2 {
+    color: #d4af37;
+    border-left: 4px solid #b30000;
+    padding-left: 10px;
+}
+
+.card {
+    background: rgba(255,255,255,0.05);
+    padding: 20px;
+    border-radius: 12px;
+    margin-top: 20px;
+}
+
+/* GALLERY */
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 10px;
+}
+
+.gallery img {
+    width: 100%;
+    border-radius: 10px;
+    border: 2px solid #d4af37;
+}
+
+/* RSVP BUTTON */
+button {
+    background: #b30000;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+button:hover {
+    background: #d4af37;
+    color: #000;
+}
+</style>
 </head>
+
 <body>
-    <!-- Animated Snowflakes -->
-    <div class="snowflakes" id="snowflakes"></div>
 
-    <!-- Pine Branch Decorations -->
-    <div class="pine-branch pine-tl">🌿</div>
-    <div class="pine-branch pine-tr">🌿</div>
-    <div class="pine-branch pine-bl">🌿</div>
-    <div class="pine-branch pine-br">🌿</div>
+<nav>
+    <a href="#about">About</a>
+    <a href="#details">Details</a>
+    <a href="#photos">Photos</a>
+    <a href="#rsvp">RSVP</a>
+    <a href="#locations">Locations</a>
+</nav>
 
-    <main>
-    <!-- Navigation -->
-    <nav>
-        <div class="container">
-            <div class="logo">💚 Δημήτρης & Χρύσα</div>
-            <div class="links">
-                <a href="#photos">Φωτογραφίες</a>
-                <a href="#rsvp">RSVP</a>
-                <a href="#info">Μουζάκι</a>
-            </div>
-        </div>
-    </nav>
-
-    <!-- Hero -->
-    <section class="hero">
-        <div class="emoji-large">✨</div>
+<div class="hero">
+    <div class="hero-content">
         <h1>Δημήτρης & Χρύσα</h1>
-        <p class="subtitle">Σας καλούμε να γιορτάσετε μαζί μας</p>
+        <p>26 Δεκεμβρίου 2026 • Εκκλησία Μουζακίου • 15:30</p>
+    </div>
+</div>
 
-        <div class="info-card">
-            <div class="date">26 Δεκεμβρίου 2026</div>
-            <div class="day">Ημέρα Πέμπτη</div>
+<section id="about">
+    <h2>About Us</h2>
+    <div class="card">
+        Μια χριστουγεννιάτικη ιστορία αγάπης που συνεχίζεται… ✨
+    </div>
+</section>
 
-            <div class="info-item">
-                <div class="icon">⏰</div>
-                <div>
-                    <p class="label">Τέλεση</p>
-                    <p class="details">15:30 - Εκκλησία του Μουζακίου</p>
-                </div>
-            </div>
+<section id="details">
+    <h2>Τελετή</h2>
+    <div class="card">
+        Εκκλησία Μουζακίου <br/>
+        Ώρα: 15:30 <br/>
+        Dress code: Formal Christmas Elegant 🎄
+    </div>
+</section>
 
-            <div class="info-item">
-                <div class="icon">🎉</div>
-                <div>
-                    <p class="label">Δεξίωση</p>
-                    <p class="details">20:30 - Ονείρων Έπαυλις, Πηγή Τρικάλων</p>
-                </div>
-            </div>
-        </div>
-    </section>
+<section id="photos">
+    <h2>Photos</h2>
+    <div class="gallery">
+        <img src="https://i.imgur.com/t1udfVy.jpg"/>
+        <img src="https://i.imgur.com/iuGRu0A.jpg"/>
+        <img src="https://i.imgur.com/NCbKQp6.jpg"/>
+        <img src="https://i.imgur.com/rYmjEcu.jpg"/>
+        <img src="https://i.imgur.com/rOEyzfJ.jpg"/>
+        <img src="https://i.imgur.com/mvWi9Xn.jpg"/>
+    </div>
+</section>
 
-    <!-- Photos -->
-    <section id="photos">
-        <h2>Φωτογραφίες</h2>
-        <div class="gallery">
-            <!-- ΕΎΚΟΛΑ EDITABLE: Αλλάξτε το src με τη δική σας φωτογραφία -->
-            <img src="https://images.unsplash.com/photo-1519741497674-611481863552?w=500&h=500&fit=crop" alt="Φωτογραφία">
-            <img src="https://images.unsplash.com/photo-1606216174052-e4505a8c29ad?w=500&h=500&fit=crop" alt="Φωτογραφία">
-            <img src="https://images.unsplash.com/photo-1519741497674-611481863552?w=500&h=500&fit=crop" alt="Φωτογραφία">
-            <img src="https://images.unsplash.com/photo-1606216174052-e4505a8c29ad?w=500&h=500&fit=crop" alt="Φωτογραφία">
-        </div>
-        <p class="photo-note">💡 Για να αλλάξετε τις φωτογραφίες: Upload στο <a href="https://imgur.com" target="_blank">imgur.com</a> και copy το URL στα src= πάνω</p>
-    </section>
+<section id="rsvp">
+    <h2>RSVP</h2>
+    <div class="card">
+        Δήλωσε συμμετοχή για να μας τιμήσεις ❤️
+        <br/>
+        <button onclick="alert('RSVP saved! (βάλε μετά form)')">RSVP</button>
+    </div>
+</section>
 
-    <!-- RSVP -->
-    <section id="rsvp" class="rsvp">
-        <h2>Θα έρθετε;</h2>
-        <p class="subtitle">Παρακαλούμε επιβεβαιώστε την παρουσία σας μέχri την 15η Δεκεμβρίου</p>
+<section id="locations">
+    <h2>Τοποθεσίες</h2>
+    <div class="card">
+        ⛪ Εκκλησία: Μουζάκι <br/>
+        🎉 Δεξίωση: Ονείρων Έπαυλις <br/>
+        (θα προστεθεί pin σύντομα)
+    </div>
+</section>
 
-        <div class="form-container">
-            <div class="success-message" id="successMsg">
-                ✓ Ευχαριστούμε! Λάβαμε την επιβεβαίωσή σας
-            </div>
-
-            <form id="rsvpForm">
-                <div>
-                    <label for="name">Ονοματεπώνυμο *</label>
-                    <input type="text" id="name" name="name" required>
-                </div>
-
-                <div>
-                    <label for="guests">Αριθμός ατόμων *</label>
-                    <select id="guests" name="guests">
-                        <option value="1">1 άτομο</option>
-                        <option value="2">2 άτομα</option>
-                        <option value="3">3 άτομα</option>
-                        <option value="4">4 άτομα</option>
-                        <option value="5">5 άτομα</option>
-                        <option value="6">6 άτομα</option>
-                    </select>
-                </div>
-
-                <div>
-                    <label for="dietary">Διατροφικές προτιμήσεις / Αλλεργίες</label>
-                    <input type="text" id="dietary" name="dietary" placeholder="π.χ. Χορτοφαγία, Αλλεργία σε αμύγδαλα...">
-                </div>
-
-                <div>
-                    <label for="email">Email *</label>
-                    <input type="email" id="email" name="email" required>
-                </div>
-
-                <div>
-                    <label for="phone">Τηλέφωνο</label>
-                    <input type="tel" id="phone" name="phone" placeholder="+30 XXX XXX XXXX">
-                </div>
-
-                <button type="submit">Επιβεβαίωση Παρουσίας</button>
-            </form>
-        </div>
-    </section>
-
-    <!-- Info -->
-    <section id="info">
-        <h2>Μουζάκι - Χρήσιμες Πληροφορίες</h2>
-        <p class="subtitle">Για τους φίλους που επισκέπτονται για πρώτη φορά</p>
-
-        <div class="tips-grid">
-            <div class="tip-card green">
-                <h3>🚗 Πώς να φτάσετε</h3>
-                <p>Το Μουζάκι βρίσκεται περίπου 40 λεπτά από Τρίκαλα. Συστήνουμε Google Maps με πηγή "Εκκλησία του Μουζακίου". Αρκετοί δρόμοι στο χωριό είναι στενοί, παρακαλούμε οδηγείστε προσεκτικά.</p>
-            </div>
-
-            <div class="tip-card red">
-                <h3>🏨 Διαμονή</h3>
-                <p>Για διαμονή συστήνουμε τα ξενοδοχεία στο Τρίκαλα ή Καλαμπάκα. Εναλλακτικά, υπάρχουν airbnb δωμάτια στο χωριό και γύρω περιοχές.</p>
-            </div>
-
-            <div class="tip-card gold">
-                <h3>🍽️ Τι να φάτε</h3>
-                <p>Το Μουζάκι είναι γνωστό για τη φύση και τα παραδοσιακά φαγητά. Στη πλατεία υπάρχουν πολλές ταβέρνες με τοπικές σπεσιαλιτέ.</p>
-            </div>
-
-            <div class="tip-card green">
-                <h3>🎫 Χρήσιμες τοποθεσίες</h3>
-                <p>Δείτε τα σπήλαια του Μετεώρων, τις Μονές των Μετεώρων και τη φύση της περιοχής. Η Πηγή Τρικάλων (όπου θα γίνει η δεξίωση) είναι ένα όμορφο προορισμό στη φύση.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact -->
-    <section class="contact">
-        <h3>Ερωτήσεις;</h3>
-        <p>📧 <strong>Email:</strong> xalatsis.dimitrios@gmail.com</p>
-        <p>✨ Δημήτρης & Χρύσα</p>
-    </section>
-
-    <footer>
-        <p>Ανυπομονούμε να σας δούμε! 🎄💚</p>
-    </footer>
-
-    <script>
-        // Create Snowflakes Animation
-        function createSnowflakes() {
-            const snowflakesContainer = document.getElementById('snowflakes');
-            
-            for (let i = 0; i < 50; i++) {
-                const snowflake = document.createElement('div');
-                snowflake.classList.add('snowflake');
-                snowflake.innerHTML = '❄';
-                
-                const left = Math.random() * 100;
-                const duration = 10 + Math.random() * 10;
-                const delay = Math.random() * 5;
-                const size = 0.5 + Math.random() * 1;
-                
-                snowflake.style.left = left + '%';
-                snowflake.style.fontSize = size + 'rem';
-                snowflake.style.opacity = Math.random() * 0.5 + 0.3;
-                snowflake.style.animationDuration = duration + 's';
-                snowflake.style.animationDelay = delay + 's';
-                snowflake.style.animationName = 'fall';
-                
-                // Add horizontal sway
-                snowflake.style.setProperty('--sway', (Math.random() * 100 - 50) + 'px');
-                
-                snowflakesContainer.appendChild(snowflake);
-            }
-        }
-
-        // RSVP Form Handler
-        document.getElementById('rsvpForm').addEventListener('submit', async function(e) {
-            e.preventDefault();
-
-            const formData = new FormData(this);
-            const data = {
-                name: formData.get('name'),
-                guests: formData.get('guests'),
-                dietary: formData.get('dietary'),
-                email: formData.get('email'),
-                phone: formData.get('phone'),
-            };
-
-            try {
-                const response = await fetch('https://formsubmit.co/ajax/xalatsis.dimitrios@gmail.com', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify(data)
-                });
-
-                if (response.ok) {
-                    const successMsg = document.getElementById('successMsg');
-                    successMsg.classList.add('show');
-                    document.getElementById('rsvpForm').reset();
-
-                    setTimeout(() => {
-                        successMsg.classList.remove('show');
-                    }, 5000);
-                }
-            } catch (error) {
-                alert('Κάτι πήγε στραβά. Παρακαλούμε δοκιμάστε ξανά ή επικοινωνήστε απευθείας.');
-            }
-        });
-
-        // Smooth Scroll
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                }
-            });
-        });
-
-        // Initialize snowflakes on page load
-        window.addEventListener('load', createSnowflakes);
-
-        // Add sway animation via CSS
-        const style = document.createElement('style');
-        style.textContent = `
-            @keyframes fall {
-                from {
-                    top: -10vh;
-                    opacity: 0;
-                    transform: translateX(0) rotateZ(0deg);
-                }
-                to {
-                    top: 100vh;
-                    opacity: 0.1;
-                    transform: translateX(var(--sway, 0)) rotateZ(360deg);
-                }
-            }
-        `;
-        document.head.appendChild(style);
-    </script>
 </body>
 </html>
