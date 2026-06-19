@@ -203,7 +203,22 @@ header.show-menu {
             position: relative;
             z-index: 11;
         }
+.ring-frame{
+    width:340px !important;
+    height:340px !important;
+    border:none !important;
+    border-radius:0 !important;
+    box-shadow:none !important;
 
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    object-fit:contain;
+    pointer-events:none;
+    z-index:12;
+    opacity:.85;
+}
         /* Snowflake Circle Frame */
         .snowflake-circle {
             position: absolute;
@@ -818,25 +833,6 @@ header.show-menu {
             }, 1000 / snowflakesPerSecond);
         }
 
-        // Create snowflake circle decoration
-        function createSnowflakeCircle() {
-            const circle = document.getElementById('snowflakeCircle');
-            const snowflakeChars = ['❄', '❅', '❆'];
-            
-            for (let i = 0; i < 12; i++) {
-                const angle = (i / 12) * Math.PI * 2;
-                const x = Math.cos(angle) * 130;
-                const y = Math.sin(angle) * 130;
-                
-                const snowflake = document.createElement('div');
-                snowflake.classList.add('snowflake-particle');
-                snowflake.textContent = snowflakeChars[Math.floor(Math.random() * snowflakeChars.length)];
-                snowflake.style.left = (150 + x) + 'px';
-                snowflake.style.top = (150 + y) + 'px';
-                
-                circle.appendChild(snowflake);
-            }
-        }
 
         // Initialize
         window.addEventListener('load', () => {
