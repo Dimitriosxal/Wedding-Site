@@ -135,12 +135,15 @@
         }
 
         /* ── photo‑frame (container for the new 3D rings) ── */
-        .photo-frame {
-            position: relative;
-            width: 420px;
-            height: 480px;
-            z-index: 10;
-        }
+.photo-frame {
+    position: relative;
+    width: 420px;
+    height: 480px;
+    z-index: 10;
+
+    transform: translateY(-25px) scale(0.9);
+}
+
 
         /* ── 3D ring scene ── */
         .scene {
@@ -526,12 +529,7 @@
             .hero h1 {
                 font-size: 2.5rem;
             }
-.photo-frame {
-    transform: scale(0.8);
-    translateY(-40px);
-    width: 340px;
-    height: 390px;
-}
+
             .ring-photo {
                 width: 260px;
                 height: 260px;
