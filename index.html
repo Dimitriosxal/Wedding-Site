@@ -1,386 +1,147 @@
 <!DOCTYPE html>
 <html lang="el">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Δημήτρης &amp; Χρύσα</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         html { scroll-behavior: smooth; }
-        body {
-            font-family: 'Montserrat', sans-serif;
-            color: #333;
-            line-height: 1.8;
-            background: #f5f5f5;
-        }
+        body { font-family: 'Montserrat', sans-serif; color: #333; line-height: 1.8; background: #f5f5f5; }
 
-        /* Snow animation */
         @keyframes snowfall {
             0% { transform: translateY(-10vh) translateX(0) rotate(0deg); opacity: 0.9; }
             100% { transform: translateY(100vh) translateX(100px) rotate(360deg); opacity: 0; }
         }
         .snowflake {
-            position: fixed;
-            top: -10vh;
-            z-index: 5;
-            pointer-events: none;
-            font-size: 1.5rem;
-            opacity: 0.7;
-            animation: snowfall linear infinite;
+            position: fixed; top: -10vh; z-index: 5; pointer-events: none;
+            font-size: 1.5rem; opacity: 0.7; animation: snowfall linear infinite;
         }
 
-        /* Header */
         header {
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 100;
-            background: rgba(255,255,255,0.98);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid #ddd;
-            padding: 1.5rem 2rem;
-            transform: translateY(-100%);
-            transition: transform 0.3s ease;
+            position: fixed; width: 100%; top: 0; z-index: 100;
+            background: rgba(255,255,255,0.98); backdrop-filter: blur(10px);
+            border-bottom: 1px solid #ddd; padding: 1.5rem 2rem;
+            transform: translateY(-100%); transition: transform 0.3s ease;
         }
         header.show-menu { transform: translateY(0); }
-        nav {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .logo {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 1.2rem;
-            font-weight: 400;
-            letter-spacing: 2px;
-            color: #333;
-            text-transform: uppercase;
-        }
-        nav ul {
-            list-style: none;
-            display: flex;
-            gap: 2.5rem;
-        }
-        nav a {
-            text-decoration: none;
-            color: #666;
-            font-size: 0.85rem;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            font-weight: 500;
-            transition: all 0.3s ease;
-            position: relative;
-        }
-        nav a::before {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 1px;
-            background: #333;
-            transition: width 0.3s ease;
-        }
+        nav { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; font-weight: 400; letter-spacing: 2px; color: #333; text-transform: uppercase; }
+        nav ul { list-style: none; display: flex; gap: 2.5rem; }
+        nav a { text-decoration: none; color: #666; font-size: 0.85rem; letter-spacing: 1px; text-transform: uppercase; font-weight: 500; transition: all 0.3s ease; position: relative; }
+        nav a::before { content: ''; position: absolute; bottom: -5px; left: 0; width: 0; height: 1px; background: #333; transition: width 0.3s ease; }
         nav a:hover::before { width: 100%; }
 
-        /* Hero */
         .hero {
             height: 100vh;
             background: linear-gradient(135deg, rgba(255,255,255,0.08) 0%, rgba(200,100,100,0.12) 50%, rgba(255,255,255,0.08) 100%),
-                        url('https://images.unsplash.com/photo-1520854221256-17451cc331bf?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
+                url('https://images.unsplash.com/photo-1520854221256-17451cc331bf?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
             background-attachment: fixed;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            color: #fff;
-            position: relative;
-            overflow: hidden;
+            display: flex; flex-direction: column; justify-content: center; align-items: center;
+            text-align: center; color: #fff; position: relative; overflow: hidden;
         }
         .hero::before {
-            content: '';
-            position: absolute;
-            inset: 0;
+            content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0;
             background: radial-gradient(circle at 50% 50%, rgba(255,255,255,0.05) 0%, rgba(0,0,0,0.25) 100%);
-            z-index: 2;
-            pointer-events: none;
+            z-index: 2; pointer-events: none;
         }
-        .hero-content {
-            z-index: 10;
-            position: relative;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 2.5rem;
-        }
+        .hero-content { z-index: 10; position: relative; display: flex; flex-direction: column; align-items: center; gap: 2.5rem; }
 
-        /* Photo frame */
+        /* ── Photo + Ring frame ── */
         .photo-frame {
             position: relative;
+            /* The ring band is ~296px diameter; we add room for the diamond setting on top */
             width: 340px;
-            height: 360px;
+            height: 380px; /* extra height for diamond above the ring */
             z-index: 10;
         }
+
+        /* Circular photo — perfectly fitted inside the ring band */
         .photo-frame img.main-photo {
-            width: 280px;
-            height: 280px;
+            position: absolute;
+            /* ring inner radius ≈ 138px → diameter 276px */
+            width: 276px;
+            height: 276px;
             border-radius: 50%;
             object-fit: cover;
+            object-position: center;
             box-shadow: 0 20px 60px rgba(0,0,0,0.3);
-            position: absolute;
-            top: 50%;
+            /* centre of band is at (170, 198) */
             left: 50%;
+            top: 198px;
             transform: translate(-50%, -50%);
             z-index: 11;
         }
 
-        /* Ring frame: full circle, diamond on top (natural position) – larger diamond */
         .ring-frame-svg {
             position: absolute;
             width: 340px;
-            height: 340px;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
+            height: 380px;
+            top: 0; left: 0;
             pointer-events: none;
             z-index: 12;
             overflow: visible;
         }
 
-        .hero-subtitle {
-            font-size: 0.9rem;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            font-weight: 400;
-            color: rgba(255,255,255,0.8);
-            font-family: 'Montserrat', sans-serif;
-        }
-        .hero-divider {
-            width: 60px;
-            height: 1px;
-            background: rgba(255,255,255,0.6);
-            margin: 0.5rem 0;
-        }
-        .hero h1 {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 3.5rem;
-            font-weight: 300;
-            letter-spacing: 3px;
-            margin: 0.5rem 0;
-            color: #fff;
-            text-shadow: 2px 2px 8px rgba(0,0,0,0.3);
-        }
-        .hero-date {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 0.9rem;
-            letter-spacing: 1px;
-            color: rgba(255,255,255,0.9);
-            font-weight: 300;
-        }
-        .scroll-indicator {
-            position: absolute;
-            bottom: 30px;
-            left: 50%;
-            transform: translateX(-50%);
-            z-index: 10;
-            animation: bounce 2s infinite;
-        }
-        .scroll-indicator svg {
-            width: 24px; height: 24px;
-            stroke: #fff; fill: none; stroke-width: 1.5;
-        }
+        .hero-subtitle { font-size: 0.9rem; letter-spacing: 2px; text-transform: uppercase; font-weight: 400; color: rgba(255,255,255,0.8); margin-bottom: 0.5rem; }
+        .hero-divider { width: 60px; height: 1px; background: rgba(255,255,255,0.6); margin: 0.5rem 0; }
+        .hero h1 { font-family: 'Cormorant Garamond', serif; font-size: 3.5rem; font-weight: 300; letter-spacing: 3px; margin: 0.5rem 0; color: #fff; text-shadow: 2px 2px 8px rgba(0,0,0,0.3); }
+        .hero-date { font-family: 'Montserrat', sans-serif; font-size: 0.9rem; letter-spacing: 1px; color: rgba(255,255,255,0.9); font-weight: 300; }
+
+        .scroll-indicator { position: absolute; bottom: 30px; left: 50%; transform: translateX(-50%); z-index: 10; animation: bounce 2s infinite; }
+        .scroll-indicator svg { width: 24px; height: 24px; stroke: #fff; fill: none; stroke-width: 1.5; }
         @keyframes bounce {
-            0%,100% { transform: translateX(-50%) translateY(0); }
+            0%, 100% { transform: translateX(-50%) translateY(0); }
             50% { transform: translateX(-50%) translateY(10px); }
         }
 
-        /* Main sections */
         main { position: relative; z-index: 10; }
-        section {
-            padding: 5rem 2rem;
-            max-width: 1000px;
-            margin: 0 auto;
-        }
-        section h2 {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 2.8rem;
-            font-weight: 400;
-            text-align: center;
-            margin-bottom: 1rem;
-            color: #333;
-            letter-spacing: 2px;
-        }
-        .section-divider {
-            width: 50px;
-            height: 1px;
-            background: #ddd;
-            margin: 0 auto 2.5rem;
-        }
+        section { padding: 5rem 2rem; max-width: 1000px; margin: 0 auto; }
+        section h2 { font-family: 'Cormorant Garamond', serif; font-size: 2.8rem; font-weight: 400; text-align: center; margin-bottom: 1rem; color: #333; letter-spacing: 2px; }
+        .section-divider { width: 50px; height: 1px; background: #ddd; margin: 0 auto 2.5rem; }
 
-        /* Events */
-        .events-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px,1fr));
-            gap: 3rem;
-            margin-top: 3rem;
-        }
-        .event-card {
-            text-align: center;
-            padding: 2rem;
-            background: #fff;
-            border: 1px solid #e0e0e0;
-            border-radius: 2px;
-            transition: all 0.3s ease;
-        }
-        .event-card:hover {
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            border-color: #999;
-        }
-        .event-card h3 {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 1.8rem;
-            margin-bottom: 1rem;
-            color: #333;
-            font-weight: 400;
-        }
+        .events-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 3rem; margin-top: 3rem; }
+        .event-card { text-align: center; padding: 2rem; background: #fff; border: 1px solid #e0e0e0; border-radius: 2px; transition: all 0.3s ease; }
+        .event-card:hover { box-shadow: 0 10px 30px rgba(0,0,0,0.1); border-color: #999; }
+        .event-card h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; margin-bottom: 1rem; color: #333; font-weight: 400; letter-spacing: 1px; }
         .event-card p { color: #666; font-size: 0.95rem; line-height: 1.8; }
 
-        /* Gallery */
-        .gallery {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(180px,1fr));
-            gap: 1.5rem;
-            margin-top: 3rem;
-        }
-        .gallery-item {
-            overflow: hidden;
-            border-radius: 2px;
-            aspect-ratio: 1;
-        }
-        .gallery img {
-            width: 100%; height: 100%;
-            object-fit: cover;
-            transition: transform 0.3s ease;
-        }
+        .gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1.5rem; margin-top: 3rem; }
+        .gallery-item { overflow: hidden; border-radius: 2px; aspect-ratio: 1; }
+        .gallery img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s ease; }
         .gallery img:hover { transform: scale(1.05); }
 
-        /* RSVP */
-        .rsvp-section {
-            background: #fff;
-            border: 1px solid #e0e0e0;
-            border-radius: 2px;
-            padding: 3rem;
-            margin-top: 3rem;
-        }
+        .rsvp-section { background: #fff; border: 1px solid #e0e0e0; border-radius: 2px; padding: 3rem; margin-top: 3rem; }
         .form-group { margin-bottom: 1.5rem; }
-        label {
-            display: block;
-            margin-bottom: 0.6rem;
-            color: #333;
-            font-size: 0.9rem;
-            letter-spacing: 0.5px;
-            font-weight: 500;
-            text-transform: uppercase;
-        }
-        input, select, textarea {
-            width: 100%;
-            padding: 0.9rem;
-            border: 1px solid #ddd;
-            border-radius: 2px;
-            font-family: 'Montserrat', sans-serif;
-            font-size: 0.95rem;
-            transition: all 0.3s ease;
-            background: #fff;
-            color: #333;
-        }
-        input:focus, select:focus, textarea:focus {
-            outline: none;
-            border-color: #333;
-            box-shadow: 0 0 0 3px rgba(51,51,51,0.05);
-        }
-        .submit-btn {
-            background: #333;
-            color: #fff;
-            border: none;
-            padding: 1rem 2.5rem;
-            font-size: 0.9rem;
-            font-weight: 600;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            border-radius: 2px;
-        }
+        label { display: block; margin-bottom: 0.6rem; color: #333; font-size: 0.9rem; letter-spacing: 0.5px; font-weight: 500; text-transform: uppercase; }
+        input, select, textarea { width: 100%; padding: 0.9rem; border: 1px solid #ddd; border-radius: 2px; font-family: 'Montserrat', sans-serif; font-size: 0.95rem; transition: all 0.3s ease; background: #fff; color: #333; }
+        input:focus, select:focus, textarea:focus { outline: none; border-color: #333; box-shadow: 0 0 0 3px rgba(51,51,51,0.05); }
+        .submit-btn { background: #333; color: #fff; border: none; padding: 1rem 2.5rem; font-size: 0.9rem; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; cursor: pointer; transition: all 0.3s ease; margin-top: 1rem; border-radius: 2px; }
         .submit-btn:hover { background: #555; }
-        .success {
-            display: none;
-            background: #f0f0f0;
-            color: #333;
-            padding: 1rem;
-            border-left: 3px solid #333;
-            margin-bottom: 1.5rem;
-            border-radius: 2px;
-        }
+        .success { display: none; background: #f0f0f0; color: #333; padding: 1rem; border-left: 3px solid #333; margin-bottom: 1.5rem; border-radius: 2px; }
         .success.show { display: block; animation: slideDown 0.3s ease; }
-        @keyframes slideDown {
-            from { opacity: 0; transform: translateY(-10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
+        @keyframes slideDown { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
 
-        /* Tips */
-        .tips-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px,1fr));
-            gap: 2.5rem;
-            margin-top: 3rem;
-        }
-        .tip-card {
-            background: #fff;
-            padding: 2rem;
-            border-left: 3px solid #333;
-            border-radius: 2px;
-            transition: all 0.3s ease;
-        }
+        .tips-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2.5rem; margin-top: 3rem; }
+        .tip-card { background: #fff; padding: 2rem; border-left: 3px solid #333; border-radius: 2px; transition: all 0.3s ease; }
         .tip-card:hover { box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
-        .tip-card h4 {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 1.4rem;
-            margin-bottom: 1rem;
-            color: #333;
-            font-weight: 400;
-        }
+        .tip-card h4 { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; margin-bottom: 1rem; color: #333; font-weight: 400; letter-spacing: 1px; }
         .tip-card p { color: #666; font-size: 0.9rem; line-height: 1.7; }
 
-        /* Footer */
-        footer {
-            background: #333;
-            color: #fff;
-            text-align: center;
-            padding: 3rem 2rem;
-            margin-top: 4rem;
-            border-top: 1px solid #444;
-        }
+        footer { background: #333; color: #fff; text-align: center; padding: 3rem 2rem; margin-top: 4rem; border-top: 1px solid #444; }
         footer p { font-size: 0.9rem; letter-spacing: 1px; margin-bottom: 0.5rem; }
 
-        /* Responsive */
         @media (max-width: 768px) {
             nav ul { gap: 1rem; }
             nav a { font-size: 0.75rem; }
             .hero h1 { font-size: 2.5rem; }
-            .photo-frame { width: 268px; height: 290px; }
-            .photo-frame img.main-photo { width: 220px; height: 220px; }
-            .ring-frame-svg { width: 268px; height: 268px; }
+            .photo-frame { width: 270px; height: 305px; }
+            .photo-frame img.main-photo { width: 218px; height: 218px; top: 158px; }
+            .ring-frame-svg { width: 270px; height: 305px; }
             section { padding: 3rem 1.5rem; }
             section h2 { font-size: 2rem; }
-            .gallery { grid-template-columns: repeat(auto-fit, minmax(120px,1fr)); }
+            .gallery { grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); }
             .rsvp-section { padding: 2rem; }
         }
         @media (max-width: 480px) {
@@ -388,10 +149,9 @@
             nav { flex-direction: column; gap: 1rem; }
             nav ul { flex-direction: column; gap: 0.5rem; width: 100%; }
             .hero h1 { font-size: 2rem; }
-            .hero-subtitle { font-size: 0.8rem; }
-            .photo-frame { width: 220px; height: 240px; }
-            .photo-frame img.main-photo { width: 180px; height: 180px; }
-            .ring-frame-svg { width: 220px; height: 220px; }
+            .photo-frame { width: 220px; height: 250px; }
+            .photo-frame img.main-photo { width: 178px; height: 178px; top: 130px; }
+            .ring-frame-svg { width: 220px; height: 250px; }
             section { padding: 2rem 1rem; }
             section h2 { font-size: 1.5rem; }
             .events-grid { grid-template-columns: 1fr; }
@@ -399,286 +159,340 @@
     </style>
 </head>
 <body>
-    <!-- Navigation -->
-    <header>
-        <nav>
-            <div class="logo">D & C</div>
-            <ul>
-                <li><a href="#about">Σχετικά</a></li>
-                <li><a href="#events">Εκδηλώσεις</a></li>
-                <li><a href="#gallery">Φωτογραφίες</a></li>
-                <li><a href="#rsvp">RSVP</a></li>
-                <li><a href="#visit">Επίσκεψη</a></li>
-            </ul>
-        </nav>
-    </header>
 
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="hero-content">
-            <div class="photo-frame">
-                <img class="main-photo" src="https://imgur.com/yyFHxei.jpg" alt="Δημήτρης & Χρύσα" />
+<header>
+    <nav>
+        <div class="logo">D & C</div>
+        <ul>
+            <li><a href="#about">Σχετικά</a></li>
+            <li><a href="#events">Εκδηλώσεις</a></li>
+            <li><a href="#gallery">Φωτογραφίες</a></li>
+            <li><a href="#rsvp">RSVP</a></li>
+            <li><a href="#visit">Επίσκεψη</a></li>
+        </ul>
+    </nav>
+</header>
 
-                <!-- Ring frame: full circle, diamond on top (natural position) with larger gem -->
-                <svg class="ring-frame-svg" viewBox="0 0 340 340" xmlns="http://www.w3.org/2000/svg">
-                    <defs>
-                        <linearGradient id="ringSilver" x1="0%" y1="0%" x2="100%" y2="100%">
-                            <stop offset="0%" stop-color="#fdfdfd"/>
-                            <stop offset="25%" stop-color="#c9c9c9"/>
-                            <stop offset="50%" stop-color="#f5f5f5"/>
-                            <stop offset="75%" stop-color="#b8b8b8"/>
-                            <stop offset="100%" stop-color="#e8e8e8"/>
-                        </linearGradient>
-                        <linearGradient id="ringDiamond" x1="20%" y1="0%" x2="80%" y2="100%">
-                            <stop offset="0%" stop-color="#ffffff"/>
-                            <stop offset="35%" stop-color="#e3f4ff"/>
-                            <stop offset="60%" stop-color="#bfe8fb"/>
-                            <stop offset="100%" stop-color="#ffffff"/>
-                        </linearGradient>
-                        <radialGradient id="ringDiamondShine" cx="35%" cy="25%" r="70%">
-                            <stop offset="0%" stop-color="#ffffff" stop-opacity="0.95"/>
-                            <stop offset="50%" stop-color="#ffffff" stop-opacity="0.2"/>
-                            <stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
-                        </radialGradient>
-                        <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
-                            <feGaussianBlur stdDeviation="3" result="blur"/>
-                            <feMerge>
-                                <feMergeNode in="blur"/>
-                                <feMergeNode in="SourceGraphic"/>
-                            </feMerge>
-                        </filter>
-                    </defs>
+<section class="hero">
+    <div class="hero-content">
+        <div class="photo-frame">
 
-                    <!-- Ring band: full circle, frontal -->
-                    <circle cx="170" cy="185" r="148" fill="none" stroke="url(#ringSilver)" stroke-width="10"/>
-                    <circle cx="170" cy="185" r="148" fill="none" stroke="#ffffff" stroke-width="2" opacity="0.5"/>
+            <!-- Photo — fits exactly inside the ring inner circle -->
+            <img class="main-photo" src="https://imgur.com/yyFHxei.jpg" alt="Δημήτρης & Χρύσα">
 
-                    <!-- ===== DIAMOND SETTING – NATURAL TOP POSITION, LARGER ===== -->
-                    <g transform="translate(170,30)">
-                        <!-- back prongs -->
-                        <line x1="-42" y1="18" x2="-34" y2="-6" stroke="#cfcfcf" stroke-width="8" stroke-linecap="round"/>
-                        <line x1="42" y1="18" x2="34" y2="-6" stroke="#cfcfcf" stroke-width="8" stroke-linecap="round"/>
+            <!--
+                Ring viewed from the side: a perfect circle (band) with a solitaire diamond
+                sitting upright at the top — exactly like the reference photo.
 
-                        <!-- base cup -->
-                        <ellipse cx="0" cy="32" rx="46" ry="14" fill="url(#ringSilver)" opacity="0.6"/>
+                Coordinate system (340 × 380):
+                  • Ring centre: (170, 205)   ← shifted down to give room for diamond above
+                  • Band radius: 143px  (stroke 10 → outer 148, inner 138 → photo fits in 276px ✓)
+                  • Diamond centre: top of band = (170, 205-143) = (170, 62)
+                  • Prong basket rises from ~(170, 62) up to diamond top ~(170, 8)
+            -->
+            <svg class="ring-frame-svg" viewBox="0 0 340 380" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                    <!-- Silver gradient for ring band -->
+                    <linearGradient id="bandGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%"   stop-color="#f8f8f8"/>
+                        <stop offset="20%"  stop-color="#d4d4d4"/>
+                        <stop offset="50%"  stop-color="#f0f0f0"/>
+                        <stop offset="80%"  stop-color="#b8b8b8"/>
+                        <stop offset="100%" stop-color="#e0e0e0"/>
+                    </linearGradient>
+                    <!-- Silver for prongs / setting -->
+                    <linearGradient id="prongGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%"   stop-color="#ffffff"/>
+                        <stop offset="50%"  stop-color="#cccccc"/>
+                        <stop offset="100%" stop-color="#e8e8e8"/>
+                    </linearGradient>
+                    <!-- Diamond fill -->
+                    <linearGradient id="diamGrad" x1="20%" y1="0%" x2="80%" y2="100%">
+                        <stop offset="0%"   stop-color="#ffffff"/>
+                        <stop offset="35%"  stop-color="#e6f5ff"/>
+                        <stop offset="70%"  stop-color="#c8ecff"/>
+                        <stop offset="100%" stop-color="#ffffff"/>
+                    </linearGradient>
+                    <!-- Diamond highlight -->
+                    <radialGradient id="diamShine" cx="30%" cy="25%" r="65%">
+                        <stop offset="0%"   stop-color="#ffffff" stop-opacity="1"/>
+                        <stop offset="60%"  stop-color="#ffffff" stop-opacity="0.15"/>
+                        <stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
+                    </radialGradient>
+                    <!-- Clip diamond to circle shape -->
+                    <clipPath id="diamClip">
+                        <circle cx="170" cy="55" r="46"/>
+                    </clipPath>
+                </defs>
 
-                        <!-- larger round brilliant diamond (radius 44) -->
-                        <g filter="url(#glow)">
-                            <circle cx="0" cy="0" r="44" fill="url(#ringDiamond)" stroke="#c5c5c5" stroke-width="1.5"/>
-                            <polygon points="0,-44 13,-13 0,-4 -13,-13" fill="#ffffff" opacity="0.55"/>
-                            <polygon points="31,-31 13,-13 23,-1 38,-15" fill="#eaf7ff" opacity="0.6"/>
-                            <polygon points="44,0 23,-1 31,13 38,15" fill="#dff2ff" opacity="0.55"/>
-                            <polygon points="31,31 38,15 23,1 13,13" fill="#eaf7ff" opacity="0.5"/>
-                            <polygon points="0,44 13,13 0,4 -13,13" fill="#d7eefc" opacity="0.5"/>
-                            <polygon points="-31,31 -13,13 -23,1 -38,15" fill="#eaf7ff" opacity="0.5"/>
-                            <polygon points="-44,0 -23,1 -31,-13 -38,-15" fill="#dff2ff" opacity="0.55"/>
-                            <polygon points="-31,-31 -38,-15 -23,-1 -13,-13" fill="#eaf7ff" opacity="0.55"/>
-                            <polygon points="13,-13 23,-1 13,13 0,4 -13,13 -23,-1 -13,-13 0,-4" fill="#ffffff" stroke="#d8eef9" stroke-width="0.5" opacity="0.85"/>
-                            <polygon points="13,-13 23,-1 13,13 -13,13 -23,-1 -13,-13" fill="none" stroke="#c9e7f7" stroke-width="0.7" opacity="0.8"/>
-                            <circle cx="0" cy="0" r="44" fill="url(#ringDiamondShine)"/>
-                        </g>
+                <!-- ═══ RING BAND (vertical circle, frontal view) ═══ -->
+                <!-- Outer glow / shadow -->
+                <circle cx="170" cy="205" r="143" fill="none" stroke="rgba(0,0,0,0.18)" stroke-width="14"/>
+                <!-- Main band -->
+                <circle cx="170" cy="205" r="143" fill="none" stroke="url(#bandGrad)" stroke-width="10"/>
+                <!-- Inner highlight line -->
+                <circle cx="170" cy="205" r="143" fill="none" stroke="rgba(255,255,255,0.55)" stroke-width="2"/>
 
-                        <!-- sparkle accents -->
-                        <g opacity="0.95">
-                            <path d="M0,-60 l4,12 l-4,12 l-4,-12 Z" fill="#ffffff"/>
-                            <path d="M58,-2 l-10,4 l-10,-4 l10,-4 Z" fill="#ffffff" opacity="0.8"/>
-                            <circle cx="-48" cy="-26" r="2.8" fill="#ffffff" opacity="0.9"/>
-                        </g>
+                <!-- ═══ PRONG BASKET (rises from top of ring up to hold diamond) ═══
+                     Modelled after the reference photo: two curved "arms" split from the
+                     band top, go up and inward, then curve outward to grip the stone. -->
 
-                        <!-- front prongs (4 corners) -->
-                        <line x1="-18" y1="-38" x2="-24" y2="-56" stroke="#e6e6e6" stroke-width="8" stroke-linecap="round"/>
-                        <line x1="18" y1="-38" x2="24" y2="-56" stroke="#e6e6e6" stroke-width="8" stroke-linecap="round"/>
-                        <line x1="-18" y1="38" x2="-26" y2="54" stroke="#c2c2c2" stroke-width="8" stroke-linecap="round"/>
-                        <line x1="18" y1="38" x2="26" y2="54" stroke="#c2c2c2" stroke-width="8" stroke-linecap="round"/>
+                <!-- Left arm of basket -->
+                <path d="M 148,68
+                         C 140,80 134,90 136,102
+                         C 138,112 148,116 148,116"
+                      fill="none" stroke="url(#prongGrad)" stroke-width="9" stroke-linecap="round"/>
+
+                <!-- Right arm of basket -->
+                <path d="M 192,68
+                         C 200,80 206,90 204,102
+                         C 202,112 192,116 192,116"
+                      fill="none" stroke="url(#prongGrad)" stroke-width="9" stroke-linecap="round"/>
+
+                <!-- Triangular "window" between arms (like the reference photo shadow) -->
+                <path d="M 150,74 L 170,105 L 190,74" fill="rgba(180,180,180,0.18)" stroke="none"/>
+
+                <!-- ═══ DIAMOND (large round brilliant at top of setting) ═══ -->
+                <g>
+                    <!-- Diamond circle base -->
+                    <circle cx="170" cy="55" r="46" fill="url(#diamGrad)" stroke="#b8b8b8" stroke-width="1.5"/>
+
+                    <!-- Brilliant-cut facet lines -->
+                    <g clip-path="url(#diamClip)" opacity="0.7">
+                        <!-- Table octagon -->
+                        <polygon points="170,18 188,29 194,50 188,71 170,82 152,71 146,50 152,29"
+                                 fill="none" stroke="#9cc8e0" stroke-width="0.8"/>
+                        <!-- Star facets (8 kite-shaped) -->
+                        <line x1="170" y1="9"  x2="170" y2="18" stroke="#b0d8ef" stroke-width="0.7"/>
+                        <line x1="197" y1="28" x2="188" y2="29" stroke="#b0d8ef" stroke-width="0.7"/>
+                        <line x1="201" y1="55" x2="194" y2="50" stroke="#b0d8ef" stroke-width="0.7"/>
+                        <line x1="197" y1="82" x2="188" y2="71" stroke="#b0d8ef" stroke-width="0.7"/>
+                        <line x1="170" y1="101" x2="170" y2="82" stroke="#b0d8ef" stroke-width="0.7"/>
+                        <line x1="143" y1="82" x2="152" y2="71" stroke="#b0d8ef" stroke-width="0.7"/>
+                        <line x1="139" y1="55" x2="146" y2="50" stroke="#b0d8ef" stroke-width="0.7"/>
+                        <line x1="143" y1="28" x2="152" y2="29" stroke="#b0d8ef" stroke-width="0.7"/>
+                        <!-- Lower half pavilion lines to culet -->
+                        <line x1="170" y1="82" x2="170" y2="55" stroke="#a8d4ec" stroke-width="0.6"/>
+                        <line x1="188" y1="71" x2="170" y2="55" stroke="#a8d4ec" stroke-width="0.6"/>
+                        <line x1="194" y1="50" x2="170" y2="55" stroke="#a8d4ec" stroke-width="0.6"/>
+                        <line x1="188" y1="29" x2="170" y2="55" stroke="#a8d4ec" stroke-width="0.6"/>
+                        <line x1="170" y1="18" x2="170" y2="55" stroke="#a8d4ec" stroke-width="0.6"/>
+                        <line x1="152" y1="29" x2="170" y2="55" stroke="#a8d4ec" stroke-width="0.6"/>
+                        <line x1="146" y1="50" x2="170" y2="55" stroke="#a8d4ec" stroke-width="0.6"/>
+                        <line x1="152" y1="71" x2="170" y2="55" stroke="#a8d4ec" stroke-width="0.6"/>
                     </g>
-                </svg>
-            </div>
 
-            <div>
-                <p class="hero-subtitle">We are getting MARRIED</p>
-                <div class="hero-divider"></div>
-                <h1>Δημήτρης & Χρύσα</h1>
-                <div class="hero-divider"></div>
-                <p class="hero-date">26 ΔΕΚΕΜΒΡΊΟΥ 2026</p>
-            </div>
+                    <!-- Shine overlay -->
+                    <circle cx="170" cy="55" r="46" fill="url(#diamShine)"/>
+
+                    <!-- Sparkle star top-left -->
+                    <g opacity="0.9">
+                        <path d="M 148,18 l2,6 l2,-6 l-2,-6 Z" fill="white"/>
+                        <path d="M 142,24 l6,2 l-6,2 l-6,-2 Z" fill="white" opacity="0.8"/>
+                    </g>
+                    <!-- Small sparkle right -->
+                    <circle cx="204" cy="35" r="2" fill="white" opacity="0.85"/>
+                </g>
+
+                <!-- ═══ FOUR PRONGS gripping the diamond ═══ -->
+                <!-- Top-left prong -->
+                <line x1="152" y1="29" x2="143" y2="14" stroke="#d8d8d8" stroke-width="7" stroke-linecap="round"/>
+                <!-- Top-right prong -->
+                <line x1="188" y1="29" x2="197" y2="14" stroke="#d8d8d8" stroke-width="7" stroke-linecap="round"/>
+                <!-- Bottom-left prong -->
+                <line x1="148" y1="80" x2="140" y2="94" stroke="#c0c0c0" stroke-width="7" stroke-linecap="round"/>
+                <!-- Bottom-right prong -->
+                <line x1="192" y1="80" x2="200" y2="94" stroke="#c0c0c0" stroke-width="7" stroke-linecap="round"/>
+
+            </svg>
         </div>
-        <div class="scroll-indicator">
-            <svg viewBox="0 0 24 24"><path d="M12 5v14M5 12l7 7 7-7" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/></svg>
+
+        <div>
+            <p class="hero-subtitle">We are getting MARRIED</p>
+            <div class="hero-divider"></div>
+            <h1>Δημήτρης & Χρύσα</h1>
+            <div class="hero-divider"></div>
+            <p class="hero-date">26 ΔΕΚΕΜΒΡΊΟΥ 2026</p>
+        </div>
+    </div>
+
+    <div class="scroll-indicator">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 5v14M5 12l7 7 7-7" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+    </div>
+</section>
+
+<main>
+    <section id="about">
+        <h2>Η Ημέρα Μας</h2>
+        <div class="section-divider"></div>
+        <div style="text-align:center;margin-top:2rem;">
+            <p style="color:#666;font-size:1.05rem;line-height:1.8;max-width:600px;margin:0 auto;">
+                Σας καλούμε να γιορτάσετε μαζί μας τη μέρα του γάμου μας.
+                Η τέλεση θα γίνει στην Εκκλησία του Μουζακίου και το γλέντι θα συνεχιστεί στην Ονείρων Έπαυλις,
+                στην πανέμορφη Πηγή Τρικάλων.
+            </p>
         </div>
     </section>
 
-    <main>
-        <section id="about">
-            <h2>Η Ημέρα Μας</h2>
-            <div class="section-divider"></div>
-            <div style="text-align:center; margin-top:2rem;">
-                <p style="color:#666; font-size:1.05rem; line-height:1.8; max-width:600px; margin:0 auto;">
-                    Σας καλούμε να γιορτάσετε μαζί μας τη μέρα του γάμου μας.
-                    Η τέλεση θα γίνει στην Εκκλησία του Μουζακίου και το γλέντι θα συνεχιστεί στην Ονείρων Έπαυλις,
-                    στην πανέμορφη Πηγή Τρικάλων.
-                </p>
+    <section id="events">
+        <h2>Το Πρόγραμμα</h2>
+        <div class="section-divider"></div>
+        <div class="events-grid">
+            <div class="event-card">
+                <h3>⛪ Τέλεση</h3>
+                <p><strong>15:30</strong><br><br>Εκκλησία του Μουζακίου</p>
             </div>
-        </section>
-
-        <section id="events">
-            <h2>Το Πρόγραμμα</h2>
-            <div class="section-divider"></div>
-            <div class="events-grid">
-                <div class="event-card">
-                    <h3>⛪ Τέλεση</h3>
-                    <p><strong>15:30</strong><br/><br/>Εκκλησία του Μουζακίου</p>
-                </div>
-                <div class="event-card">
-                    <h3>🎉 Δεξίωση</h3>
-                    <p><strong>20:30</strong><br/><br/>Ονείρων Έπαυλις<br/>Πηγή Τρικάλων</p>
-                </div>
-                <div class="event-card">
-                    <h3>📅 Ημερομηνία</h3>
-                    <p><strong>Πέμπτη</strong><br/>26 Δεκεμβρίου<br/>2026</p>
-                </div>
+            <div class="event-card">
+                <h3>🎉 Δεξίωση</h3>
+                <p><strong>20:30</strong><br><br>Ονείρων Έπαυλις<br>Πηγή Τρικάλων</p>
             </div>
-        </section>
-
-        <section id="gallery">
-            <h2>Στιγμές</h2>
-            <div class="section-divider"></div>
-            <div class="gallery">
-                <div class="gallery-item"><img src="https://imgur.com/t1udfVy.jpg" alt="Φωτογραφία"/></div>
-                <div class="gallery-item"><img src="https://imgur.com/iuGRu0A.jpg" alt="Φωτογραφία"/></div>
-                <div class="gallery-item"><img src="https://imgur.com/NCbKQp6.jpg" alt="Φωτογραφία"/></div>
-                <div class="gallery-item"><img src="https://imgur.com/rYmjEcu.jpg" alt="Φωτογραφία"/></div>
-                <div class="gallery-item"><img src="https://imgur.com/rOEyzfJ.jpg" alt="Φωτογραφία"/></div>
-                <div class="gallery-item"><img src="https://imgur.com/mvWi9Xn.jpg" alt="Φωτογραφία"/></div>
-                <div class="gallery-item"><img src="https://imgur.com/kE0Gj0n.jpg" alt="Φωτογραφία"/></div>
+            <div class="event-card">
+                <h3>📅 Ημερομηνία</h3>
+                <p><strong>Πέμπτη</strong><br>26 Δεκεμβρίου<br>2026</p>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <section id="rsvp">
-            <h2>Επιβεβαίωση Παρουσίας</h2>
-            <div class="section-divider"></div>
-            <div class="rsvp-section">
-                <div class="success" id="successMsg">✓ Ευχαριστούμε! Λάβαμε την επιβεβαίωσή σας</div>
-                <form id="rsvpForm">
-                    <div class="form-group">
-                        <label for="name">Ονοματεπώνυμο *</label>
-                        <input type="text" id="name" name="name" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="guests">Αριθμός Ατόμων *</label>
-                        <select id="guests" name="guests" required>
-                            <option value="">Επιλέξτε...</option>
-                            <option value="1">1 άτομο</option>
-                            <option value="2">2 άτομα</option>
-                            <option value="3">3 άτομα</option>
-                            <option value="4">4 άτομα</option>
-                            <option value="5">5 άτομα</option>
-                            <option value="6+">6+ άτομα</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="email">Email *</label>
-                        <input type="email" id="email" name="email" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="phone">Τηλέφωνο</label>
-                        <input type="tel" id="phone" name="phone" placeholder="+30 6XX XXX XXXX">
-                    </div>
-                    <div class="form-group">
-                        <label for="dietary">Διατροφικές Προτιμήσεις</label>
-                        <textarea id="dietary" name="dietary" placeholder="π.χ. Χορτοφαγία, αλλεργίες..." rows="3"></textarea>
-                    </div>
-                    <button type="submit" class="submit-btn">Αποστολή</button>
-                </form>
+    <section id="gallery">
+        <h2>Στιγμές</h2>
+        <div class="section-divider"></div>
+        <div class="gallery">
+            <div class="gallery-item"><img src="https://imgur.com/t1udfVy.jpg" alt="Φωτογραφία"></div>
+            <div class="gallery-item"><img src="https://imgur.com/iuGRu0A.jpg" alt="Φωτογραφία"></div>
+            <div class="gallery-item"><img src="https://imgur.com/NCbKQp6.jpg" alt="Φωτογραφία"></div>
+            <div class="gallery-item"><img src="https://imgur.com/rYmjEcu.jpg" alt="Φωτογραφία"></div>
+            <div class="gallery-item"><img src="https://imgur.com/rOEyzfJ.jpg" alt="Φωτογραφία"></div>
+            <div class="gallery-item"><img src="https://imgur.com/mvWi9Xn.jpg" alt="Φωτογραφία"></div>
+            <div class="gallery-item"><img src="https://imgur.com/kE0Gj0n.jpg" alt="Φωτογραφία"></div>
+        </div>
+    </section>
+
+    <section id="rsvp">
+        <h2>Επιβεβαίωση Παρουσίας</h2>
+        <div class="section-divider"></div>
+        <div class="rsvp-section">
+            <div class="success" id="successMsg">✓ Ευχαριστούμε! Λάβαμε την επιβεβαίωσή σας</div>
+            <form id="rsvpForm">
+                <div class="form-group">
+                    <label for="name">Ονοματεπώνυμο *</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="guests">Αριθμός Ατόμων *</label>
+                    <select id="guests" name="guests" required>
+                        <option value="">Επιλέξτε...</option>
+                        <option value="1">1 άτομο</option>
+                        <option value="2">2 άτομα</option>
+                        <option value="3">3 άτομα</option>
+                        <option value="4">4 άτομα</option>
+                        <option value="5">5 άτομα</option>
+                        <option value="6+">6+ άτομα</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email *</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="phone">Τηλέφωνο</label>
+                    <input type="tel" id="phone" name="phone" placeholder="+30 6XX XXX XXXX">
+                </div>
+                <div class="form-group">
+                    <label for="dietary">Διατροφικές Προτιμήσεις</label>
+                    <textarea id="dietary" name="dietary" placeholder="π.χ. Χορτοφαγία, αλλεργίες..." rows="3"></textarea>
+                </div>
+                <button type="submit" class="submit-btn">Αποστολή</button>
+            </form>
+        </div>
+    </section>
+
+    <section id="visit">
+        <h2>Πληροφορίες Επίσκεψης</h2>
+        <div class="section-divider"></div>
+        <div class="tips-grid">
+            <div class="tip-card">
+                <h4>🚗 Πώς να Φτάσετε</h4>
+                <p>Το Μουζάκι βρίσκεται περίπου 40 λεπτά από Τρίκαλα και μιάμιση ώρα από Βόλο. Συστήνουμε Google Maps με πηγή "Εκκλησία Μουζακίου". Οδηγείστε προσεκτικά, οι δρόμοι του χωριού είναι στενοί.</p>
             </div>
-        </section>
-
-        <section id="visit">
-            <h2>Πληροφορίες Επίσκεψης</h2>
-            <div class="section-divider"></div>
-            <div class="tips-grid">
-                <div class="tip-card">
-                    <h4>🚗 Πώς να Φτάσετε</h4>
-                    <p>Το Μουζάκι βρίσκεται περίπου 40 λεπτά από Τρίκαλα και μιάμιση ώρα απο Βόλο. Συστήνουμε Google Maps με πηγή "Εκκλησία Μουζακίου".</p>
-                </div>
-                <div class="tip-card">
-                    <h4>⭐ Τι να Δείτε</h4>
-                    <p>Δείτε τα σπήλαια Μετεώρων, επισκευτείται τον μύλο τον ξωτικών, τις ιστορικές μονές και την πανέμορφη φύση.</p>
-                </div>
-                <div class="tip-card">
-                    <h4>🍽️ Τοπικά Φαγητά</h4>
-                    <p>Δοκιμάστε τις παραδοσιακές ταβέρνες του χωριού. Το Μουζάκι είναι γνωστό για τα νοστιμότατα φαγητά.</p>
-                </div>
-                <div class="tip-card">
-                    <h4>🏨 Διαμονή</h4>
-                    <p>Συστήνουμε ξενοδοχεία στα Τρίκαλα και Καλαμπάκα. Υπάρχουν επίσης airbnb δωμάτια στο Μουζάκι.</p>
-                </div>
+            <div class="tip-card">
+                <h4>⭐ Τι να Δείτε</h4>
+                <p>Δείτε τα σπήλαια Μετεώρων, επισκευτείτε τον μύλο των ξωτικών, τις ιστορικές μονές και την πανέμορφη φύση. Η Πηγή Τρικάλων είναι ιδανική για χαλαρές βόλτες και φωτογραφίες.</p>
             </div>
-        </section>
-    </main>
+            <div class="tip-card">
+                <h4>🍽️ Τοπικά Φαγητά</h4>
+                <p>Δοκιμάστε τις παραδοσιακές ταβέρνες του χωριού. Το Μουζάκι είναι γνωστό για τα νοστιμότατα φαγητά και το ζεστό φιλόξενο περιβάλλον.</p>
+            </div>
+            <div class="tip-card">
+                <h4>🏨 Διαμονή</h4>
+                <p>Συστήνουμε ξενοδοχεία στα Τρίκαλα και Καλαμπάκα. Υπάρχουν επίσης airbnb δωμάτια στο Μουζάκι και τις γύρω περιοχές.</p>
+            </div>
+        </div>
+    </section>
+</main>
 
-    <footer>
-        <p>✨ Δημήτρης & Χρύσα ✨</p>
-        <p>26 Δεκεμβρίου 2026</p>
-    </footer>
+<footer>
+    <p>✨ Δημήτρης & Χρύσα ✨</p>
+    <p>26 Δεκεμβρίου 2026</p>
+</footer>
 
-    <script>
-        // Snowflakes
-        function createSnowflakes() {
-            const chars = ['❄','❅','❆'];
-            setInterval(() => {
-                const el = document.createElement('div');
-                el.className = 'snowflake';
-                el.textContent = chars[Math.floor(Math.random()*chars.length)];
-                el.style.left = Math.random()*100 + '%';
-                el.style.animationDuration = (8 + Math.random()*4) + 's';
-                el.style.animationDelay = (Math.random()*0.5) + 's';
-                el.style.fontSize = (0.8 + Math.random()*0.8) + 'rem';
-                document.body.appendChild(el);
-                setTimeout(() => el.remove(), 12000);
-            }, 300);
-        }
-        window.addEventListener('load', createSnowflakes);
+<script>
+    function createSnowflakes() {
+        const chars = ['❄','❅','❆'];
+        setInterval(() => {
+            const s = document.createElement('div');
+            s.classList.add('snowflake');
+            s.textContent = chars[Math.floor(Math.random()*chars.length)];
+            const dur = 8 + Math.random()*4;
+            const delay = Math.random()*0.5;
+            s.style.left = (Math.random()*100)+'%';
+            s.style.animationDuration = dur+'s';
+            s.style.animationDelay = delay+'s';
+            s.style.fontSize = (0.8+Math.random()*0.8)+'rem';
+            document.body.appendChild(s);
+            setTimeout(()=>s.remove(),(dur+delay)*1000);
+        }, 333);
+    }
 
-        // RSVP
-        document.getElementById('rsvpForm').addEventListener('submit', async function(e) {
-            e.preventDefault();
-            const fd = new FormData(this);
-            const data = Object.fromEntries(fd.entries());
-            try {
-                const res = await fetch('https://formsubmit.co/ajax/xalatsis.dimitrios@gmail.com', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(data)
-                });
-                if (res.ok) {
-                    document.getElementById('successMsg').classList.add('show');
-                    this.reset();
-                    setTimeout(() => document.getElementById('successMsg').classList.remove('show'), 4000);
-                }
-            } catch { alert('Σφάλμα. Παρακαλούμε δοκιμάστε ξανά.'); }
-        });
+    window.addEventListener('load', createSnowflakes);
 
-        // Nav smooth scroll
-        document.querySelectorAll('a[href^="#"]').forEach(a => {
-            a.addEventListener('click', e => {
-                e.preventDefault();
-                const t = document.querySelector(a.getAttribute('href'));
-                if (t) t.scrollIntoView({ behavior: 'smooth' });
+    document.getElementById('rsvpForm').addEventListener('submit', async function(e) {
+        e.preventDefault();
+        const formData = new FormData(this);
+        const data = { name: formData.get('name'), guests: formData.get('guests'), email: formData.get('email'), phone: formData.get('phone'), dietary: formData.get('dietary') };
+        try {
+            const response = await fetch('https://formsubmit.co/ajax/xalatsis.dimitrios@gmail.com', {
+                method: 'POST', headers: {'Content-Type':'application/json'}, body: JSON.stringify(data)
             });
-        });
+            if (response.ok) {
+                document.getElementById('successMsg').classList.add('show');
+                this.reset();
+                setTimeout(()=>document.getElementById('successMsg').classList.remove('show'), 4000);
+            }
+        } catch(err) { alert('Σφάλμα. Παρακαλούμε δοκιμάστε ξανά.'); }
+    });
 
-        // Header toggle
-        let lastScroll = 0;
-        const header = document.querySelector('header');
-        const handleHeader = () => {
-            if (window.innerWidth > 768) { header.classList.add('show-menu'); return; }
+    document.querySelectorAll('a[href^="#"]').forEach(link => {
+        link.addEventListener('click', e => {
+            e.preventDefault();
+            const t = document.querySelector(link.getAttribute('href'));
+            if (t) t.scrollIntoView({behavior:'smooth'});
+        });
+    });
+
+    let lastScrollTop = 0;
+    const header = document.querySelector('header');
+    function handleMobileMenu() {
+        if (window.innerWidth > 768) { header.classList.add('show-menu'); return; }
+        window.addEventListener('scroll', () => {
             const cur = window.pageYOffset || document.documentElement.scrollTop;
-            if (cur > 50 && cur > lastScroll) header.classList.add('show-menu');
+            if (cur > 50 && cur > lastScrollTop) header.classList.add('show-menu');
             else header.classList.remove('show-menu');
-            lastScroll = cur <= 0 ? 0 : cur;
-        };
-        window.addEventListener('load', handleHeader);
-        window.addEventListener('scroll', handleHeader);
-    </script>
+            lastScrollTop = cur <= 0 ? 0 : cur;
+        });
+    }
+    window.addEventListener('load', handleMobileMenu);
+</script>
 </body>
 </html>
