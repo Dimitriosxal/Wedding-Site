@@ -36,51 +36,25 @@
         .hero::before { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: radial-gradient(circle at 50% 50%, rgba(255,255,255,0.05) 0%, rgba(0,0,0,0.25) 100%); z-index: 2; pointer-events: none; }
         .hero-content { z-index: 10; position: relative; display: flex; flex-direction: column; align-items: center; gap: 2.5rem; }
 
-        /*
-          Layout:
-          - SVG canvas: 360 × 420
-          - Ring band circle centre: (180, 240), radius 152
-            → inner radius ≈ 147  → photo diameter = 294px, perfectly filling the inner hole
-          - Band top point: (180, 88)
-          - Diamond + setting sit above that, roughly y = 8..88
-        */
-        .photo-frame {
-            position: relative;
-            width: 360px;
-            height: 420px;
-            z-index: 10;
-        }
+        .photo-frame { position: relative; width: 360px; height: 420px; z-index: 10; }
 
-        /* Photo fills the inner circle of the ring band */
         .photo-frame img.main-photo {
             position: absolute;
-            width: 298px;
-            height: 298px;
+            width: 298px; height: 298px;
             border-radius: 50%;
-            object-fit: cover;
-            object-position: center;
+            object-fit: cover; object-position: center;
             box-shadow: 0 20px 60px rgba(0,0,0,0.35);
-            left: 50%;
-            top: 240px; /* ring centre y */
+            left: 50%; top: 240px;
             transform: translate(-50%, -50%);
             z-index: 11;
         }
 
-        .ring-frame-svg {
-            position: absolute;
-            width: 360px;
-            height: 420px;
-            top: 0; left: 0;
-            pointer-events: none;
-            z-index: 12;
-            overflow: visible;
-        }
+        .ring-frame-svg { position: absolute; width: 360px; height: 420px; top: 0; left: 0; pointer-events: none; z-index: 12; overflow: visible; }
 
         .hero-subtitle { font-size: 0.9rem; letter-spacing: 2px; text-transform: uppercase; font-weight: 400; color: rgba(255,255,255,0.8); margin-bottom: 0.5rem; }
         .hero-divider { width: 60px; height: 1px; background: rgba(255,255,255,0.6); margin: 0.5rem 0; }
         .hero h1 { font-family: 'Cormorant Garamond', serif; font-size: 3.5rem; font-weight: 300; letter-spacing: 3px; margin: 0.5rem 0; color: #fff; text-shadow: 2px 2px 8px rgba(0,0,0,0.3); }
         .hero-date { font-family: 'Montserrat', sans-serif; font-size: 0.9rem; letter-spacing: 1px; color: rgba(255,255,255,0.9); font-weight: 300; }
-
         .scroll-indicator { position: absolute; bottom: 30px; left: 50%; transform: translateX(-50%); z-index: 10; animation: bounce 2s infinite; }
         .scroll-indicator svg { width: 24px; height: 24px; stroke: #fff; fill: none; stroke-width: 1.5; }
         @keyframes bounce { 0%, 100% { transform: translateX(-50%) translateY(0); } 50% { transform: translateX(-50%) translateY(10px); } }
@@ -155,23 +129,27 @@
 <section class="hero">
     <div class="hero-content">
         <div class="photo-frame">
-
             <img class="main-photo" src="https://imgur.com/yyFHxei.jpg" alt="Δημήτρης & Χρύσα">
 
             <!--
-              SVG 360×420
-              Ring centre: cx=180, cy=240  radius=149
-              Band stroke=11  → outer r=154.5, inner r=143.5 → photo=287px  (we use 294 for near-perfect fill)
-              Band top: y = 240-149 = 91
+              Ring SVG — side view, solitaire diamond ring
+              Canvas: 360 × 420
+              Ring band: centre (180, 240), radius 149, stroke 11 (solid, no dash)
+              Band top: y = 240 - 149 = 91
 
-              DIAMOND SIDE-PROFILE VIEW (as in reference photo):
-              - Viewed from the side: diamond appears as a rounded-top shape
-              - Setting: two large curved prong "wings" opening left and right from the band top
-              - Diamond: dome on top, pointed culet at bottom sitting in the cup
+              Diamond: angular brilliant cut, side-profile view
+                - Flat girdle (horizontal line) at y=57
+                - Crown: faceted polygon above girdle (top point at y≈10)
+                - Pavilion: triangular below girdle down to culet at y=94
+                - Width at girdle: 140..220 (80px each side of centre 180)
+
+              Setting arms: two thick curved pieces that sweep up from band top,
+                curve outward, then wrap around and slightly OVER the pavilion base
+                of the diamond — hiding the bottom corners of the stone.
             -->
             <svg class="ring-frame-svg" viewBox="0 0 360 420" xmlns="http://www.w3.org/2000/svg">
                 <defs>
-                    <!-- Band silver gradient — light top-left, dark bottom-right -->
+                    <!-- Band silver gradient -->
                     <linearGradient id="bandG" x1="0%" y1="0%" x2="100%" y2="100%">
                         <stop offset="0%"   stop-color="#f9f9f9"/>
                         <stop offset="18%"  stop-color="#e0e0e0"/>
@@ -181,151 +159,188 @@
                         <stop offset="100%" stop-color="#d4d4d4"/>
                     </linearGradient>
 
-                    <!-- Prong/setting silver — slightly warmer -->
-                    <linearGradient id="prongG" x1="0%" y1="0%" x2="60%" y2="100%">
+                    <!-- Prong/arm gradient — bright silver -->
+                    <linearGradient id="armG" x1="0%" y1="0%" x2="100%" y2="100%">
                         <stop offset="0%"   stop-color="#ffffff"/>
-                        <stop offset="35%"  stop-color="#dcdcdc"/>
-                        <stop offset="70%"  stop-color="#f0f0f0"/>
-                        <stop offset="100%" stop-color="#c8c8c8"/>
+                        <stop offset="30%"  stop-color="#e8e8e8"/>
+                        <stop offset="60%"  stop-color="#f4f4f4"/>
+                        <stop offset="100%" stop-color="#c4c4c4"/>
                     </linearGradient>
 
-                    <!-- Dark inner shadow of prong concave -->
-                    <linearGradient id="prongDark" x1="0%" y1="0%" x2="100%" y2="0%">
-                        <stop offset="0%"   stop-color="#a0a0a0"/>
-                        <stop offset="50%"  stop-color="#787878"/>
-                        <stop offset="100%" stop-color="#a0a0a0"/>
+                    <!-- Arm inner shadow (concave face) -->
+                    <linearGradient id="armShadow" x1="0%" y1="0%" x2="100%" y2="0%">
+                        <stop offset="0%"   stop-color="#909090"/>
+                        <stop offset="40%"  stop-color="#686868"/>
+                        <stop offset="100%" stop-color="#909090"/>
                     </linearGradient>
 
-                    <!-- Diamond fill: icy blue-white -->
-                    <radialGradient id="diamG" cx="38%" cy="30%" r="70%">
+                    <!-- Diamond crown gradient: icy white -->
+                    <linearGradient id="crownG" x1="15%" y1="0%" x2="85%" y2="100%">
                         <stop offset="0%"   stop-color="#ffffff"/>
-                        <stop offset="30%"  stop-color="#eaf5ff"/>
-                        <stop offset="65%"  stop-color="#cce8fa"/>
-                        <stop offset="100%" stop-color="#b0d8f5"/>
-                    </radialGradient>
+                        <stop offset="25%"  stop-color="#f0f8ff"/>
+                        <stop offset="55%"  stop-color="#d8effc"/>
+                        <stop offset="100%" stop-color="#c0e4f8"/>
+                    </linearGradient>
 
-                    <!-- Diamond shine spot -->
-                    <radialGradient id="diamShine" cx="32%" cy="22%" r="55%">
+                    <!-- Diamond pavilion gradient: slightly darker -->
+                    <linearGradient id="pavilionG" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%"   stop-color="#d0e8f5"/>
+                        <stop offset="50%"  stop-color="#b8d8ee"/>
+                        <stop offset="100%" stop-color="#a0c8e4"/>
+                    </linearGradient>
+
+                    <!-- Shine spot on crown -->
+                    <radialGradient id="crownShine" cx="30%" cy="25%" r="55%">
                         <stop offset="0%"   stop-color="#ffffff" stop-opacity="1"/>
-                        <stop offset="70%"  stop-color="#ffffff" stop-opacity="0.1"/>
+                        <stop offset="60%"  stop-color="#ffffff" stop-opacity="0.15"/>
                         <stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
                     </radialGradient>
 
-                    <!-- clip diamond to its silhouette -->
-                    <clipPath id="diamClip">
-                        <!-- Side-profile of a round brilliant: dome top, pointed bottom -->
-                        <!-- Centre at (180, 52), dome radius ~40, total height ~72 -->
-                        <path d="M 140,55
-                                 A 40,38 0 0,1 220,55
-                                 L 180,95 Z"/>
-                    </clipPath>
-
-                    <!-- shadow under setting -->
-                    <filter id="dropShadow" x="-20%" y="-20%" width="140%" height="140%">
-                        <feDropShadow dx="0" dy="3" stdDeviation="4" flood-color="rgba(0,0,0,0.25)"/>
+                    <filter id="softShadow">
+                        <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="rgba(0,0,0,0.22)"/>
+                    </filter>
+                    <filter id="armShadowF">
+                        <feDropShadow dx="1" dy="2" stdDeviation="4" flood-color="rgba(0,0,0,0.28)"/>
                     </filter>
                 </defs>
 
-                <!-- ══════════════ RING BAND ══════════════ -->
-                <!-- subtle outer shadow -->
-                <circle cx="180" cy="240" r="149" fill="none" stroke="rgba(0,0,0,0.20)" stroke-width="15"/>
-                <!-- main band -->
+                <!-- ══════════ RING BAND — solid, no dashes ══════════ -->
+                <circle cx="180" cy="240" r="149" fill="none" stroke="rgba(0,0,0,0.18)" stroke-width="15"/>
                 <circle cx="180" cy="240" r="149" fill="none" stroke="url(#bandG)" stroke-width="11"/>
-                <!-- inner highlight -->
-                <circle cx="180" cy="240" r="149" fill="none" stroke="rgba(255,255,255,0.6)" stroke-width="2.5" stroke-dasharray="6 10" stroke-dashoffset="3"/>
+                <!-- single inner highlight line, solid -->
+                <circle cx="180" cy="240" r="149" fill="none" stroke="rgba(255,255,255,0.55)" stroke-width="2"/>
 
-                <!-- ══════════════ SETTING + PRONGS ══════════════
-                     Reference photo analysis:
-                     - Two thick curved "wings" sweep up and outward from the band-top (y≈91)
-                     - They form a V/triangle negative space in the middle
-                     - The wings grip the diamond at roughly mid-height
-                     - Total setting width ≈ 2× diamond radius + prong overhang
+                <!-- ══════════ SETTING ARMS / PRONGS ══════════
+                     Each arm: starts at the band top ~(180±16, 91),
+                     sweeps outward and upward in a gentle curve,
+                     then bends inward to grip the diamond at the girdle (y=57),
+                     then continues slightly inward and DOWN to partially cover
+                     the pavilion base — mimicking how the reference photo shows
+                     the metal wrapping around the stone bottom.
                 -->
 
-                <!-- LEFT WING prong arm — curves up-left from band, sweeps inward to grip stone -->
-                <!-- Outer (bright) face of left arm -->
-                <path d="M 158,95
-                         C 148,88  128,72  118,52
-                         C 113,42  116,30  126,26
-                         C 136,22  145,32  148,42
-                         C 151,52  154,62  158,68"
-                      fill="url(#prongG)" stroke="#c0c0c0" stroke-width="1" filter="url(#dropShadow)"/>
+                <!-- LEFT ARM — outer bright face -->
+                <path d="
+                    M 164, 91
+                    C 154, 84   130, 70   116, 50
+                    C 108, 37   112, 22   124, 18
+                    C 134, 14   144, 24   148, 36
+                    C 152, 48   154, 54   158, 57
+                    C 160, 60   158, 68   155, 78
+                    C 153, 85   160, 90   164, 91
+                    Z
+                " fill="url(#armG)" stroke="#bbbbbb" stroke-width="0.8" filter="url(#armShadowF)"/>
 
-                <!-- Inner (shadow) concave face of left arm -->
-                <path d="M 158,95
-                         C 152,88  138,72  134,52
-                         C 131,40  135,30  142,28
-                         C 148,26  152,34  153,44
-                         C 155,56  156,64  158,68"
-                      fill="#b0b0b0" opacity="0.55"/>
+                <!-- LEFT ARM — inner concave shadow face -->
+                <path d="
+                    M 164, 91
+                    C 158, 86   148, 74   146, 62
+                    C 144, 50   146, 38   152, 32
+                    C 156, 27   160, 30   162, 38
+                    C 164, 46   162, 54   162, 57
+                    C 162, 62   162, 70   162, 78
+                    C 162, 84   163, 88   164, 91
+                    Z
+                " fill="#909090" opacity="0.5"/>
 
-                <!-- RIGHT WING prong arm — mirror -->
-                <path d="M 202,95
-                         C 212,88  232,72  242,52
-                         C 247,42  244,30  234,26
-                         C 224,22  215,32  212,42
-                         C 209,52  206,62  202,68"
-                      fill="url(#prongG)" stroke="#c0c0c0" stroke-width="1" filter="url(#dropShadow)"/>
+                <!-- RIGHT ARM — outer bright face (mirror) -->
+                <path d="
+                    M 196, 91
+                    C 206, 84   230, 70   244, 50
+                    C 252, 37   248, 22   236, 18
+                    C 226, 14   216, 24   212, 36
+                    C 208, 48   206, 54   202, 57
+                    C 200, 60   202, 68   205, 78
+                    C 207, 85   200, 90   196, 91
+                    Z
+                " fill="url(#armG)" stroke="#bbbbbb" stroke-width="0.8" filter="url(#armShadowF)"/>
 
-                <!-- Inner shadow right arm -->
-                <path d="M 202,95
-                         C 208,88  222,72  226,52
-                         C 229,40  225,30  218,28
-                         C 212,26  208,34  207,44
-                         C 205,56  204,64  202,68"
-                      fill="#b0b0b0" opacity="0.55"/>
+                <!-- RIGHT ARM — inner concave shadow face -->
+                <path d="
+                    M 196, 91
+                    C 202, 86   212, 74   214, 62
+                    C 216, 50   214, 38   208, 32
+                    C 204, 27   200, 30   198, 38
+                    C 196, 46   198, 54   198, 57
+                    C 198, 62   198, 70   198, 78
+                    C 198, 84   197, 88   196, 91
+                    Z
+                " fill="#909090" opacity="0.5"/>
 
-                <!-- Triangular negative space / shadow between the two wings -->
-                <path d="M 158,95 L 180,68 L 202,95"
-                      fill="rgba(60,60,60,0.25)"/>
+                <!-- Triangular shadow between the two arms (dark valley) -->
+                <path d="M 164,91  L 180,72  L 196,91 Z" fill="rgba(50,50,50,0.30)"/>
 
-                <!-- ══════════════ DIAMOND — side profile ══════════════
-                     Shape: semicircular dome on top, triangular point at bottom (culet)
-                     Sits between the two prong wings, centred at x=180, top ≈ y=16, culet ≈ y=90
+                <!-- ══════════ DIAMOND — angular brilliant, side-profile ══════════
+                     Girdle: horizontal flat line y=57, x from 140 to 220
+                     Crown: rises to a point at (180, 10) — angular facets
+                     Pavilion: drops to culet at (180, 94)
+                     The setting arms COVER the pavilion corners slightly (drawn AFTER diamond)
                 -->
 
-                <!-- Diamond silhouette (side view of round brilliant) -->
-                <g filter="url(#dropShadow)">
-                    <path d="M 138,57
-                             A 42,40 0 0,1 222,57
-                             L 180,93 Z"
-                          fill="url(#diamG)" stroke="#a8cce0" stroke-width="1.2"/>
-                </g>
+                <!-- PAVILION (below girdle) — drawn first so arms can overlap -->
+                <polygon points="140,57  220,57  180,94"
+                         fill="url(#pavilionG)" stroke="#a0c0d8" stroke-width="1"/>
 
-                <!-- Facet lines clipped to diamond shape -->
-                <g clip-path="url(#diamClip)" opacity="0.65">
-                    <!-- Crown main facets (above girdle at y≈57) -->
-                    <line x1="180" y1="17"  x2="180" y2="57" stroke="#8ac4e0" stroke-width="0.9"/>
-                    <line x1="138" y1="57"  x2="180" y2="38" stroke="#8ac4e0" stroke-width="0.8"/>
-                    <line x1="222" y1="57"  x2="180" y2="38" stroke="#8ac4e0" stroke-width="0.8"/>
-                    <line x1="152" y1="28"  x2="180" y2="57" stroke="#9dd0e8" stroke-width="0.7"/>
-                    <line x1="208" y1="28"  x2="180" y2="57" stroke="#9dd0e8" stroke-width="0.7"/>
-                    <line x1="138" y1="57"  x2="165" y2="30" stroke="#9dd0e8" stroke-width="0.6"/>
-                    <line x1="222" y1="57"  x2="195" y2="30" stroke="#9dd0e8" stroke-width="0.6"/>
-                    <!-- Pavilion lines (below girdle, to culet at y=93) -->
-                    <line x1="138" y1="57"  x2="180" y2="93" stroke="#7ab8d8" stroke-width="0.8"/>
-                    <line x1="222" y1="57"  x2="180" y2="93" stroke="#7ab8d8" stroke-width="0.8"/>
-                    <line x1="155" y1="57"  x2="180" y2="93" stroke="#7ab8d8" stroke-width="0.6"/>
-                    <line x1="205" y1="57"  x2="180" y2="93" stroke="#7ab8d8" stroke-width="0.6"/>
-                    <!-- Girdle line -->
-                    <line x1="138" y1="57" x2="222" y2="57" stroke="#b0d8f0" stroke-width="1.0"/>
-                </g>
+                <!-- Pavilion facet lines -->
+                <line x1="155" y1="57" x2="180" y2="94" stroke="#88b8d4" stroke-width="0.8" opacity="0.7"/>
+                <line x1="165" y1="57" x2="180" y2="94" stroke="#88b8d4" stroke-width="0.6" opacity="0.6"/>
+                <line x1="195" y1="57" x2="180" y2="94" stroke="#88b8d4" stroke-width="0.8" opacity="0.7"/>
+                <line x1="205" y1="57" x2="180" y2="94" stroke="#88b8d4" stroke-width="0.6" opacity="0.6"/>
 
-                <!-- Diamond shine overlay -->
-                <path d="M 138,57 A 42,40 0 0,1 222,57 L 180,93 Z"
-                      fill="url(#diamShine)"/>
+                <!-- CROWN (above girdle) — angular brilliant cut side view
+                     Table (top flat): 160..200, y=28
+                     Bezel facets on each side going down to girdle corners
+                -->
+                <!-- Main crown polygon (left half) -->
+                <polygon points="140,57  160,28  180,10  180,57"
+                         fill="url(#crownG)" stroke="#b0d0e8" stroke-width="0.8"/>
+                <!-- Main crown polygon (right half) -->
+                <polygon points="220,57  200,28  180,10  180,57"
+                         fill="url(#crownG)" stroke="#b0d0e8" stroke-width="0.8"/>
+                <!-- Table face (top flat section) -->
+                <polygon points="160,28  200,28  180,10"
+                         fill="#f0f8ff" stroke="#c8e4f4" stroke-width="0.8" opacity="0.9"/>
 
-                <!-- Small highlight glint -->
-                <ellipse cx="158" cy="38" rx="8" ry="5" fill="white" opacity="0.7" transform="rotate(-25,158,38)"/>
-                <circle  cx="168" cy="27" r="3"  fill="white" opacity="0.8"/>
+                <!-- Crown facet detail lines -->
+                <!-- Star facets left -->
+                <line x1="140" y1="57" x2="160" y2="28" stroke="#a0c8e0" stroke-width="0.8"/>
+                <line x1="148" y1="57" x2="162" y2="32" stroke="#b0d2e8" stroke-width="0.6" opacity="0.7"/>
+                <!-- Star facets right -->
+                <line x1="220" y1="57" x2="200" y2="28" stroke="#a0c8e0" stroke-width="0.8"/>
+                <line x1="212" y1="57" x2="198" y2="32" stroke="#b0d2e8" stroke-width="0.6" opacity="0.7"/>
+                <!-- Centre vertical -->
+                <line x1="180" y1="10" x2="180" y2="57" stroke="#c0d8ec" stroke-width="0.7" opacity="0.6"/>
+                <!-- Girdle line (flat horizontal) -->
+                <line x1="140" y1="57" x2="220" y2="57" stroke="#c0d8ec" stroke-width="1.2"/>
 
-                <!-- ══ Sparkle above diamond ══ -->
+                <!-- Crown shine overlay -->
+                <polygon points="140,57  160,28  180,10  200,28  220,57  180,57"
+                         fill="url(#crownShine)" opacity="0.85"/>
+
+                <!-- Highlight glint on upper left crown face -->
+                <polygon points="143,52  155,32  168,42  152,57" fill="white" opacity="0.45"/>
+                <!-- Small bright spot near table edge -->
+                <circle cx="167" cy="23" r="4" fill="white" opacity="0.75"/>
+
+                <!-- Sparkle above -->
                 <g opacity="0.9">
-                    <path d="M 180,8 l2.5,8 l2.5,-8 l-2.5,-8 Z" fill="white"/>
-                    <path d="M 170,12 l7,2.5 l-7,2.5 l-7,-2.5 Z" fill="white" opacity="0.7"/>
-                    <circle cx="225" cy="22" r="2" fill="white" opacity="0.85"/>
-                    <circle cx="136" cy="28" r="1.5" fill="white" opacity="0.8"/>
+                    <path d="M 180,2 l2,6 l-2,6 l-2,-6 Z" fill="white"/>
+                    <path d="M 172,6 l6,2 l-6,2 l-6,-2 Z" fill="white" opacity="0.7"/>
+                    <circle cx="224" cy="20" r="2" fill="white" opacity="0.8"/>
+                    <circle cx="137" cy="25" r="1.5" fill="white" opacity="0.75"/>
                 </g>
+
+                <!-- ══ ARM OVERLAP CAPS — cover the pavilion lower corners ══
+                     These small filled shapes represent the metal cup that
+                     wraps around and slightly hides the bottom of the diamond,
+                     just like the reference photo shows.
+                -->
+                <!-- Left cap overlapping pavilion bottom-left -->
+                <path d="M 158,57  C 152,62  148,72  150,82  C 152,88  158,90  162,88  C 164,82  164,70  162,57 Z"
+                      fill="url(#armG)" stroke="#c0c0c0" stroke-width="0.5"/>
+                <!-- Right cap overlapping pavilion bottom-right -->
+                <path d="M 202,57  C 208,62  212,72  210,82  C 208,88  202,90  198,88  C 196,82  196,70  198,57 Z"
+                      fill="url(#armG)" stroke="#c0c0c0" stroke-width="0.5"/>
 
             </svg>
         </div>
