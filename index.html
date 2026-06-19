@@ -848,26 +848,7 @@
 ];
 
 let ringIndex = 0;
-        function startRingCarousel() {
-  const img = document.querySelector(".ring-photo");
-  if (!img) return;
 
-  setInterval(() => {
-    ringIndex = (ringIndex + 1) % ringImages.length;
-
-    img.style.opacity = 0;
-
-    setTimeout(() => {
-      img.src = ringImages[ringIndex];
-      img.onload = () => {
-        img.style.opacity = 1;
-        img.classList.toggle("shift", ringIndex !== 0);
-      };
-    }, 400);
-  }, 4000);
-}
-
-window.addEventListener("load", startRingCarousel);
         
         function createSnowflakes() {
             const chars = ['❄', '❅', '❆'];
