@@ -83,8 +83,14 @@
             backdrop-filter: blur(10px);
             border-bottom: 1px solid #ddd;
             padding: 1.5rem 2rem;
+
+            transform: translateY(-100%);
+            transition: transform 0.3s ease;
         }
 
+header.show-menu {
+    transform: translateY(0);
+}
         nav {
             max-width: 1200px;
             margin: 0 auto;
@@ -869,6 +875,32 @@
                 }
             });
         });
+        let lastScrollTop = 0;
+const header = document.querySelector('header');
+
+function handleMobileMenu() {
+    if (window.innerWidth > 768) {
+        header.classList.add('show-menu');
+        return;
+    }
+
+    window.addEventListener('scroll', () => {
+        const currentScroll =
+            window.pageYOffset || document.documentElement.scrollTop;
+
+        if (currentScroll > 50 && currentScroll > lastScrollTop) {
+            // Scroll προς τα κάτω
+            header.classList.add('show-menu');
+        } else {
+            // Scroll προς τα πάνω
+            header.classList.remove('show-menu');
+        }
+
+        lastScrollTop = currentScroll <= 0 ? 0 : currentScroll;
+    });
+}
+
+window.addEventListener('load', handleMobileMenu);
     </script>
 </body>
 </html>
