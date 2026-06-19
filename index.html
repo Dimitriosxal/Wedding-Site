@@ -134,142 +134,45 @@
             gap: 2.5rem;
         }
 
-        /* ── photo‑frame (container for the new 3D rings) ── */
-.photo-frame {
-    position: relative;
-    width: 420px;
-    height: 480px;
-    z-index: 10;
-
-    transform: translateY(-70px) scale(1);
-}
-
-
-        /* ── 3D ring scene ── */
+        /* ── photo‑frame (στατικό δαχτυλίδι) ── */
+        .photo-frame {
+            position: relative;
+            width: 420px;
+            height: 480px;
+            z-index: 10;
+            transform: translateY(-70px) scale(1);
+        }
         .scene {
-            perspective: 1400px;
             width: 100%;
             height: 100%;
             margin: 0 auto;
             position: relative;
         }
 
-.ring-photo {
-    position: absolute;
-    width: 330px;
-    height: 330px;
-    border-radius: 50%;
-    object-fit: cover;
-    object-position: center;
-    left: 50%;
-    top: 260px;
-    transform: translate(-50%, -50%);
-    z-index: 10;
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
-    transition: opacity 0.4s ease;
-}
-
-
-.ring-photo.shift {
-    object-position: 50% 30%;
-}
-        .ring-a,
-        .ring-b {
+        .ring-photo {
             position: absolute;
-            transform-style: preserve-3d;
-            z-index: 20;
-            width: 360px;
-            height: 360px;
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            object-fit: cover;
+            object-position: center;
             left: 50%;
-            top: 260px;
+            top: 290px;
             transform: translate(-50%, -50%);
+            z-index: 10;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
         }
 
-        .ring-a {
-            animation: tiltA 5s ease-in-out infinite;
-        }
-        .ring-b {
-            animation: tiltB 5s ease-in-out infinite;
-        }
-
-        @keyframes tiltA {
-            0% {
-                transform: translate(-50%, -50%) rotateY(0deg);
-            }
-            25% {
-                transform: translate(-50%, -50%) rotateY(25deg);
-            }
-            50% {
-                transform: translate(-50%, -50%) rotateY(0deg);
-            }
-            75% {
-                transform: translate(-50%, -50%) rotateY(-25deg);
-            }
-            100% {
-                transform: translate(-50%, -50%) rotateY(0deg);
-            }
-        }
-
-        @keyframes tiltB {
-            0% {
-                transform: translate(-50%, -50%) rotateY(0deg);
-            }
-            25% {
-                transform: translate(-50%, -50%) rotateY(-25deg);
-            }
-            50% {
-                transform: translate(-50%, -50%) rotateY(0deg);
-            }
-            75% {
-                transform: translate(-50%, -50%) rotateY(25deg);
-            }
-            100% {
-                transform: translate(-50%, -50%) rotateY(0deg);
-            }
-        }
-
-        .ring-svg {
-            width: 360px;
-            height: 360px;
-            overflow: visible;
+        .ring-frame {
+            position: absolute;
+            left: 50%;
+            top: 0;
+            transform: translateX(-50%);
+            width: 420px;
+            height: 480px;
+            z-index: 20;
             pointer-events: none;
-        }
-
-        .engraved-text {
-            animation: textReveal 5s ease-in-out infinite;
-        }
-
-        @keyframes textReveal {
-            0% {
-                opacity: 0;
-            }
-            12% {
-                opacity: 0;
-            }
-            20% {
-                opacity: 1;
-            }
-            30% {
-                opacity: 1;
-            }
-            38% {
-                opacity: 0;
-            }
-            62% {
-                opacity: 0;
-            }
-            70% {
-                opacity: 1;
-            }
-            80% {
-                opacity: 1;
-            }
-            88% {
-                opacity: 0;
-            }
-            100% {
-                opacity: 0;
-            }
+            filter: drop-shadow(0 14px 28px rgba(0,0,0,0.35));
         }
 
         .hero-subtitle {
@@ -318,13 +221,8 @@
             stroke-width: 1.5;
         }
         @keyframes bounce {
-            0%,
-            100% {
-                transform: translateX(-50%) translateY(0);
-            }
-            50% {
-                transform: translateX(-50%) translateY(10px);
-            }
+            0%, 100% { transform: translateX(-50%) translateY(0); }
+            50% { transform: translateX(-50%) translateY(10px); }
         }
 
         main {
@@ -382,26 +280,107 @@
             font-size: 0.95rem;
             line-height: 1.8;
         }
-        .gallery {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-            gap: 1.5rem;
+
+        /* ── Gallery: ring-framed slideshow ── */
+        .ring-gallery {
             margin-top: 3rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 2rem;
         }
-        .gallery-item {
-            overflow: hidden;
-            border-radius: 2px;
-            aspect-ratio: 1;
+        .ring-slide-track {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 3rem;
+            flex-wrap: wrap;
         }
-        .gallery img {
-            width: 100%;
-            height: 100%;
+        .ring-slide {
+            position: relative;
+            width: 260px;
+            height: 300px;
+            flex-shrink: 0;
+        }
+        .ring-slide .ring-photo-slide {
+            position: absolute;
+            width: 190px;
+            height: 190px;
+            border-radius: 50%;
             object-fit: cover;
-            transition: transform 0.3s ease;
+            left: 50%;
+            top: 178px;
+            transform: translate(-50%, -50%);
+            z-index: 10;
+            box-shadow: 0 12px 30px rgba(0,0,0,0.3);
+            opacity: 0;
+            transition: opacity 0.5s ease;
         }
-        .gallery img:hover {
-            transform: scale(1.05);
+        .ring-slide .ring-photo-slide.active {
+            opacity: 1;
         }
+        .ring-slide .ring-frame-slide {
+            position: absolute;
+            left: 50%;
+            top: 0;
+            transform: translateX(-50%);
+            width: 260px;
+            height: 300px;
+            z-index: 20;
+            pointer-events: none;
+            filter: drop-shadow(0 8px 18px rgba(0,0,0,0.3));
+        }
+        .gallery-controls {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 1.5rem;
+            margin-top: 2.5rem;
+        }
+        .gallery-arrow {
+            background: #fff;
+            border: 1px solid #ddd;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .gallery-arrow:hover {
+            background: #333;
+            border-color: #333;
+        }
+        .gallery-arrow:hover svg {
+            stroke: #fff;
+        }
+        .gallery-arrow svg {
+            width: 18px;
+            height: 18px;
+            stroke: #333;
+            fill: none;
+            stroke-width: 1.8;
+            transition: stroke 0.3s ease;
+        }
+        .gallery-dots {
+            display: flex;
+            gap: 0.5rem;
+        }
+        .gallery-dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: #ddd;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .gallery-dot.active {
+            background: #333;
+            transform: scale(1.3);
+        }
+
         .rsvp-section {
             background: #fff;
             border: 1px solid #e0e0e0;
@@ -472,14 +451,8 @@
             animation: slideDown 0.3s ease;
         }
         @keyframes slideDown {
-            from {
-                opacity: 0;
-                transform: translateY(-10px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
         .tips-grid {
             display: grid;
@@ -525,88 +498,39 @@
         }
 
         @media (max-width: 768px) {
-            nav ul {
-                gap: 1rem;
-            }
-            nav a {
-                font-size: 0.75rem;
-            }
-            .hero h1 {
-                font-size: 2.5rem;
-            }
+            nav ul { gap: 1rem; }
+            nav a { font-size: 0.75rem; }
+            .hero h1 { font-size: 2.5rem; }
 
-            .ring-photo {
-                width: 260px;
-                height: 260px;
-                top: 210px;
-            }
-            .ring-a,
-            .ring-b {
-                width: 290px;
-                height: 290px;
-                top: 210px;
-            }
-            .ring-svg {
-                width: 290px;
-                height: 290px;
-            }
-            section {
-                padding: 3rem 1.5rem;
-            }
-            section h2 {
-                font-size: 2rem;
-            }
-            .gallery {
-                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-            }
-            .rsvp-section {
-                padding: 2rem;
-            }
+            .photo-frame { width: 320px; height: 360px; }
+            .ring-photo { width: 220px; height: 220px; top: 218px; }
+            .ring-frame { width: 320px; height: 360px; }
+
+            section { padding: 3rem 1.5rem; }
+            section h2 { font-size: 2rem; }
+
+            .rsvp-section { padding: 2rem; }
         }
         @media (max-width: 480px) {
-            header {
-                padding: 1rem;
-            }
-            nav {
-                flex-direction: column;
-                gap: 1rem;
-            }
-            nav ul {
-                flex-direction: column;
-                gap: 0.5rem;
-                width: 100%;
-            }
-            .hero h1 {
-                font-size: 2rem;
-            }
-            .photo-frame {
-                width: 280px;
-                height: 320px;
-            }
-            .ring-photo {
-                width: 210px;
-                height: 210px;
-                top: 172px;
-            }
-            .ring-a,
-            .ring-b {
-                width: 240px;
-                height: 240px;
-                top: 172px;
-            }
-            .ring-svg {
-                width: 240px;
-                height: 240px;
-            }
-            section {
-                padding: 2rem 1rem;
-            }
-            section h2 {
-                font-size: 1.5rem;
-            }
-            .events-grid {
-                grid-template-columns: 1fr;
-            }
+            header { padding: 1rem; }
+            nav { flex-direction: column; gap: 1rem; }
+            nav ul { flex-direction: column; gap: 0.5rem; width: 100%; }
+            .hero h1 { font-size: 2rem; }
+
+            .photo-frame { width: 260px; height: 300px; }
+            .ring-photo { width: 175px; height: 175px; top: 182px; }
+            .ring-frame { width: 260px; height: 300px; }
+
+            section { padding: 2rem 1rem; }
+            section h2 { font-size: 1.5rem; }
+            .events-grid { grid-template-columns: 1fr; }
+
+            /* Gallery: μία φωτογραφία τη φορά στο κινητό */
+            .ring-slide-track { gap: 0; }
+            .ring-slide:not(.mobile-active) { display: none; }
+            .ring-slide { width: 230px; height: 270px; }
+            .ring-slide .ring-photo-slide { width: 165px; height: 165px; top: 158px; }
+            .ring-slide .ring-frame-slide { width: 230px; height: 270px; }
         }
     </style>
 </head>
@@ -618,8 +542,8 @@
             <ul>
                 <li><a href="#about">Σχετικά</a></li>
                 <li><a href="#events">Εκδηλώσεις</a></li>
-                <li><a href="#gallery">Φωτογραφίες</a></li>
                 <li><a href="#rsvp">RSVP</a></li>
+                <li><a href="#gallery">Φωτογραφίες</a></li>
                 <li><a href="#visit">Επίσκεψη</a></li>
             </ul>
         </nav>
@@ -628,117 +552,68 @@
     <section class="hero">
         <div class="hero-content">
 
-            <!-- ─── photo‑frame with 3D rings ─── -->
+            <!-- ─── photo‑frame με στατικό δαχτυλίδι ─── -->
             <div class="photo-frame">
                 <div class="scene">
 
-                    <!-- Ring B -->
-                    <div class="ring-b">
-                        <svg class="ring-svg" viewBox="-155 -155 310 310" xmlns="http://www.w3.org/2000/svg">
-                            <defs>
-                                <linearGradient id="goldB3" x1="100%" y1="0%" x2="0%" y2="100%">
-                                    <stop offset="0%"   stop-color="#FFF5C0"/>
-                                    <stop offset="10%"  stop-color="#D49020"/>
-                                    <stop offset="25%"  stop-color="#B87000"/>
-                                    <stop offset="40%"  stop-color="#F0D060"/>
-                                    <stop offset="55%"  stop-color="#9A5E00"/>
-                                    <stop offset="70%"  stop-color="#EEC040"/>
-                                    <stop offset="85%"  stop-color="#FFE878"/>
-                                    <stop offset="100%" stop-color="#A06000"/>
-                                </linearGradient>
-                                <path id="bandPathC" d="M 0,-144 A 144,144 0 1,1 -0.01,-144"/>
-                            </defs>
-
-                            <circle cx="0" cy="3"  fill="none" stroke="#4A2800" stroke-width="17" r="144"/>
-                            <circle cx="0" cy="6"  fill="none" stroke="#3A2000" stroke-width="14" r="144"/>
-                            <circle cx="0" cy="9"  fill="none" stroke="#2A1400" stroke-width="11" r="144"/>
-                            <circle cx="0" cy="11" fill="none" stroke="#1A0A00" stroke-width="8"  r="144"/>
-
-                            <circle cx="0" cy="0" r="144" fill="none" stroke="rgba(0,0,0,0.28)" stroke-width="20"/>
-                            <circle cx="0" cy="0" r="144" fill="none" stroke="#7A4A00" stroke-width="16"/>
-                            <circle cx="0" cy="0" r="144" fill="none" stroke="url(#goldB3)" stroke-width="13"/>
-                            <circle cx="0" cy="0" r="137" fill="none" stroke="rgba(90,50,0,0.4)" stroke-width="2"/>
-                            <circle cx="0" cy="0" r="151" fill="none" stroke="rgba(255,235,120,0.5)" stroke-width="2"/>
-
-                            <path d="M -90,-110 A 144,144 0 0,1 90,-110" fill="none" stroke="rgba(255,248,190,0.65)" stroke-width="3" stroke-linecap="round"/>
-
-                            <g class="engraved-text">
-                                <!-- SHADOW LEFT -->
-                                <text font-family="'Cormorant Garamond', Georgia, serif" font-size="11.5" font-weight="700">
-                                    <textPath href="#bandPathC" startOffset="25%" text-anchor="middle">
-                                        <tspan fill="rgba(20,8,0,0.95)" letter-spacing="4">TWO RINGS </tspan>
-                                    </textPath>
-                                </text>
-                                <!-- SHADOW RIGHT -->
-                                <text font-family="'Cormorant Garamond', Georgia, serif" font-size="11.5" font-weight="700">
-                                    <textPath href="#bandPathC" startOffset="75%" text-anchor="middle">
-                                        <tspan fill="rgba(20,8,0,0.95)" letter-spacing="4">TO RULE THEM ALL</tspan>
-                                    </textPath>
-                                </text>
-                                <!-- GOLD LEFT -->
-                                <text font-family="'Cormorant Garamond', Georgia, serif" font-size="11.5" font-weight="700">
-                                    <textPath href="#bandPathC" startOffset="25%" text-anchor="middle">
-                                        <tspan fill="#FFE060" dy="-0.8" letter-spacing="4">TWO RINGS </tspan>
-                                    </textPath>
-                                </text>
-                                <!-- GOLD RIGHT -->
-                                <text font-family="'Cormorant Garamond', Georgia, serif" font-size="11.5" font-weight="700">
-                                    <textPath href="#bandPathC" startOffset="75%" text-anchor="middle">
-                                        <tspan fill="#FFE060" dy="-0.8" letter-spacing="4">TO RULE THEM ALL</tspan>
-                                    </textPath>
-                                </text>
-                                <!-- GLEAM LEFT -->
-                                <text font-family="'Cormorant Garamond', Georgia, serif" font-size="11.5" font-weight="700">
-                                    <textPath href="#bandPathC" startOffset="25%" text-anchor="middle">
-                                        <tspan fill="rgba(255,252,200,0.5)" dy="-0.4" letter-spacing="4">TWO RINGS </tspan>
-                                    </textPath>
-                                </text>
-                                <!-- GLEAM RIGHT -->
-                                <text font-family="'Cormorant Garamond', Georgia, serif" font-size="11.5" font-weight="700">
-                                    <textPath href="#bandPathC" startOffset="75%" text-anchor="middle">
-                                        <tspan fill="rgba(255,252,200,0.5)" dy="-0.4" letter-spacing="4">TO RULE THEM ALL</tspan>
-                                    </textPath>
-                                </text>
-                            </g>
-                        </svg>
-                    </div>
-
-                    <!-- Ring A -->
-                    <div class="ring-a">
-                        <svg class="ring-svg" viewBox="-155 -155 310 310" xmlns="http://www.w3.org/2000/svg">
-                            <defs>
-                                <linearGradient id="goldA3" x1="0%" y1="0%" x2="100%" y2="100%">
-                                    <stop offset="0%"   stop-color="#FFF5C0"/>
-                                    <stop offset="8%"   stop-color="#E0A830"/>
-                                    <stop offset="20%"  stop-color="#B87000"/>
-                                    <stop offset="32%"  stop-color="#F0D060"/>
-                                    <stop offset="45%"  stop-color="#9A5E00"/>
-                                    <stop offset="58%"  stop-color="#EEC040"/>
-                                    <stop offset="70%"  stop-color="#C08010"/>
-                                    <stop offset="82%"  stop-color="#FFE878"/>
-                                    <stop offset="92%"  stop-color="#D09020"/>
-                                    <stop offset="100%" stop-color="#A06000"/>
-                                </linearGradient>
-                            </defs>
-
-                            <circle cx="0" cy="3"  fill="none" stroke="#4A2800" stroke-width="17" r="144"/>
-                            <circle cx="0" cy="6"  fill="none" stroke="#3A2000" stroke-width="14" r="144"/>
-                            <circle cx="0" cy="9"  fill="none" stroke="#2A1400" stroke-width="11" r="144"/>
-                            <circle cx="0" cy="11" fill="none" stroke="#1A0A00" stroke-width="8"  r="144"/>
-
-                            <circle cx="0" cy="0" r="144" fill="none" stroke="rgba(0,0,0,0.28)" stroke-width="20"/>
-                            <circle cx="0" cy="0" r="144" fill="none" stroke="#7A4A00" stroke-width="16"/>
-                            <circle cx="0" cy="0" r="144" fill="none" stroke="url(#goldA3)" stroke-width="13"/>
-                            <circle cx="0" cy="0" r="137" fill="none" stroke="rgba(90,50,0,0.4)" stroke-width="2"/>
-                            <circle cx="0" cy="0" r="151" fill="none" stroke="rgba(255,235,120,0.5)" stroke-width="2"/>
-
-                            <path d="M -90,-110 A 144,144 0 0,1 90,-110" fill="none" stroke="rgba(255,248,190,0.7)" stroke-width="3" stroke-linecap="round"/>
-                            <path d="M 90,110 A 144,144 0 0,1 -90,110" fill="none" stroke="rgba(255,248,190,0.3)" stroke-width="2" stroke-linecap="round"/>
-                        </svg>
-                    </div>
-
-                    <!-- Photo : https://imgur.com/NxxsQFc , https://imgur.com/yyFHxei.jpg -->
                     <img class="ring-photo" src="https://imgur.com/NxxsQFc.jpg" alt="Δημήτρης & Χρύσα">
+
+                    <svg class="ring-frame" viewBox="0 0 420 480" xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                            <linearGradient id="platinum" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%"   stop-color="#ffffff"/>
+                                <stop offset="20%"  stop-color="#cfcfd2"/>
+                                <stop offset="40%"  stop-color="#ffffff"/>
+                                <stop offset="55%"  stop-color="#a9a9ad"/>
+                                <stop offset="70%"  stop-color="#f5f5f6"/>
+                                <stop offset="85%"  stop-color="#bdbdc0"/>
+                                <stop offset="100%" stop-color="#ffffff"/>
+                            </linearGradient>
+                            <linearGradient id="platinumShade" x1="0%" y1="0%" x2="0%" y2="100%">
+                                <stop offset="0%"  stop-color="#e8e8ea"/>
+                                <stop offset="50%" stop-color="#8d8d92"/>
+                                <stop offset="100%" stop-color="#d4d4d6"/>
+                            </linearGradient>
+                            <radialGradient id="diamondGlow" cx="50%" cy="35%" r="65%">
+                                <stop offset="0%"  stop-color="#ffffff"/>
+                                <stop offset="55%" stop-color="#eaf3ff"/>
+                                <stop offset="100%" stop-color="#bcd6f0"/>
+                            </radialGradient>
+                        </defs>
+
+                        <!-- Κύκλος βέρας γύρω από τη φωτογραφία -->
+                        <circle cx="210" cy="300" r="151" fill="none" stroke="#5b5b5e" stroke-width="20"/>
+                        <circle cx="210" cy="300" r="151" fill="none" stroke="url(#platinumShade)" stroke-width="16"/>
+                        <circle cx="210" cy="300" r="151" fill="none" stroke="url(#platinum)" stroke-width="11"/>
+                        <circle cx="210" cy="300" r="159" fill="none" stroke="rgba(255,255,255,0.55)" stroke-width="2"/>
+                        <circle cx="210" cy="300" r="143" fill="none" stroke="rgba(60,60,63,0.45)" stroke-width="1.5"/>
+
+                        <!-- Στέλεχος / γαλλικό καστόνι προς τα πάνω -->
+                        <path d="M 96,200 C 96,140 150,95 165,72" fill="none" stroke="#5b5b5e" stroke-width="22" stroke-linecap="round"/>
+                        <path d="M 324,200 C 324,140 270,95 255,72" fill="none" stroke="#5b5b5e" stroke-width="22" stroke-linecap="round"/>
+                        <path d="M 96,200 C 96,140 150,95 165,72" fill="none" stroke="url(#platinum)" stroke-width="14" stroke-linecap="round"/>
+                        <path d="M 324,200 C 324,140 270,95 255,72" fill="none" stroke="url(#platinum)" stroke-width="14" stroke-linecap="round"/>
+
+                        <!-- Split-shank άνοιγμα (τρίγωνα) -->
+                        <path d="M 150,150 C 158,128 172,112 188,100" fill="none" stroke="#7a7a7e" stroke-width="6" stroke-linecap="round"/>
+                        <path d="M 270,150 C 262,128 248,112 232,100" fill="none" stroke="#7a7a7e" stroke-width="6" stroke-linecap="round"/>
+
+                        <!-- Καστόνι (prongs) -->
+                        <path d="M 170,80 L 158,40" fill="none" stroke="url(#platinum)" stroke-width="9" stroke-linecap="round"/>
+                        <path d="M 250,80 L 262,40" fill="none" stroke="url(#platinum)" stroke-width="9" stroke-linecap="round"/>
+                        <path d="M 185,62 L 178,28" fill="none" stroke="url(#platinum)" stroke-width="8" stroke-linecap="round"/>
+                        <path d="M 235,62 L 242,28" fill="none" stroke="url(#platinum)" stroke-width="8" stroke-linecap="round"/>
+
+                        <!-- Διαμάντι (λίγο μεγαλύτερο) -->
+                        <g transform="translate(210,40)">
+                            <polygon points="0,-46 38,-14 24,40 -24,40 -38,-14" fill="url(#diamondGlow)" stroke="#ffffff" stroke-width="2"/>
+                            <polygon points="0,-46 19,-6 0,4 -19,-6" fill="#ffffff" opacity="0.85"/>
+                            <polygon points="-38,-14 -19,-6 0,4 -24,40" fill="#cfe2f5" opacity="0.6"/>
+                            <polygon points="38,-14 19,-6 0,4 24,40" fill="#e8f1fc" opacity="0.75"/>
+                            <polygon points="0,4 -24,40 0,46 24,40" fill="#a9c8e8" opacity="0.55"/>
+                            <line x1="0" y1="-46" x2="0" y2="4" stroke="#ffffff" stroke-width="1" opacity="0.6"/>
+                        </g>
+                    </svg>
                 </div>
             </div>
 
@@ -781,21 +656,6 @@
             </div>
         </section>
 
-        <section id="gallery">
-            <h2>Στιγμές</h2>
-            <div class="section-divider"></div>
-            <div class="gallery">
-                <div class="gallery-item"><img src="https://imgur.com/t1udfVy.jpg" alt="Φωτογραφία"></div>
-                <div class="gallery-item"><img src="https://imgur.com/NxxsQFc.jpg" alt="Φωτογραφία"></div>
-                <div class="gallery-item"><img src="https://imgur.com/NCbKQp6.jpg" alt="Φωτογραφία"></div>
-                <div class="gallery-item"><img src="https://imgur.com/rYmjEcu.jpg" alt="Φωτογραφία"></div>
-                <div class="gallery-item"><img src="https://imgur.com/rOEyzfJ.jpg" alt="Φωτογραφία"></div>
-                <div class="gallery-item"><img src="https://imgur.com/mvWi9Xn.jpg" alt="Φωτογραφία"></div>
-                <div class="gallery-item"><img src="https://imgur.com/kE0Gj0n.jpg" alt="Φωτογραφία"></div>
-                <div class="gallery-item"><img src="https://imgur.com/wFNdI0A.jpg" alt="Φωτογραφία"></div>
-            </div>
-        </section>
-
         <section id="rsvp">
             <h2>Επιβεβαίωση Παρουσίας</h2>
             <div class="section-divider"></div>
@@ -819,6 +679,29 @@
             </div>
         </section>
 
+        <section id="gallery">
+            <h2>Στιγμές</h2>
+            <div class="section-divider"></div>
+
+            <div class="ring-gallery">
+                <div class="gallery-arrow" id="prevArrow">
+                    <svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </div>
+
+                <div class="ring-slide-track" id="slideTrack">
+                    <!-- Δημιουργείται δυναμικά από JS -->
+                </div>
+
+                <div class="gallery-arrow" id="nextArrow">
+                    <svg viewBox="0 0 24 24"><path d="M9 18l6-6-6-6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </div>
+            </div>
+
+            <div class="gallery-controls">
+                <div class="gallery-dots" id="galleryDots"></div>
+            </div>
+        </section>
+
         <section id="visit">
             <h2>Πληροφορίες Επίσκεψης</h2>
             <div class="section-divider"></div>
@@ -837,22 +720,165 @@
     </footer>
 
     <script>
-        const ringImages = [
-  "https://imgur.com/yyFHxei.jpg",
-  "https://imgur.com/t1udfVy.jpg",
-  "https://imgur.com/iuGRu0A.jpg",
-  "https://imgur.com/NCbKQp6.jpg",
-  "https://imgur.com/rYmjEcu.jpg",
-  "https://imgur.com/rOEyzfJ.jpg",
-  "https://imgur.com/mvWi9Xn.jpg",
-  "https://imgur.com/kE0Gj0n.jpg",
-    "https://imgur.com/yyFHxei.jpg,
-            "https://imgur.com/wFNdI0A.jpg
-];
+        // Φωτογραφίες συλλογής (καθαρή λίστα)
+        const galleryImages = [
+            "https://imgur.com/t1udfVy.jpg",
+            "https://imgur.com/NxxsQFc.jpg",
+            "https://imgur.com/NCbKQp6.jpg",
+            "https://imgur.com/rYmjEcu.jpg",
+            "https://imgur.com/rOEyzfJ.jpg",
+            "https://imgur.com/mvWi9Xn.jpg",
+            "https://imgur.com/kE0Gj0n.jpg",
+            "https://imgur.com/wFNdI0A.jpg"
+        ];
 
-let ringIndex = 0;
+        // SVG πλαίσιο δαχτυλιδιού (μικρότερη εκδοχή για το slideshow)
+        function ringFrameSVG() {
+            return `
+            <svg class="ring-frame-slide" viewBox="0 0 420 480" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                    <linearGradient id="platinumS" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%"   stop-color="#ffffff"/>
+                        <stop offset="20%"  stop-color="#cfcfd2"/>
+                        <stop offset="40%"  stop-color="#ffffff"/>
+                        <stop offset="55%"  stop-color="#a9a9ad"/>
+                        <stop offset="70%"  stop-color="#f5f5f6"/>
+                        <stop offset="85%"  stop-color="#bdbdc0"/>
+                        <stop offset="100%" stop-color="#ffffff"/>
+                    </linearGradient>
+                    <linearGradient id="platinumShadeS" x1="0%" y1="0%" x2="0%" y2="100%">
+                        <stop offset="0%"  stop-color="#e8e8ea"/>
+                        <stop offset="50%" stop-color="#8d8d92"/>
+                        <stop offset="100%" stop-color="#d4d4d6"/>
+                    </linearGradient>
+                    <radialGradient id="diamondGlowS" cx="50%" cy="35%" r="65%">
+                        <stop offset="0%"  stop-color="#ffffff"/>
+                        <stop offset="55%" stop-color="#eaf3ff"/>
+                        <stop offset="100%" stop-color="#bcd6f0"/>
+                    </radialGradient>
+                </defs>
+                <circle cx="210" cy="300" r="151" fill="none" stroke="#5b5b5e" stroke-width="20"/>
+                <circle cx="210" cy="300" r="151" fill="none" stroke="url(#platinumShadeS)" stroke-width="16"/>
+                <circle cx="210" cy="300" r="151" fill="none" stroke="url(#platinumS)" stroke-width="11"/>
+                <circle cx="210" cy="300" r="159" fill="none" stroke="rgba(255,255,255,0.55)" stroke-width="2"/>
+                <circle cx="210" cy="300" r="143" fill="none" stroke="rgba(60,60,63,0.45)" stroke-width="1.5"/>
+                <path d="M 96,200 C 96,140 150,95 165,72" fill="none" stroke="#5b5b5e" stroke-width="22" stroke-linecap="round"/>
+                <path d="M 324,200 C 324,140 270,95 255,72" fill="none" stroke="#5b5b5e" stroke-width="22" stroke-linecap="round"/>
+                <path d="M 96,200 C 96,140 150,95 165,72" fill="none" stroke="url(#platinumS)" stroke-width="14" stroke-linecap="round"/>
+                <path d="M 324,200 C 324,140 270,95 255,72" fill="none" stroke="url(#platinumS)" stroke-width="14" stroke-linecap="round"/>
+                <path d="M 150,150 C 158,128 172,112 188,100" fill="none" stroke="#7a7a7e" stroke-width="6" stroke-linecap="round"/>
+                <path d="M 270,150 C 262,128 248,112 232,100" fill="none" stroke="#7a7a7e" stroke-width="6" stroke-linecap="round"/>
+                <path d="M 170,80 L 158,40" fill="none" stroke="url(#platinumS)" stroke-width="9" stroke-linecap="round"/>
+                <path d="M 250,80 L 262,40" fill="none" stroke="url(#platinumS)" stroke-width="9" stroke-linecap="round"/>
+                <path d="M 185,62 L 178,28" fill="none" stroke="url(#platinumS)" stroke-width="8" stroke-linecap="round"/>
+                <path d="M 235,62 L 242,28" fill="none" stroke="url(#platinumS)" stroke-width="8" stroke-linecap="round"/>
+                <g transform="translate(210,40)">
+                    <polygon points="0,-46 38,-14 24,40 -24,40 -38,-14" fill="url(#diamondGlowS)" stroke="#ffffff" stroke-width="2"/>
+                    <polygon points="0,-46 19,-6 0,4 -19,-6" fill="#ffffff" opacity="0.85"/>
+                    <polygon points="-38,-14 -19,-6 0,4 -24,40" fill="#cfe2f5" opacity="0.6"/>
+                    <polygon points="38,-14 19,-6 0,4 24,40" fill="#e8f1fc" opacity="0.75"/>
+                    <polygon points="0,4 -24,40 0,46 24,40" fill="#a9c8e8" opacity="0.55"/>
+                    <line x1="0" y1="-46" x2="0" y2="4" stroke="#ffffff" stroke-width="1" opacity="0.6"/>
+                </g>
+            </svg>`;
+        }
 
-        
+        // ── Render slides ──
+        const slideTrack = document.getElementById('slideTrack');
+        const dotsWrap = document.getElementById('galleryDots');
+
+        galleryImages.forEach((src, i) => {
+            const slide = document.createElement('div');
+            slide.classList.add('ring-slide');
+            slide.dataset.index = i;
+            slide.innerHTML = `
+                <img class="ring-photo-slide" src="${src}" alt="Στιγμή ${i + 1}">
+                ${ringFrameSVG()}
+            `;
+            slideTrack.appendChild(slide);
+
+            const dot = document.createElement('div');
+            dot.classList.add('gallery-dot');
+            dot.dataset.index = i;
+            dot.addEventListener('click', () => goToSlide(i));
+            dotsWrap.appendChild(dot);
+        });
+
+        const slides = Array.from(document.querySelectorAll('.ring-slide'));
+        const dots = Array.from(document.querySelectorAll('.gallery-dot'));
+        const photos = Array.from(document.querySelectorAll('.ring-photo-slide'));
+
+        let currentIndex = 0;
+        let perView = window.innerWidth <= 480 ? 1 : 2;
+        let autoTimer = null;
+
+        function getPerView() {
+            return window.innerWidth <= 480 ? 1 : 2;
+        }
+
+        function renderSlides() {
+            perView = getPerView();
+            slides.forEach((s, i) => {
+                s.classList.remove('mobile-active');
+                const inView = i >= currentIndex && i < currentIndex + perView;
+                s.style.display = (perView === 2) ? 'block' : (inView ? 'block' : 'none');
+                if (perView === 1 && i === currentIndex) s.classList.add('mobile-active');
+
+                const photo = photos[i];
+                if (perView === 2) {
+                    // Δύο-δύο: δείχνουμε το ζευγάρι ξεκινώντας από currentIndex
+                    if (inView) {
+                        photo.classList.add('active');
+                    } else {
+                        photo.classList.remove('active');
+                    }
+                } else {
+                    photo.classList.toggle('active', i === currentIndex);
+                }
+            });
+
+            dots.forEach((d, i) => d.classList.toggle('active', i === currentIndex));
+        }
+
+        function goToSlide(i) {
+            const max = galleryImages.length - 1;
+            if (i < 0) i = max;
+            if (i > max) i = 0;
+            currentIndex = i;
+            renderSlides();
+            restartAutoplay();
+        }
+
+        function nextSlide() {
+            const step = perView === 2 ? 2 : 1;
+            let next = currentIndex + step;
+            if (next > galleryImages.length - 1) next = 0;
+            goToSlide(next);
+        }
+
+        function prevSlide() {
+            const step = perView === 2 ? 2 : 1;
+            let prev = currentIndex - step;
+            if (prev < 0) prev = Math.max(0, galleryImages.length - (galleryImages.length % step || step));
+            goToSlide(prev);
+        }
+
+        document.getElementById('nextArrow').addEventListener('click', () => { nextSlide(); });
+        document.getElementById('prevArrow').addEventListener('click', () => { prevSlide(); });
+
+        function restartAutoplay() {
+            clearInterval(autoTimer);
+            autoTimer = setInterval(nextSlide, 4500);
+        }
+
+        window.addEventListener('resize', () => {
+            renderSlides();
+        });
+
+        renderSlides();
+        restartAutoplay();
+
+        // ── Χιόνι ──
         function createSnowflakes() {
             const chars = ['❄', '❅', '❆'];
             setInterval(() => {
@@ -871,6 +897,7 @@ let ringIndex = 0;
         }
         window.addEventListener('load', createSnowflakes);
 
+        // ── RSVP φόρμα ──
         document.getElementById('rsvpForm').addEventListener('submit', async function(e) {
             e.preventDefault();
             const fd = new FormData(this);
@@ -887,11 +914,13 @@ let ringIndex = 0;
             } catch (err) { alert('Σφάλμα. Παρακαλούμε δοκιμάστε ξανά.'); }
         });
 
+        // ── Smooth scroll ──
         document.querySelectorAll('a[href^="#"]').forEach(l => {
             l.addEventListener('click', e => { e.preventDefault();
                 const t = document.querySelector(l.getAttribute('href')); if (t) t.scrollIntoView({ behavior: 'smooth' }); });
         });
 
+        // ── Header on scroll ──
         let lastST = 0;
         const hdr = document.querySelector('header');
 
