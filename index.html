@@ -373,7 +373,10 @@ footer{
   position: relative;
   z-index: 9999;
 }
-
+#rsvp > section{
+  position: relative;
+  z-index: 2;
+}
 .bg-photo,
 .bg-base,
 .bg-noise,
@@ -385,6 +388,15 @@ canvas#sparkle{
 #rsvp{
   position: relative;
   overflow: hidden;
+}
+  #rsvp::before{
+  content:'';
+  position:absolute;
+  inset:0;
+  background:
+    radial-gradient(circle at 30% 20%, rgba(169,130,63,.18), transparent 40%),
+    radial-gradient(circle at 70% 80%, rgba(240,217,153,.12), transparent 45%);
+  z-index:0;
 }
 </style>
 </head>
