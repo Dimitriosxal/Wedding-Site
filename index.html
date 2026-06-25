@@ -353,6 +353,20 @@ h2,
 footer{
   text-align:center;
 }
+  .ev-card-link{
+  text-decoration:none;
+  color:inherit;
+  display:block;
+}
+
+.ev-card-link .ev-card{
+  height:100%;
+  transition:transform .25s ease;
+}
+
+.ev-card-link:hover .ev-card{
+  transform:translateY(-4px);
+}
 </style>
 </head>
 <body>
@@ -419,25 +433,50 @@ footer{
 <div id="events"><section class="sec rv">
   <p class="lbl">Εκδηλώσεις</p>
 <h2>Το Πρόγραμμα</h2>
+
 <div class="ev-grid">
-  <div class="ev-card">
-    <div class="ev-icon">📅</div>
-    <span class="ev-time" style="font-size:1.85rem;line-height:1.2">26 Δεκ</span>
-    <span class="ev-lbl">Ημερομηνία</span>
-    <p class="ev-loc">Σάββατο<br>26 Δεκεμβρίου 2026</p>
-  </div>
-  <div class="ev-card">
-    <div class="ev-icon">⛪</div>
-    <span class="ev-time">15:30</span>
-    <span class="ev-lbl">Τέλεση</span>
-    <p class="ev-loc">Εκκλησία Κοιμήσεως<br>της Θεοτόκου · Μουζάκι</p>
-  </div>
-  <div class="ev-card">
-    <div class="ev-icon">🎉</div>
-    <span class="ev-time">19:30</span>
-    <span class="ev-lbl">Δεξίωση</span>
-    <p class="ev-loc">Ονείρων Έπαυλις<br>Πηγή Τρικάλων</p>
-  </div>
+
+  <!-- Ημερομηνία -->
+  <a class="ev-card-link"
+     href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Γάμος+Δημήτρη+%26+Χρύσας&dates=20261226T133000Z/20261226T230000Z&details=Γάμος+και+Δεξίωση&location=Μουζάκι+Καρδίτσας"
+     target="_blank">
+
+    <div class="ev-card">
+      <div class="ev-icon">📅</div>
+      <span class="ev-time" style="font-size:1.85rem;line-height:1.2">26 Δεκ</span>
+      <span class="ev-lbl">Ημερομηνία</span>
+      <p class="ev-loc">Σάββατο<br>26 Δεκεμβρίου 2026</p>
+    </div>
+
+  </a>
+
+  <!-- Εκκλησία -->
+  <a class="ev-card-link"
+     href="https://www.google.com/maps?q=39.430000,21.660000"
+     target="_blank">
+
+    <div class="ev-card">
+      <div class="ev-icon">⛪</div>
+      <span class="ev-time">15:30</span>
+      <span class="ev-lbl">Τέλεση</span>
+      <p class="ev-loc">Εκκλησία Κοιμήσεως<br>της Θεοτόκου · Μουζάκι</p>
+    </div>
+
+  </a>
+
+  <!-- Δεξίωση -->
+  <a class="ev-card-link"
+     href="https://www.google.com/maps?q=39.560000,21.720000"
+     target="_blank">
+
+    <div class="ev-card">
+      <div class="ev-icon">🎉</div>
+      <span class="ev-time">19:30</span>
+      <span class="ev-lbl">Δεξίωση</span>
+      <p class="ev-loc">Ονείρων Έπαυλις<br>Πηγή Τρικάλων</p>
+    </div>
+
+  </a>
 
 </div>
 </section></div>
