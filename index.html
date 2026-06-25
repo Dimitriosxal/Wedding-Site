@@ -649,15 +649,11 @@ if(window.innerWidth <= 760){
 let lastY = 0;
 
 function toggleNav(){
-  const y = window.scrollY;
-
-  if (y > 10 && y > lastY){
-    nav.classList.add('show');   // scrolling down
-  } else if (y <= 10){
-    nav.classList.remove('show'); // top of page
+  if(window.scrollY > 10){
+    nav.classList.add('show');
+  } else {
+    nav.classList.remove('show');
   }
-
-  lastY = y;
 }
 }st.add('show');
 
