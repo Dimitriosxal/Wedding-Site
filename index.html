@@ -258,11 +258,32 @@ footer{position:relative;z-index:20;text-align:center;padding:4.6rem 2rem;border
 .rv.in{opacity:1;transform:none}
 
 @media(max-width:760px){
+  #mobileNav{
+    transform:translateY(-100%);
+    opacity:0;
+    transition:.35s ease;
+    padding:.8rem .8rem;
+  }
+
+  #mobileNav.show{
+    transform:translateY(0);
+    opacity:1;
+  }
+
   nav ul{
     display:flex;
-    gap:1rem;
-    flex-wrap:wrap;
+    gap:.7rem;
+    flex-wrap:nowrap;
     justify-content:center;
+  }
+
+  nav a{
+    font-size:.50rem;
+    letter-spacing:.12em;
+  }
+
+  .nav-logo{
+    display:none;
   }
 }
   nav{padding:1.1rem 1.4rem}
@@ -314,7 +335,7 @@ footer{position:relative;z-index:20;text-align:center;padding:4.6rem 2rem;border
 
 <!-- corner ornaments now come from the supplied photographic frame artwork (bg-photo) -->
 
-<nav>
+<nav id="mobileNav">
   <span class="nav-logo">D &amp; C</span>
   <ul>
     <li><a href="#about">Σχετικά</a></li>
@@ -488,6 +509,22 @@ function doRSVP(){
   }
   document.getElementById('rf').style.display='none';
   document.getElementById('rok').style.display='block';
+}
+  /* mobile nav appears after scroll */
+if(window.innerWidth <= 760){
+
+  const nav = document.getElementById('mobileNav');
+
+  function toggleNav(){
+    if(window.scrollY > 250){
+      nav.classList.add('show');
+    }else{
+      nav.classList.remove('show');
+    }
+  }
+
+  toggleNav();
+  window.addEventListener('scroll', toggleNav);
 }
 </script>
 </body>
