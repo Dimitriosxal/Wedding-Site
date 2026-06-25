@@ -367,6 +367,20 @@ footer{
 .ev-card-link:hover .ev-card{
   transform:translateY(-4px);
 }
+.ev-grid,
+.ev-card-link,
+.ev-card{
+  position: relative;
+  z-index: 9999;
+}
+
+.bg-photo,
+.bg-base,
+.bg-noise,
+.bg-vignette,
+canvas#sparkle{
+  pointer-events: none;
+}
 </style>
 </head>
 <body>
