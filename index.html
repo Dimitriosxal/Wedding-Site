@@ -651,23 +651,7 @@ function doRSVP(){
   document.getElementById('rok').style.display='block';
 }
 
-if(window.innerWidth <= 760){
-  const nav = document.getElementById('mobileNav');
-let lastY = 0;
 
-function toggleNav(){
-  if(window.scrollY > 10){
-    nav.classList.add('show');
-  } else {
-    nav.classList.remove('show');
-  }
-}
-}st.add('show');
-
-  }
-  toggleNav();
-  window.addEventListener('scroll', toggleNav);
-}
   <script>
 let lastScroll = 0;
 const nav = document.querySelector("nav");
@@ -676,10 +660,8 @@ window.addEventListener("scroll", () => {
   const current = window.scrollY;
 
   if (current > lastScroll && current > 80) {
-    // scroll down → κρύψε το menu
     nav.classList.add("hide");
   } else {
-    // scroll up → δείξε το menu
     nav.classList.remove("hide");
   }
 
