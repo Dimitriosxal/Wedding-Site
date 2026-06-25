@@ -104,6 +104,13 @@ body{
   background:radial-gradient(ellipse 88% 78% at 50% 45%, transparent 62%, rgba(0,0,0,0.28) 100%);
 }
 canvas#sparkle{position:fixed;inset:0;z-index:1;pointer-events:none}
+nav.hide {
+  transform: translateY(-100%);
+  opacity: 0;
+}
+nav {
+  transition: transform .35s ease, opacity .35s ease;
+}
 
 /* ── NAV ── */
 nav{
@@ -661,6 +668,25 @@ function toggleNav(){
   toggleNav();
   window.addEventListener('scroll', toggleNav);
 }
+  <script>
+let lastScroll = 0;
+const nav = document.querySelector("nav");
+
+window.addEventListener("scroll", () => {
+  const current = window.scrollY;
+
+  if (current > lastScroll && current > 80) {
+    // scroll down → κρύψε το menu
+    nav.classList.add("hide");
+  } else {
+    // scroll up → δείξε το menu
+    nav.classList.remove("hide");
+  }
+
+  lastScroll = current;
+});
+</script>
+
 </script>
 </body>
 </html>
