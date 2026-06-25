@@ -646,9 +646,21 @@ function doRSVP(){
 
 if(window.innerWidth <= 760){
   const nav = document.getElementById('mobileNav');
-  function toggleNav(){
-    if(window.scrollY > 250){nav.classList.add('show');}
-    else{nav.classList.remove('show');}
+let lastY = 0;
+
+function toggleNav(){
+  const y = window.scrollY;
+
+  if (y > 10 && y > lastY){
+    nav.classList.add('show');   // scrolling down
+  } else if (y <= 10){
+    nav.classList.remove('show'); // top of page
+  }
+
+  lastY = y;
+}
+}st.add('show');
+
   }
   toggleNav();
   window.addEventListener('scroll', toggleNav);
