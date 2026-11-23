@@ -156,11 +156,13 @@ footer{position:relative;z-index:20;text-align:center;padding:4.6rem 2rem;border
   .sec{padding:4.5rem 1.4rem}
   body.scrolled .sec{padding:2.6rem 1.4rem}
   .rule{margin:1.2rem auto}
-  nav{padding:.8rem .8rem .8rem 5.6rem;justify-content:center}
-  nav ul{gap:.6rem;flex-wrap:nowrap;justify-content:center}
-  nav a{font-size:.46rem;letter-spacing:.08em}
+  .lang{top:.55rem;left:.5rem}
+  .lang button{padding:.4rem .55rem;font-size:.55rem;letter-spacing:.1em}
+  nav{padding:.7rem .5rem .7rem 5.3rem;justify-content:flex-start}
+  nav ul{flex:1;min-width:0;gap:.5rem;justify-content:space-between;overflow-x:auto;scrollbar-width:none}
+  nav ul::-webkit-scrollbar{display:none}
+  nav a{font-size:clamp(.38rem,1.9vw,.5rem);letter-spacing:.04em;white-space:nowrap}
   .nav-logo{display:none}
-  .lang button{padding:.45rem .7rem}
   .ev-grid{grid-template-columns:1fr}
   .fr{grid-template-columns:1fr}
   .vis-grid{grid-template-columns:1fr;gap:1.8rem}
@@ -412,10 +414,10 @@ const EL_MSG = {alertFields:'Παρακαλούμε συμπληρώστε ον�
 /* Κείμενα πληρωμών ανά γλώσσα */
 const TG = {
   el:{copy:'Αντιγραφή',done:'✓ Αντιγράφηκε',fail:'Επιλέξτε χειροκίνητα',holder:'Δικαιούχος',phone:'Κινητό',open:'Άνοιγμα στο Revolut',
-      intro:'Η παρουσία σας είναι το πιο όμορφο δώρο. Αν θέλετε να μας συμπαρασταθείτε και στο ξεκίνημα της κοινής μας ζωής, μπορείτε να το κάνετε με όποιον τρόπο σας βολεύει.',
+      intro:'Η παρουσία σας είναι το μεγαλύτερο δώρο. Για όσους προτιμούν να τιμήσουν τη στιγμή με ψηφιακό δώρο, παρακάτω θα βρείτε τους διαθέσιμους τρόπους — άμεσους, ασφαλείς και προσβάσιμους από όπου κι αν βρίσκεστε.',
       irisNote:'Άμεση πληρωμή από την εφαρμογή οποιασδήποτε ελληνικής τράπεζας.',revNote:'Δωρεάν και άμεσα μεταξύ χρηστών Revolut.',bankNote:'',nbg:'Εθνική Τράπεζα',eb:'Eurobank',sepa:'Έμβασμα σε ευρώ μέσω SEPA / SWIFT.'},
   en:{copy:'Copy',done:'✓ Copied',fail:'Select manually',holder:'Beneficiary',phone:'Mobile',open:'Open in Revolut',
-      intro:'Your presence is the best gift of all. If you would still like to give us something to start our life together, you can do it in whichever way suits you best.',
+      intro:'Your presence is the greatest gift. For those who prefer to mark the occasion with a digital gift, you will find the available options below — instant, secure, and accessible from wherever you are.',
       irisNote:'Instant payment from any Greek banking app.',revNote:'Free and instant between Revolut users, from anywhere in the world.',bankNote:'Euro transfer via SEPA / SWIFT.',nbg:'National Bank of Greece',eb:'Eurobank',sepa:'Euro transfer via SEPA / SWIFT.'}
 };
 
