@@ -617,11 +617,11 @@ function onScroll(){
 addEventListener('scroll', () => { if(!tick){ requestAnimationFrame(onScroll); tick = true; } }, {passive:true});
 onScroll();
 
-/* ── start: γλώσσα από αποθήκευση ή από τη γλώσσα του browser · καρτέλα δώρου από ζώνη ώρας ── */
+/* ── start: προεπιλογή ελληνικά (αν ο επισκέπτης έχει επιλέξει EN, θυμάται την επιλογή) · καρτέλα δώρου από ζώνη ώρας ── */
 let tz=''; try{ tz = Intl.DateTimeFormat().resolvedOptions().timeZone || ''; }catch(e){}
 gTab = (tz && tz!=='Europe/Athens') ? 'intl' : 'gr';
 let saved=null; try{ saved = localStorage.getItem('wlang'); }catch(e){}
-setLang(saved || ((navigator.language||'el').toLowerCase().startsWith('el') ? 'el' : 'en'));
+setLang(saved === 'en' ? 'en' : 'el');
 </script>
 </body>
 </html>
