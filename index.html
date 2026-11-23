@@ -141,7 +141,7 @@ textarea{resize:vertical;min-height:70px}
 .gift-grid{display:flex;flex-direction:column;gap:.85rem;max-width:520px;margin:1.6rem auto 0}
 .gift-row{display:flex;justify-content:space-between;align-items:center;gap:.8rem;padding:.55rem 0;border-top:1px solid rgba(169,130,63,.12);text-align:left}
 .gift-k{display:block;font-size:.5rem;letter-spacing:.22em;text-transform:uppercase;color:var(--gold-l);opacity:.65}
-.gift-v{display:block;font-family:'Cormorant Garamond',serif;font-size:1.05rem;color:var(--cream);word-break:break-all;user-select:all}
+.gift-v{display:block;font-family:'Inter',sans-serif;font-variant-numeric:lining-nums tabular-nums;font-size:.95rem;letter-spacing:.02em;color:var(--cream);word-break:break-all;user-select:all}
 .gift-copy{flex:none;background:transparent;border:1px solid rgba(169,130,63,.45);color:var(--gold-l);font-family:'Inter',sans-serif;font-size:.54rem;letter-spacing:.16em;text-transform:uppercase;padding:.5rem .8rem;cursor:pointer;transition:background .25s,color .25s}
 .gift-copy:hover,.gift-copy.done{background:var(--gold);color:var(--bg0)}
 .gift-link{display:inline-block;margin:.3rem 0 .2rem;font-size:.6rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gold-l);text-decoration:none;border-bottom:1px solid rgba(169,130,63,.5)}
@@ -365,11 +365,12 @@ footer{position:relative;z-index:20;text-align:center;padding:4.6rem 2rem;border
 <script>
 /* ═════════ ΡΥΘΜΙΣΕΙΣ ΠΛΗΡΩΜΩΝ — συμπληρώστε ΜΟΝΟ εδώ ═════════ */
 const GIFT = {
-  holder:   'ΧΑΛΑΤΣΗΣ ΔΗΜΗΤΡΙΟΣ',
-  iris:     '6980266621',
-  revtag:   'dimitrndo1',   // χωρίς το @
-  nbg:      { iban:'GR87 0110 2010 0000 2010 0450 632', bic:'ETHNGRAA' },
-  eurobank: { iban:'GR40 0260 1590 0008 2020 1888 078', bic:'ERBKGRAA' }
+  holder:   'ΟΝΟΜΑΤΕΠΩΝΥΜΟ ΔΙΚΑΙΟΥΧΟΥ',      // ελληνικά → καρτέλα «Από Ελλάδα»
+  holderEn: 'BENEFICIARY FULL NAME',      // λατινικοί χαρακτήρες → καρτέλα «Από το εξωτερικό»
+  iris:     '69XXXXXXXX',
+  revtag:   'REVTAG',   // χωρίς το @
+  nbg:      { iban:'GR00 0000 0000 0000 0000 0000 000', bic:'ETHNGRAA' },
+  eurobank: { iban:'GR00 0000 0000 0000 0000 0000 000', bic:'ERBKGRAA' }
 };
 
 /* ═════════ ΜΕΤΑΦΡΑΣΕΙΣ ΑΓΓΛΙΚΑ (τα ελληνικά διαβάζονται απευθείας από τη σελίδα) ═════════ */
@@ -502,7 +503,7 @@ function renderGift(){
   const card = (tag,rows,note) => `<div class="vi-item"><span class="vi-tag">${tag}</span>${rows}${note?`<p class="gift-note">${note}</p>`:''}</div>`;
   const iris = () => card('⚡ IRIS', row(t.phone,GIFT.iris), t.irisNote);
   const revolut = () => card('💳 Revolut', row('Revtag','@'+GIFT.revtag)+`<a class="gift-link" href="https://revolut.me/${GIFT.revtag}" target="_blank" rel="noopener">${t.open}</a>`, t.revNote);
-  const bank = (name,b,bic) => card('🏦 '+name, row(t.holder,GIFT.holder)+row('IBAN',b.iban,b.iban.replace(/\s/g,''))+(bic?row('BIC / SWIFT',b.bic):''), bic?t.sepa:'');
+  const bank = (name,b,bic) => card('🏦 '+name, row(t.holder, bic ? (GIFT.holderEn||GIFT.holder) : GIFT.holder)+row('IBAN',b.iban,b.iban.replace(/\s/g,''))+(bic?row('BIC / SWIFT',b.bic):''), bic?t.sepa:'');
   const cards = gTab==='gr'
     ? iris()+revolut()+bank(t.nbg,GIFT.nbg,false)+bank(t.eb,GIFT.eurobank,false)
     : revolut()+bank(t.nbg,GIFT.nbg,true)+bank(t.eb,GIFT.eurobank,true);
