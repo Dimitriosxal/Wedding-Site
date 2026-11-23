@@ -3,625 +3,176 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title> Δημήτρης &amp; Χρυσούλα · 26.12.2026</title>
+<title>Δημήτρης &amp; Χρυσούλα · 26.12.2026</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet"/>
 <style>
-:root{
-  --bg0:#050906;
-  --bg1:#0a120c;
-  --bg2:#0e1810;
-  --pine:#0c1611;
-  --gold:#a9823f;
-  --gold-l:#d9b873;
-  --gold-d:#5e4419;
-  --gold-hi:#f0d999;
-  --cream:#e9ddc3;
-  --cream-dim:#c9bb9a;
-  --red:#5c1014;
-  --red-l:#8a2020;
-  --red-d:#3a0a0d;
-  --green-deep:#0e2616;
-  --green-mid:#1c3a22;
-  --green-hi:#3a5e3a;
-  --frame-img:url('https://raw.githubusercontent.com/Dimitriosxal/Wedding-Site/main/1000005822.png');
-    }  
+:root{--bg0:#050906;--bg1:#0a120c;--pine:#0c1611;--gold:#a9823f;--gold-l:#d9b873;--gold-hi:#f0d999;--cream:#e9ddc3;--cream-dim:#c9bb9a;--frame-img:url('https://raw.githubusercontent.com/Dimitriosxal/Wedding-Site/main/1000005822.png')}
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
-body{
-  background:var(--bg0);
-  color:var(--cream);
-  font-family:'Inter',sans-serif;
-  font-weight:300;
-  font-size:15px;
-  line-height:1.85;
-  overflow-x:hidden;
-}
-
-/* ── photographic frame background (the supplied Christmas frame artwork) ── */
-.bg-fixed{position:fixed;inset:0;z-index:0;pointer-events:none}
-.bg-photo-wrap{
-  position:fixed;inset:0;z-index:0;pointer-events:none;
-  background:var(--bg0);
-}
-.bg-photo{
-  position:fixed;
-  inset:0;
-  z-index:0;
-  pointer-events:none;
-  background-image:var(--frame-img);
-  background-size:contain;
-  background-position:center center;
-  background-repeat:no-repeat;
-  filter:saturate(1.06) contrast(1.04);
-}
-
-.bg-photo::after{
-  content:'';
-  position:absolute;
-  inset:0;
-  background:
-  radial-gradient(circle at 20% 30%, rgba(240,217,153,.18), transparent 30%),
-  radial-gradient(circle at 80% 20%, rgba(240,217,153,.16), transparent 28%),
-  radial-gradient(circle at 50% 80%, rgba(255,255,255,.10), transparent 35%);
-  animation:magicGlow 10s ease-in-out infinite alternate;
-}
-
-@keyframes magicGlow{
-  from{opacity:.35}
-  to{opacity:.8}
-}
-
-@media (max-width: 768px){
-  .bg-photo{
-    background-size:100% 100%; /* κρατάμε το mobile όπως είναι */
-    transform:none;
-    filter:none;
-  }
-}
-.bg-base{
-  background:
-    radial-gradient(
-      ellipse 50% 42% at 50% 46%,
-      rgba(4,8,5,0.72) 0%,
-      rgba(4,8,5,0.38) 50%,
-      transparent 78%
-    );
-}
-.bg-noise{
-  position:fixed;inset:0;z-index:0;pointer-events:none;opacity:0.15;
-  background-image:
-    repeating-radial-gradient(circle at 12% 18%, rgba(255,255,255,0.016) 0px, transparent 1.4px),
-    repeating-radial-gradient(circle at 68% 42%, rgba(255,255,255,0.012) 0px, transparent 1.1px),
-    repeating-radial-gradient(circle at 35% 75%, rgba(255,255,255,0.014) 0px, transparent 1.3px);
-  background-size:7px 7px, 5px 5px, 6px 6px;
-  mix-blend-mode:overlay;
-}
-.bg-vignette{
-  position:fixed;inset:0;z-index:1;pointer-events:none;
-  background:radial-gradient(ellipse 88% 78% at 50% 45%, transparent 62%, rgba(0,0,0,0.28) 100%);
-}
+body{background:var(--bg0);color:var(--cream);font-family:'Inter',sans-serif;font-weight:300;font-size:15px;line-height:1.85;overflow-x:hidden}
+.bg-photo-wrap{position:fixed;inset:0;z-index:0;pointer-events:none;background:var(--bg0)}
+.bg-photo{position:fixed;inset:0;z-index:0;pointer-events:none;background-image:var(--frame-img);background-size:contain;background-position:center;background-repeat:no-repeat;filter:saturate(1.06) contrast(1.04)}
+.bg-photo::after{content:'';position:absolute;inset:0;background:radial-gradient(circle at 20% 30%,rgba(240,217,153,.18),transparent 30%),radial-gradient(circle at 80% 20%,rgba(240,217,153,.16),transparent 28%),radial-gradient(circle at 50% 80%,rgba(255,255,255,.10),transparent 35%);animation:magicGlow 10s ease-in-out infinite alternate}
+@keyframes magicGlow{from{opacity:.35}to{opacity:.8}}
+.bg-base{position:fixed;inset:0;z-index:0;pointer-events:none;background:radial-gradient(ellipse 50% 42% at 50% 46%,rgba(4,8,5,.72) 0%,rgba(4,8,5,.38) 50%,transparent 78%)}
+.bg-noise{position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.15;background-image:repeating-radial-gradient(circle at 12% 18%,rgba(255,255,255,.016) 0,transparent 1.4px),repeating-radial-gradient(circle at 68% 42%,rgba(255,255,255,.012) 0,transparent 1.1px);background-size:7px 7px,5px 5px;mix-blend-mode:overlay}
+.bg-vignette{position:fixed;inset:0;z-index:1;pointer-events:none;background:radial-gradient(ellipse 88% 78% at 50% 45%,transparent 62%,rgba(0,0,0,.28) 100%)}
 canvas#sparkle{position:fixed;inset:0;z-index:2;pointer-events:none}
+@media(max-width:768px){.bg-photo{background-size:100% 100%;filter:none}}
+@media(min-width:769px){
+  body::before,body::after{content:'';position:fixed;top:0;bottom:0;width:12vw;background:var(--bg0);z-index:1;pointer-events:none}
+  body::before{left:0}body::after{right:0}
+  .bg-photo{left:12vw;right:12vw;width:auto}
+}
+
+/* ── LANGUAGE SWITCH (πάνω αριστερά) ── */
+.lang{position:fixed;top:.9rem;left:.9rem;z-index:300;display:inline-flex;border:1px solid rgba(217,184,115,.45);border-radius:2rem;overflow:hidden;background:rgba(5,9,6,.7);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+.lang button{background:transparent;border:0;color:var(--cream-dim);font-family:'Inter',sans-serif;font-size:.62rem;letter-spacing:.18em;padding:.5rem .85rem;cursor:pointer;transition:background .3s,color .3s}
+.lang button[aria-pressed="true"]{background:var(--gold);color:var(--bg0);font-weight:500}
+.lang button:focus-visible{outline:2px solid var(--gold-l);outline-offset:-2px}
 
 /* ── NAV ── */
-nav{
-  position:fixed;top:0;left:0;right:0;z-index:200;
-  display:flex;justify-content:space-between;align-items:center;
-  padding:1.3rem 3.5rem;
-  background:rgba(5,9,6,.88);
-  backdrop-filter:blur(10px);
-  transition:transform .4s ease, opacity .4s ease;
-}
-/* Desktop: hidden until scroll */
-@media(min-width:761px){
-  nav{
-    transform:translateY(-100%);
-    opacity:0;
-  }
-  nav.nav-visible{
-    transform:translateY(0);
-    opacity:1;
-  }
-}
-.nav-logo{
-  font-family:'Playfair Display',serif;
-  font-style:italic;font-size:1.2rem;
-  letter-spacing:0.07em;color:var(--gold-l);
-}
-nav ul{list-style:none;display:flex;gap:2.6rem}
-nav a{
-  color:var(--cream);text-decoration:none;
-  font-size:0.64rem;letter-spacing:0.2em;text-transform:uppercase;
-  opacity:0.5;transition:opacity .3s,color .3s;
-  text-shadow:0 1px 6px rgba(0,0,0,.85);
-}
+nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;justify-content:space-between;align-items:center;padding:1.3rem 3.5rem 1.3rem 8rem;background:rgba(5,9,6,.88);backdrop-filter:blur(10px);transition:transform .4s ease,opacity .4s ease;transform:translateY(-100%);opacity:0}
+nav.nav-visible{transform:none;opacity:1}
+.nav-logo{font-family:'Playfair Display',serif;font-style:italic;font-size:1.2rem;letter-spacing:.07em;color:var(--gold-l)}
+nav ul{list-style:none;display:flex;gap:2.2rem}
+nav a{color:var(--cream);text-decoration:none;font-size:.64rem;letter-spacing:.2em;text-transform:uppercase;opacity:.5;transition:opacity .3s,color .3s;text-shadow:0 1px 6px rgba(0,0,0,.85)}
 nav a:hover{opacity:1;color:var(--gold-l)}
 
-/* frame-corners removed: the supplied photographic frame now serves this role */
-
 /* ── HERO ── */
-#hero{
-  position:relative;min-height:100vh;
-  display:flex;flex-direction:column;
-  align-items:center;justify-content:flex-start;
-  text-align:center;z-index:20;
-  padding:6.5rem 2rem 4rem;
-  padding-top: 7.4rem;
-}
-.eyebrow{
-  font-size:0.6rem;letter-spacing:0.4em;
-  text-transform:uppercase;color:var(--gold-l);
-  opacity:0.95;margin-bottom:2rem;
-  text-shadow:0 1px 6px rgba(0,0,0,.85);
-  background:rgba(5,9,6,0.45);
-  backdrop-filter:blur(12px);
-  -webkit-backdrop-filter:blur(12px);
-  border:1px solid rgba(217,184,115,0.18);
-  border-radius:2rem;
-  padding:0.55rem 1.4rem;
-  display:inline-block;
-}
-
-/* Photo medallion — simple, unobtrusive frame so the background photo's own
-   ornamentation (roses, lanterns, bells) stays the visual frame, not a second ring */
-.frame-outer{position:relative;width:140px;height:140px;margin:0 auto 2rem}
-.photo-circle{
-  position:absolute;inset:0;width:140px;height:140px;border-radius:50%;overflow:hidden;
-  background:var(--pine);display:flex;align-items:center;justify-content:center;
-  cursor:pointer;transition:box-shadow .4s;
-  border:1px solid rgba(217,184,115,0.45);
-  box-shadow:inset 0 0 24px rgba(0,0,0,0.55), 0 6px 22px rgba(0,0,0,0.5);
-}
-.photo-circle:hover{box-shadow:inset 0 0 24px rgba(0,0,0,0.55),0 0 20px rgba(169,130,63,0.35), 0 6px 22px rgba(0,0,0,0.5)}
-.photo-circle img{width:100%;height:100%;object-fit:cover;border-radius:50%;display:none;filter:saturate(0.92) contrast(1.04)}
-.ph-placeholder{display:flex;flex-direction:column;align-items:center;gap:.8rem;opacity:.35}
-.ph-placeholder svg{width:32px}
-.ph-placeholder span{font-size:.56rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gold-l)}
-#fi{display:none}
-
-.names{
-  text-shadow:
-    0 0 4px rgba(0,0,0,.9),
-    0 0 10px rgba(0,0,0,.7);
-}
-
-.amp{
-  display:block;font-family:'Cormorant Garamond',serif;font-style:normal;font-weight:300;
-  font-size:clamp(0.9rem,2.2vw,1.4rem);letter-spacing:0.4em;color:var(--gold);
-  opacity:0.55;margin:.55em 0;text-transform:uppercase;
-}
-.hero-date{
-  margin-top:2.2rem;font-family:'Cormorant Garamond',serif;font-style:italic;
-  font-size:clamp(0.98rem,1.9vw,1.25rem);letter-spacing:0.12em;color:var(--cream-dim);opacity:0.95;
-}
+#hero{position:relative;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;text-align:center;z-index:20;padding:7.4rem 2rem 4rem}
+.eyebrow{font-size:.5rem;letter-spacing:.4em;text-transform:uppercase;color:var(--gold-l);opacity:.95;margin-bottom:2rem;text-shadow:0 1px 6px rgba(0,0,0,.85);background:rgba(5,9,6,.45);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1px solid rgba(217,184,115,.18);border-radius:2rem;padding:.55rem 1.4rem;display:inline-block;transform:translateY(-1cm)}
+.frame-outer{position:relative;width:140px;height:140px;margin:0 auto 2rem;transform:translateY(-1cm)}
+.photo-circle{position:absolute;inset:0;border-radius:50%;overflow:hidden;background:var(--pine);border:1px solid rgba(217,184,115,.45);box-shadow:inset 0 0 24px rgba(0,0,0,.55),0 6px 22px rgba(0,0,0,.5)}
+.photo-circle img{width:100%;height:100%;object-fit:cover;border-radius:50%;display:block;filter:saturate(.92) contrast(1.04)}
+.names{text-shadow:0 0 4px rgba(0,0,0,.9),0 0 10px rgba(0,0,0,.7)}
+.amp{display:block;font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(.9rem,2.2vw,1.4rem);letter-spacing:.4em;color:var(--gold);opacity:.55;margin:.55em 0;text-transform:uppercase}
+.hero-date{margin-top:6rem;transform:translateY(-1cm);font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(.98rem,1.9vw,1.25rem);letter-spacing:.12em;color:var(--cream-dim);opacity:.95}
 .ornament-line{display:flex;align-items:center;gap:1.1rem;margin:1.7rem auto 0;width:fit-content}
-.ornament-line::before,.ornament-line::after{content:'';display:block;width:54px;height:1px;background:linear-gradient(to right,transparent,rgba(169,130,63,0.5))}
-.ornament-line::after{background:linear-gradient(to left,transparent,rgba(169,130,63,0.5))}
-.ornament-line span{font-size:.68rem;color:var(--gold-l);opacity:.7;letter-spacing:.1em}
-
-.scroll-cue{
-  position:absolute;bottom:calc(2.6rem + 6cm);left:50%;transform:translateX(-50%);
-  display:flex;flex-direction:column;align-items:center;gap:.6rem;
-  opacity:.85;color:var(--gold-hi);font-size:.64rem;letter-spacing:.26em;text-transform:uppercase;
-  font-weight:500;
-  text-shadow:0 1px 8px rgba(0,0,0,.9);
-  padding:.7rem 1.1rem .9rem;
-  animation:bob 2.4s ease-in-out infinite;
-}
-.scroll-cue::before{
-  content:'';
-  position:absolute;
-  inset:-8px -16px;
-  background:radial-gradient(circle, rgba(217,184,115,.28), transparent 70%);
-  filter:blur(10px);
-  z-index:-1;
-  animation:cueGlow 2.4s ease-in-out infinite;
-}
-.scroll-cue::after{content:'';width:1px;height:34px;background:linear-gradient(to bottom, var(--gold-hi), transparent)}
+.ornament-line::before,.ornament-line::after{content:'';display:block;width:54px;height:1px;background:linear-gradient(to right,transparent,rgba(169,130,63,.5))}
+.ornament-line::after{background:linear-gradient(to left,transparent,rgba(169,130,63,.5))}
+.ornament-line span{font-size:.68rem;color:var(--gold-l);opacity:.7}
+.scroll-cue{position:absolute;bottom:calc(2.6rem + 6cm);left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:.6rem;opacity:.85;color:var(--gold-hi);font-size:.64rem;letter-spacing:.26em;text-transform:uppercase;font-weight:500;text-shadow:0 1px 8px rgba(0,0,0,.9);padding:.7rem 1.1rem .9rem;animation:bob 2.4s ease-in-out infinite;transition:opacity .5s ease}
+.scroll-cue::before{content:'';position:absolute;inset:-8px -16px;background:radial-gradient(circle,rgba(217,184,115,.28),transparent 70%);filter:blur(10px);z-index:-1;animation:cueGlow 2.4s ease-in-out infinite}
+.scroll-cue::after{content:'';width:1px;height:34px;background:linear-gradient(to bottom,var(--gold-hi),transparent)}
 @keyframes bob{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(9px)}}
 @keyframes cueGlow{0%,100%{opacity:.5}50%{opacity:1}}
-.scroll-cue{
-  transition: opacity .5s ease, transform .5s ease;
-}
-body.scrolled .scroll-cue{
-  opacity:0;
-  pointer-events:none;
-}
+body.scrolled .scroll-cue{opacity:0;pointer-events:none}
 
 /* ── SECTIONS ── */
-.sec{
-  position:relative;
-  z-index:20;
-  max-width:680px;
-  margin:0 auto;
-  padding:8.5rem 2rem;
-  text-align:center;
-}
-.sec .vi{
-  text-align:center;
-}
-
+.sec{position:relative;z-index:20;max-width:680px;margin:0 auto;padding:7rem 2rem;text-align:center;transition:padding .5s ease}
+.sec::before{content:'';position:absolute;inset:0;background:rgba(10,18,12,.55);border:1px solid rgba(169,130,63,.12);border-radius:10px;z-index:-1;backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);transition:backdrop-filter .5s,background .5s}
+body.scrolled .sec{padding:3.6rem 2rem}
+body.scrolled .sec::before{backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);background:rgba(10,18,12,.7)}
 .sec-wide{max-width:920px}
-.lbl{
-  font-size:.56rem;
-  letter-spacing:.4em;
-  text-transform:uppercase;
-  color:var(--gold-l);
-  opacity:.55;
-  margin-bottom:1.5rem;
-
-  text-align:center;
-  width:100%;
-}
-h2{
-  font-family:'Playfair Display',serif;font-weight:500;font-style:italic;
-  font-size:clamp(1.9rem,4.2vw,2.9rem);line-height:1.22;color:var(--gold-hi);
-  margin-bottom:1.3rem;letter-spacing:0.005em;
-}
-p.body{font-family:'Cormorant Garamond',serif;font-size:1.08rem;line-height:2;opacity:.88;max-width:52ch;color:var(--cream-dim)}
-.rule{width:100%;margin: 2.5rem auto;height:1px;background:linear-gradient(to right,transparent,rgba(169,130,63,0.22),transparent);position:relative;z-index:20}
-
-#poem{text-align:center}
-#poem .body{font-style:italic;font-size:1.1rem;line-height:2.2;max-width:44ch;margin:0 auto}
-.poem-author{margin-top:1.8rem;font-family:'Playfair Display',serif;font-style:italic;font-size:1.4rem;color:var(--gold);opacity:.65}
+.lbl{font-size:.56rem;letter-spacing:.4em;text-transform:uppercase;color:var(--gold-l);opacity:.55;margin-bottom:1.5rem;text-align:center;width:100%}
+h2{font-family:'Playfair Display',serif;font-weight:500;font-style:italic;font-size:clamp(1.9rem,4.2vw,2.9rem);line-height:1.22;color:var(--gold-hi);margin-bottom:1.3rem}
+p.body{font-family:'Cormorant Garamond',serif;font-size:1.08rem;line-height:2;opacity:.88;max-width:52ch;color:var(--cream-dim);margin:0 auto}
+.rule{width:100%;margin:2rem auto;height:1px;background:linear-gradient(to right,transparent,rgba(169,130,63,.22),transparent);position:relative;z-index:20}
+#poem .body{font-style:italic;font-size:1.1rem;line-height:2.2;max-width:44ch}
 
 /* events */
-.ev-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(169,130,63,0.1);border:1px solid rgba(169,130,63,0.1);margin-top:2.6rem}
-.ev-card{background:var(--bg1);padding:2.6rem 1.7rem;text-align:center;transition:background .35s}
-.ev-card:hover{background:var(--pine)}
+.ev-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(169,130,63,.1);border:1px solid rgba(169,130,63,.1);margin-top:2.6rem}
+.ev-card-link{text-decoration:none;color:inherit;display:block;position:relative;z-index:10}
+.ev-card{background:var(--bg1);padding:2.6rem 1.7rem;text-align:center;transition:background .35s,transform .25s ease;height:100%}
+.ev-card:hover{background:var(--pine);transform:translateY(-4px)}
 .ev-icon{font-size:1.05rem;margin-bottom:.9rem;opacity:.6}
-.ev-time{font-family:'Playfair Display',serif;font-style:italic;font-size:2.1rem;font-weight:500;color:var(--gold-l);display:block;letter-spacing:.01em}
+.ev-time{font-family:'Playfair Display',serif;font-style:italic;font-size:2.1rem;font-weight:500;color:var(--gold-l);display:block}
 .ev-lbl{font-size:.58rem;letter-spacing:.26em;text-transform:uppercase;color:var(--cream);opacity:.4;margin:.4rem 0 .9rem;display:block}
 .ev-loc{font-family:'Cormorant Garamond',serif;font-size:.98rem;opacity:.62;line-height:1.7}
-.ev-hint{
-  font-size:.55rem;
-  letter-spacing:.18em;
-  text-transform:uppercase;
-  opacity:.55;
-  margin-top:.6rem;
-  color:var(--gold-l);
-  position:relative;
-  display:inline-block;
-}
+.ev-hint{font-size:.55rem;letter-spacing:.18em;text-transform:uppercase;opacity:.55;margin-top:.6rem;color:var(--gold-l);position:relative;display:inline-block}
+.ev-hint::after{content:'';position:absolute;inset:-10px -20px;background:radial-gradient(circle,rgba(217,184,115,.55),transparent 60%);filter:blur(10px);opacity:0;animation:goldDust 60s ease-in-out infinite}
+@keyframes goldDust{0%{opacity:0;transform:scale(.9)}10%{opacity:.9}80%{opacity:.8}100%{opacity:0;transform:scale(1.15)}}
 
-/* ✨ χρυσόσκονη glow πιο αργό */
-.ev-hint::after{
-  content:'';
-  position:absolute;
-  inset:-10px -20px;
-  background:radial-gradient(circle, rgba(217,184,115,.55), transparent 60%);
-  filter:blur(10px);
-  opacity:0;
-  animation:goldDust 60s ease-in-out infinite;
-}
-
-@keyframes goldDust{
-  0%   {opacity:0; transform:scale(.9);}
-  10%  {opacity:.9;}
-  80%  {opacity:.8;}
-  100% {opacity:0; transform:scale(1.15);}
-}
-
-.gal-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}
-.gal-cell{background:var(--bg1);aspect-ratio:4/3;display:flex;align-items:center;justify-content:center;opacity:.55;transition:opacity .3s,transform .3s;overflow:hidden;cursor:pointer;position:relative}
+/* gallery */
+.gal-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-top:1rem}
+.gal-cell{background:var(--bg1);aspect-ratio:4/3;display:flex;align-items:center;justify-content:center;opacity:.55;transition:opacity .3s;overflow:hidden;cursor:pointer;position:relative}
 .gal-cell:hover{opacity:1}
-.gal-cell img,.gal-cell video{width:100%;height:100%;object-fit:cover}
-.gal-cell svg{width:22px;opacity:.3}
-.gal-cell video{display:block}
+.gal-cell img,.gal-cell video{width:100%;height:100%;object-fit:cover;display:block}
 
-/* ── LIGHTBOX ── */
-#lb{
-  display:none;position:fixed;inset:0;z-index:900;
-  background:rgba(5,9,6,0.92);
-  backdrop-filter:blur(10px);
-  align-items:center;justify-content:center;flex-direction:column;
-  padding:2rem;
-}
+/* lightbox */
+#lb{display:none;position:fixed;inset:0;z-index:900;background:rgba(5,9,6,.92);backdrop-filter:blur(10px);align-items:center;justify-content:center;flex-direction:column;padding:2rem}
 #lb.open{display:flex}
-#lb-inner{
-  position:relative;max-width:820px;width:100%;
-  display:flex;flex-direction:column;align-items:center;gap:1.4rem;
-}
-#lb-media{
-  max-height:62vh;max-width:100%;object-fit:contain;
-  border:1px solid rgba(169,130,63,0.25);
-  box-shadow:0 0 60px rgba(0,0,0,.7);
-}
-#lb-media-video{
-  max-height:62vh;max-width:100%;
-  border:1px solid rgba(169,130,63,0.25);
-  box-shadow:0 0 60px rgba(0,0,0,.7);
-}
-#lb-caption{
-  font-family:'Cormorant Garamond',serif;font-style:italic;
-  font-size:1.05rem;color:var(--cream-dim);opacity:.88;
-  text-align:center;max-width:52ch;line-height:1.9;
-  min-height:1.5em;
-}
-#lb-close{
-  position:fixed;top:1.4rem;right:1.8rem;
-  background:none;border:none;cursor:pointer;
-  color:var(--gold-l);font-size:1.6rem;opacity:.6;
-  transition:opacity .2s;z-index:901;line-height:1;
-}
+#lb-inner{position:relative;max-width:820px;width:100%;display:flex;flex-direction:column;align-items:center;gap:1.4rem}
+#lb-media,#lb-media-video{max-height:62vh;max-width:100%;object-fit:contain;border:1px solid rgba(169,130,63,.25);box-shadow:0 0 60px rgba(0,0,0,.7)}
+#lb-caption{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.05rem;color:var(--cream-dim);opacity:.88;text-align:center;max-width:52ch;line-height:1.9;min-height:1.5em}
+#lb-close{position:fixed;top:1.4rem;right:1.8rem;background:none;border:none;cursor:pointer;color:var(--gold-l);font-size:1.6rem;opacity:.6;transition:opacity .2s;z-index:901;line-height:1}
 #lb-close:hover{opacity:1}
-#lb-nav{
-  display:flex;gap:1.4rem;margin-top:.3rem;
-}
-#lb-prev,#lb-next{
-  background:none;border:1px solid rgba(169,130,63,0.3);
-  color:var(--gold-l);font-size:.6rem;letter-spacing:.2em;
-  text-transform:uppercase;padding:.55rem 1.3rem;cursor:pointer;
-  transition:background .2s,border-color .2s;
-}
-#lb-prev:hover,#lb-next:hover{background:rgba(169,130,63,0.12);border-color:rgba(169,130,63,0.6)}
+#lb-nav{display:flex;gap:1.4rem;margin-top:.3rem}
+#lb-prev,#lb-next{background:none;border:1px solid rgba(169,130,63,.3);color:var(--gold-l);font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;padding:.55rem 1.3rem;cursor:pointer;transition:background .2s,border-color .2s}
+#lb-prev:hover,#lb-next:hover{background:rgba(169,130,63,.12);border-color:rgba(169,130,63,.6)}
 
 /* rsvp */
-label{display:block;font-size:.56rem;letter-spacing:.26em;text-transform:uppercase;color:var(--gold-l);opacity:.55;margin-bottom:.5rem}
+label{display:block;font-size:.56rem;letter-spacing:.26em;text-transform:uppercase;color:var(--gold-l);opacity:.75;margin-bottom:.5rem;text-align:left}
 .fg{margin-bottom:1.3rem}
-input,select,textarea{
-  width:100%;background:rgba(255,255,255,0.025);border:1px solid rgba(169,130,63,0.2);
-  color:var(--cream);font-family:'Inter',sans-serif;font-size:.86rem;padding:.8rem 1rem;
-  outline:none;appearance:none;transition:border-color .3s;
-}
+input,select,textarea{width:100%;background:rgba(255,255,255,.025);border:1px solid rgba(169,130,63,.2);color:var(--cream);font-family:'Inter',sans-serif;font-size:.86rem;padding:.8rem 1rem;outline:none;appearance:none;transition:border-color .3s}
 input:focus,select:focus,textarea:focus{border-color:rgba(169,130,63,.55)}
 select option{background:var(--bg1)}
 textarea{resize:vertical;min-height:70px}
 .fr{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
-.btn{
-  margin-top:1rem;padding:.85rem 2.8rem;background:transparent;border:1px solid var(--gold);
-  color:var(--gold-l);font-family:'Inter',sans-serif;font-size:.62rem;letter-spacing:.28em;
-  text-transform:uppercase;cursor:pointer;transition:background .3s,color .3s;
-}
+.btn{margin-top:1rem;padding:.85rem 2.8rem;background:transparent;border:1px solid var(--gold);color:var(--gold-l);font-family:'Inter',sans-serif;font-size:.62rem;letter-spacing:.28em;text-transform:uppercase;cursor:pointer;transition:background .3s,color .3s}
 .btn:hover{background:var(--gold);color:var(--bg0)}
+.btn:disabled{opacity:.6;cursor:wait}
 .rsvp-ok{display:none;text-align:center;padding:2.8rem;border:1px solid rgba(169,130,63,.18)}
 .rsvp-ok .ck{font-size:1.5rem;color:var(--gold-l);margin-bottom:1rem}
 
-/* visit */
+/* visit + family */
 .vis-grid{display:grid;grid-template-columns:1fr 1fr;gap:2.8rem;margin-top:2.6rem}
-
-/* family / koumparoi — compact, always 3-in-a-row */
 .fam-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:.9rem;margin-top:2rem}
+.vi-lbl{font-size:.56rem;letter-spacing:.28em;text-transform:uppercase;color:var(--gold-l);opacity:.76;margin-bottom:.55rem}
+.vi h3{font-family:'Playfair Display',serif;font-style:italic;font-weight:500;font-size:1.45rem;color:var(--gold-l);margin-bottom:1rem}
+.vi-items{display:flex;flex-direction:column;gap:.85rem}
+.vi-item{background:rgba(14,24,16,.55);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border:1px solid rgba(169,130,63,.14);border-left:2px solid rgba(169,130,63,.45);border-radius:0 6px 6px 0;padding:.9rem 1.1rem;text-align:left}
+.vi-tag{display:inline-block;font-size:.5rem;letter-spacing:.22em;text-transform:uppercase;color:var(--gold-l);opacity:.8;margin-bottom:.4rem}
+.vi-item p{font-family:'Cormorant Garamond',serif;font-size:.97rem;line-height:1.75;opacity:.72;color:var(--cream-dim);margin:0}
 .fam-grid .vi-lbl{font-size:.46rem;letter-spacing:.16em;margin-bottom:.35rem}
-.fam-grid .vi h3{font-size:.92rem;margin-bottom:.55rem}
 .fam-grid .vi-items{gap:.4rem}
 .fam-grid .vi-item{padding:.5rem .55rem;border-left-width:2px}
 .fam-grid .vi-tag{font-size:.42rem;letter-spacing:.1em;margin-bottom:.2rem}
 .fam-grid .vi-item p{font-size:.74rem;line-height:1.4}
-.vi-lbl{font-size:.56rem;letter-spacing:.28em;text-transform:uppercase;color:var(--gold-l);opacity:.76;margin-bottom:.55rem}
-.vi h3{font-family:'Playfair Display',serif;font-style:italic;font-weight:500;font-size:1.45rem;color:var(--gold-l);margin-bottom:1rem}
-.vi p{font-family:'Cormorant Garamond',serif;font-size:1rem;opacity:.62;color:var(--cream-dim)}
-.vi-items{display:flex;flex-direction:column;gap:.85rem}
-.vi-item{
-  background:rgba(14,24,16,0.55);
-  backdrop-filter:blur(8px);
-  -webkit-backdrop-filter:blur(8px);
-  border:1px solid rgba(169,130,63,0.14);
-  border-left:2px solid rgba(169,130,63,0.45);
-  border-radius:0 6px 6px 0;
-  padding:.9rem 1.1rem;
-  text-align:left;
-}
-.vi-tag{
-  display:inline-block;
-  font-size:.5rem;letter-spacing:.22em;text-transform:uppercase;
-  color:var(--gold-l);opacity:.8;
-  margin-bottom:.4rem;
-}
-.vi-item p{
-  font-family:'Cormorant Garamond',serif;
-  font-size:.97rem;line-height:1.75;
-  opacity:.72;color:var(--cream-dim);
-  margin:0;
-}
 
-footer{position:relative;z-index:20;text-align:center;padding:4.6rem 2rem;border-top:1px solid rgba(169,130,63,0.1)}
-.ft-names{font-family:'Playfair Display',serif;font-style:italic;font-size:1.85rem;color:var(--gold);opacity:.65;letter-spacing:.02em}
-.ft-date{margin-top:.65rem;font-size:.56rem;letter-spacing:.34em;text-transform:uppercase;opacity:.28}
+/* gift */
+.gift-tabs{display:inline-flex;margin:1.8rem 0 1.4rem;border:1px solid rgba(169,130,63,.35);border-radius:2rem;overflow:hidden}
+.gift-tab{background:transparent;border:0;color:var(--cream-dim);font-family:'Inter',sans-serif;font-size:.6rem;letter-spacing:.18em;text-transform:uppercase;padding:.75rem 1.4rem;cursor:pointer;transition:background .3s,color .3s}
+.gift-tab.on{background:var(--gold);color:var(--bg0)}
+.gift-tab:focus-visible,.gift-copy:focus-visible,.gift-link:focus-visible{outline:2px solid var(--gold-l);outline-offset:2px}
+.gift-grid{display:flex;flex-direction:column;gap:.85rem;max-width:520px;margin:1.6rem auto 0}
+.gift-row{display:flex;justify-content:space-between;align-items:center;gap:.8rem;padding:.55rem 0;border-top:1px solid rgba(169,130,63,.12);text-align:left}
+.gift-k{display:block;font-size:.5rem;letter-spacing:.22em;text-transform:uppercase;color:var(--gold-l);opacity:.65}
+.gift-v{display:block;font-family:'Cormorant Garamond',serif;font-size:1.05rem;color:var(--cream);word-break:break-all;user-select:all}
+.gift-copy{flex:none;background:transparent;border:1px solid rgba(169,130,63,.45);color:var(--gold-l);font-family:'Inter',sans-serif;font-size:.54rem;letter-spacing:.16em;text-transform:uppercase;padding:.5rem .8rem;cursor:pointer;transition:background .25s,color .25s}
+.gift-copy:hover,.gift-copy.done{background:var(--gold);color:var(--bg0)}
+.gift-link{display:inline-block;margin:.3rem 0 .2rem;font-size:.6rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gold-l);text-decoration:none;border-bottom:1px solid rgba(169,130,63,.5)}
+.vi-item .gift-note{font-size:.88rem;opacity:.55;margin-top:.5rem}
 
+footer{position:relative;z-index:20;text-align:center;padding:4.6rem 2rem;border-top:1px solid rgba(169,130,63,.1)}
+.ft-date{font-size:.56rem;letter-spacing:.34em;text-transform:uppercase;opacity:.4}
 .rv{opacity:0;transform:translateY(22px);transition:opacity .95s ease,transform .95s ease}
 .rv.in{opacity:1;transform:none}
 
 @media(max-width:760px){
-  .sec{
-    padding: 5.2rem 1.4rem;
-  }
-
-  .rule{
-    margin: 2rem auto;
-  }
-  #mobileNav{
-    transform:translateY(-100%);
-    opacity:0;
-    transition:.35s ease;
-    padding:.8rem .8rem;
-  }
-
-  #mobileNav.show{
-    transform:translateY(0);
-    opacity:1;
-  }
-
-  nav ul{
-    display:flex;
-    gap:.7rem;
-    flex-wrap:nowrap;
-    justify-content:center;
-  }
-
-  nav a{
-    font-size:.50rem;
-    letter-spacing:.12em;
-  }
-
-  .nav-logo{
-    display:none;
-  }
-
-  nav{padding:1.1rem 1.4rem}
+  .sec{padding:4.5rem 1.4rem}
+  body.scrolled .sec{padding:2.6rem 1.4rem}
+  .rule{margin:1.2rem auto}
+  nav{padding:.8rem .8rem .8rem 5.6rem;justify-content:center}
+  nav ul{gap:.6rem;flex-wrap:nowrap;justify-content:center}
+  nav a{font-size:.46rem;letter-spacing:.08em}
+  .nav-logo{display:none}
+  .lang button{padding:.45rem .7rem}
   .ev-grid{grid-template-columns:1fr}
   .fr{grid-template-columns:1fr}
   .vis-grid{grid-template-columns:1fr;gap:1.8rem}
   .fam-grid{gap:.5rem}
-  .fam-grid .vi-item{padding:.4rem .4rem}
+  .fam-grid .vi-item{padding:.4rem}
   .fam-grid .vi-item p{font-size:.66rem;line-height:1.3}
   .fam-grid .vi h3{font-size:.78rem}
   .fam-grid .vi-tag{font-size:.38rem}
   .fam-grid .vi-lbl{font-size:.42rem}
-  .gal-grid{grid-template-columns:repeat(3,1fr)}
+  .gift-tab{padding:.7rem .9rem}
 }
-
-@media(prefers-reduced-motion:reduce){
-  .rv{opacity:1;transform:none;transition:none}
-  .scroll-cue{animation:none}
-}
-
-/* Desktop side frames ώστε να φαίνεται κεντραρισμένη η εικόνα */
-@media (min-width: 769px){
-  body::before,
-  body::after{
-    content:'';
-    position:fixed;
-    top:0;
-    bottom:0;
-    width:12vw;
-    background:var(--bg0);
-    z-index:1;
-    pointer-events:none;
-  }
-
-  body::before{left:0;}
-  body::after{right:0;}
-
-  .bg-photo{
-    left:12vw;
-    right:12vw;
-    width:auto;
-  }
-}
-.lbl,
-h2,
-.body,
-.poem-author,
-.hero-date,
-.vi,
-footer{
-  text-align:center;
-}
-  .ev-card-link{
-  text-decoration:none;
-  color:inherit;
-  display:block;
-}
-
-.ev-card-link .ev-card{
-  height:100%;
-  transition:transform .25s ease;
-}
-
-.ev-card-link:hover .ev-card{
-  transform:translateY(-4px);
-}
-.ev-card-link{
-  position: relative;
-  z-index: 10;
-}
-#rsvp > section{
-  position: relative;
-  z-index: 2;
-}
-.bg-photo,
-.bg-base,
-.bg-noise,
-.bg-vignette,
-canvas#sparkle{
-  pointer-events: none;
-}
-
-/* ── Tighter spacing once the user has scrolled (initial load stays untouched) ── */
-.sec{
-  transition: padding .5s ease;
-}
-#events, #gallery, #rsvp, #visit{
-  transition: padding .5s ease;
-}
-.rule{
-  transition: margin .5s ease;
-}
-body.scrolled .sec{
-  padding: 4.2rem 2rem;
-}
-body.scrolled #events,
-body.scrolled #gallery,
-body.scrolled #rsvp,
-body.scrolled #visit{
-  padding-top: 3.4rem;
-  padding-bottom: 3.4rem;
-}
-body.scrolled .rule{
-  margin: 1.2rem auto;
-}
-@media(max-width:760px){
-  body.scrolled .sec{
-    padding: 3rem 1.4rem;
-  }
-  body.scrolled #events,
-  body.scrolled #gallery,
-  body.scrolled #rsvp,
-  body.scrolled #visit{
-    padding-top: 2.4rem;
-    padding-bottom: 2.4rem;
-  }
-  body.scrolled .rule{
-    margin: 1rem auto;
-  }
-}
-
-/* ── Stronger background blur on the section "cards" while scrolled ── */
-.sec::before{
-  transition: backdrop-filter .5s ease, background .5s ease;
-}
-body.scrolled .sec::before{
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
-  background: rgba(10,18,12,0.7);
-}
-
-#rsvp{
-  position: relative;
-  overflow: hidden;
-}
-  #rsvp::before{
-  content:'';
-  position:absolute;
-  inset:0;
-  background:
-    radial-gradient(circle at 30% 20%, rgba(169,130,63,.18), transparent 40%),
-    radial-gradient(circle at 70% 80%, rgba(240,217,153,.12), transparent 45%);
-  z-index:0;
-}
-  .sec::before{
-  content:'';
-  position:absolute;
-  inset:0;
-  background:rgba(10,18,12,0.55);
-  border:1px solid rgba(169,130,63,0.12);
-  border-radius:10px;
-  z-index:-1;
-  backdrop-filter: blur(6px);
-}
-  #events, #gallery, #rsvp, #visit{
-  padding-top:7rem;
-  padding-bottom:7rem;
-}
-  .photo-circle img{
-  display:block;
-}
-.ph-placeholder{
-  display:none;
-}
-
+@media(prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none}.scroll-cue{animation:none}}
 </style>
 </head>
 <body>
@@ -633,511 +184,442 @@ body.scrolled .sec::before{
 <div class="bg-vignette"></div>
 <canvas id="sparkle"></canvas>
 
-<!-- corner ornaments now come from the supplied photographic frame artwork (bg-photo) -->
+<!-- Language switch -->
+<div class="lang" role="group" aria-label="Language / Γλώσσα">
+  <button type="button" data-lang="el" aria-pressed="true">ΕΛ</button>
+  <button type="button" data-lang="en" aria-pressed="false">EN</button>
+</div>
 
 <nav id="mobileNav">
   <span class="nav-logo">D &amp; C</span>
   <ul>
-    <li><a href="#events">Τοποθεσίες</a></li>
-    <li><a href="#gallery">Φωτογραφίες</a></li>
-    <li><a href="#rsvp">Παρουσιολόγιο</a></li>
-    <li><a href="#visit">Επίσκεψη</a></li>
-    <li><a href="#family">Οικογένεια και Κουμπάροι</a></li>
+    <li><a href="#events" data-t="nav1">Τοποθεσίες</a></li>
+    <li><a href="#gallery" data-t="nav2">Φωτογραφίες</a></li>
+    <li><a href="#rsvp" data-t="nav3">Παρουσιολόγιο</a></li>
+    <li><a href="#visit" data-t="nav4">Επίσκεψη</a></li>
+    <li><a href="#family" data-t="nav5">Οικογένεια</a></li>
+    <li><a href="#gift" data-t="nav6">Δώρο</a></li>
   </ul>
 </nav>
 
-<!-- ── HERO ── -->
+<!-- HERO -->
 <div id="hero">
-
-  <p class="eyebrow" style="font-size:0.5rem; transform:translateY(-1cm);">Σας προσκαλούμε στον γάμο μας</p>
-
-  <div class="frame-outer" style="transform:translateY(-1cm);">
-    <div class="photo-circle" onclick="document.getElementById('fi').click()">
-      <img id="cpPhoto" src="https://i.imgur.com/tCxAsz9.jpeg" alt="hero photo"/>
-      <div class="ph-placeholder" id="phHolder">
-        <svg viewBox="0 0 24 24" fill="none" stroke="#a9823f" stroke-width="1">
-          <circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/>
-        </svg>
-        <span>Προσθέστε<br/>φωτογραφία</span>
-      </div>
-    </div>
-  </div>
-
-  <div class="names">
-    <span class="amp">— ❄ —</span>
-  </div>
-
-  <p class="hero-date" style="margin-top:6rem; transform:translateY(-1cm);">Σάββατο, 26 Δεκεμβρίου 2026</p>
+  <p class="eyebrow" data-t="eyebrow">Σας προσκαλούμε στον γάμο μας</p>
+  <div class="frame-outer"><div class="photo-circle"><img src="https://i.imgur.com/tCxAsz9.jpeg" alt="Δημήτρης &amp; Χρυσούλα"/></div></div>
+  <div class="names"><span class="amp">— ❄ —</span></div>
+  <p class="hero-date" data-t="date">Σάββατο, 26 Δεκεμβρίου 2026</p>
   <div class="ornament-line"><span>✦</span></div>
   <div class="scroll-cue">scroll</div>
 </div>
+
 <div id="poem"><section class="sec rv">
-  <p class="body">Μέσα στη μαγεία των Χριστουγέννων<br/>και κάτω από το φως της αγάπης,<br/>σας προσκαλούμε να μοιραστείτε μαζί μας<br/>την πιο όμορφη στιγμή της ζωής μας.<p> </p></p></p>
+  <p class="body" data-t="poem">Μέσα στη μαγεία των Χριστουγέννων<br/>και κάτω από το φως της αγάπης,<br/>σας προσκαλούμε να μοιραστείτε μαζί μας<br/>την πιο όμορφη στιγμή της ζωής μας.</p>
 </section></div>
 <div class="rule"></div>
 
 <div id="events"><section class="sec rv">
-  <p class="lbl">Εκδηλώσεις</p>
-<h2>Το Πρόγραμμα</h2>
-
-<div class="ev-grid">
-
-  <!-- Ημερομηνία -->
-  <a class="ev-card-link"
-     href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Γάμος+Δημήτρη+%26+Χρυσούλας&dates=20261226T153000/20261226T230000&details=Δηήτρης κ Χρύσα, Γάμος+και+Δεξίωση&location=Μουζάκι+Καρδίτσας"
-     target="_blank">
-
-    <div class="ev-card">
-      <div class="ev-icon">📅</div>
-      <span class="ev-time" style="font-size:1.85rem;line-height:1.2">26 Δεκ</span>
-      <span class="ev-lbl">Ημερομηνία</span>
-      <p class="ev-loc">Σάββατο<br>26 Δεκεμβρίου 2026</p>
-      <p class="ev-hint">πάτα με</p>
-    </div>
-
-  </a>
-
-  <!-- Εκκλησία -->
-  <a class="ev-card-link"
-     href="https://maps.app.goo.gl/MznA5WhSzp2x7zCHA"
-     target="_blank">
-
-    <div class="ev-card">
-     <div class="ev-icon">📍</div>
-<span class="ev-time">15:30</span>
-<span class="ev-lbl">Τέλεση</span>
-<p class="ev-loc">Εκκλησία Κοιμήσεως<br>της Θεοτόκου · Μουζάκι</p>
-<p class="ev-hint">πάτα με για οδηγίες</p>
-    </div>
-
-  </a>
-
-  <!-- Δεξίωση -->
-  <a class="ev-card-link"
-     href="https://maps.app.goo.gl/F4Suzyo1iuKvcAn7A"
-     target="_blank">
-
-    <div class="ev-card">
-     <div class="ev-icon">📍</div>
-<span class="ev-time">19:30</span>
-<span class="ev-lbl">Δεξίωση</span>
-<p class="ev-loc">Ονείρων Έπαυλις<br>Πηγή Τρικάλων</p>
-<p class="ev-hint">πάτα με για οδηγίες</p>
-    </div>
-
-  </a>
-
-</div>
+  <p class="lbl" data-t="evLbl">Εκδηλώσεις</p>
+  <h2 data-t="evH">Το Πρόγραμμα</h2>
+  <div class="ev-grid">
+    <a class="ev-card-link" target="_blank" rel="noopener" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Γάμος+Δημήτρη+%26+Χρυσούλας&dates=20261226T153000/20261226T230000&details=Γάμος+και+Δεξίωση&location=Μουζάκι+Καρδίτσας">
+      <div class="ev-card">
+        <div class="ev-icon">📅</div>
+        <span class="ev-time" style="font-size:1.85rem;line-height:1.2" data-t="e1t">26 Δεκ</span>
+        <span class="ev-lbl" data-t="e1l">Ημερομηνία</span>
+        <p class="ev-loc" data-t="e1p">Σάββατο<br>26 Δεκεμβρίου 2026</p>
+        <p class="ev-hint" data-t="e1h">πάτα με</p>
+      </div>
+    </a>
+    <a class="ev-card-link" target="_blank" rel="noopener" href="https://maps.app.goo.gl/MznA5WhSzp2x7zCHA">
+      <div class="ev-card">
+        <div class="ev-icon">📍</div>
+        <span class="ev-time">15:30</span>
+        <span class="ev-lbl" data-t="e2l">Τέλεση</span>
+        <p class="ev-loc" data-t="e2p">Εκκλησία Κοιμήσεως<br>της Θεοτόκου · Μουζάκι</p>
+        <p class="ev-hint" data-t="hintDir">πάτα με για οδηγίες</p>
+      </div>
+    </a>
+    <a class="ev-card-link" target="_blank" rel="noopener" href="https://maps.app.goo.gl/F4Suzyo1iuKvcAn7A">
+      <div class="ev-card">
+        <div class="ev-icon">📍</div>
+        <span class="ev-time">19:30</span>
+        <span class="ev-lbl" data-t="e3l">Δεξίωση</span>
+        <p class="ev-loc" data-t="e3p">Ονείρων Έπαυλις<br>Πηγή Τρικάλων</p>
+        <p class="ev-hint" data-t="hintDir">πάτα με για οδηγίες</p>
+      </div>
+    </a>
+  </div>
 </section></div>
 <div class="rule"></div>
 
 <div id="gallery"><section class="sec sec-wide rv">
-  <p class="lbl">Στιγμές</p>
-  <h2>Φωτογραφίες</h2>
-  <p class="ev-hint">πάτα στην φωτό για μεγένθυνση</p>
-  <div class="gal-grid">
-    <div class="gal-cell" data-index="0"  data-type="img" data-src="https://i.imgur.com/xrc8vRI.jpeg"  data-caption="Ο Γαμπρός μικρός"><img src="https://i.imgur.com/xrc8vRI.jpeg" loading="lazy" alt=""></div>
-    <div class="gal-cell" data-index="1"  data-type="img" data-src="https://i.imgur.com/Da18iyN.jpeg"  data-caption="Η Νύφη μικρή"><img src="https://i.imgur.com/Da18iyN.jpeg" loading="lazy" alt=""></div>
-    <div class="gal-cell" data-index="2"  data-type="img" data-src="https://i.imgur.com/c9RYBUn.jpeg"  data-caption="Το ζευγάρι μεγάλο, Φλώρινα"><img src="https://i.imgur.com/c9RYBUn.jpeg" loading="lazy" alt=""></div>
-    <div class="gal-cell" data-index="3"  data-type="img" data-src="https://i.imgur.com/0HFM7Y2.jpeg"  data-caption="Γνωρίστε την Κουμπάρα"><img src="https://i.imgur.com/0HFM7Y2.jpeg" loading="lazy" alt=""></div>
-    <div class="gal-cell" data-index="4"  data-type="img" data-src="https://i.imgur.com/C8dUB0k.jpeg"  data-caption="Γνωρίστε τον Κουμπάρο"><img src="https://i.imgur.com/C8dUB0k.jpeg" loading="lazy" alt=""></div>
-    <div class="gal-cell" data-index="5"  data-type="img" data-src="https://i.imgur.com/5u3auar.jpeg"  data-caption="Γνωρίστε τον Άγνωστο Φίλο μας"><img src="https://i.imgur.com/5u3auar.jpeg" loading="lazy" alt=""></div>
-    <div class="gal-cell" data-index="6"  data-type="img" data-src="https://i.imgur.com/rdy8WCj.jpeg"  data-caption="Γνωρίστε την Οικογένεια"><img src="https://i.imgur.com/rdy8WCj.jpeg" loading="lazy" alt=""></div>
-    <div class="gal-cell" data-index="7"  data-type="img" data-src="https://i.imgur.com/GL5j6My.jpeg"  data-caption="Περισσότερη Οικογένεια"><img src="https://i.imgur.com/GL5j6My.jpeg" loading="lazy" alt=""></div>
-    <div class="gal-cell" data-index="8"  data-type="img" data-src="https://i.imgur.com/tCxAsz9.jpeg"  data-caption="Τρία τέρατα του Λοχ Νες, μια φωτογραφία"><img src="https://i.imgur.com/tCxAsz9.jpeg" loading="lazy" alt=""></div>
-    <div class="gal-cell" data-index="9"  data-type="img" data-src="https://i.imgur.com/8YXR2QP.jpeg"  data-caption="Κρουαζιέρα κάπου"><img src="https://i.imgur.com/8YXR2QP.jpeg" loading="lazy" alt=""></div>
-    <div class="gal-cell" data-index="10" data-type="img" data-src="https://i.imgur.com/jiOWP8z.jpeg"  data-caption="Τετράκαλα"><img src="https://i.imgur.com/jiOWP8z.jpeg" loading="lazy" alt=""></div>
-    <div class="gal-cell" data-index="11" data-type="img" data-src="https://i.imgur.com/tI3JdRm.jpeg"  data-caption="Κάπου στην Τουρκία"><img src="https://i.imgur.com/tI3JdRm.jpeg" loading="lazy" alt=""></div>
-    <div class="gal-cell" data-index="12" data-type="img" data-src="https://i.imgur.com/pdzmtYH.jpeg"  data-caption="Αγαπημένοι σε έναν πύργο, Σκωτία"><img src="https://i.imgur.com/pdzmtYH.jpeg" loading="lazy" alt=""></div>
-    <div class="gal-cell" data-index="13" data-type="img" data-src="https://i.imgur.com/y0hCFSk.jpeg"  data-caption="Αγαπημένοι στα λουτρά Πόζαρ"><img src="https://i.imgur.com/y0hCFSk.jpeg" loading="lazy" alt=""></div>
-    <div class="gal-cell" data-index="14" data-type="img" data-src="https://i.imgur.com/yRP44kr.jpeg"  data-caption="Αγαπημένοι στους δελφούς"><img src="https://i.imgur.com/yRP44kr.jpeg" loading="lazy" alt=""></div>
-    <div class="gal-cell" data-index="15" data-type="img" data-src="https://i.imgur.com/ZV53HBR.jpeg"  data-caption="Αγαπημένοι τα Χριστούγεννα"><img src="https://i.imgur.com/ZV53HBR.jpeg" loading="lazy" alt=""></div>
-    <div class="gal-cell" data-index="16" data-type="img" data-src="https://i.imgur.com/35NUPiy.jpeg"  data-caption="Αγαπημένοι στα Χιονισμένα Μετέωρα"><img src="https://i.imgur.com/35NUPiy.jpeg" loading="lazy" alt=""></div>
-    <div class="gal-cell" data-index="17" data-type="img" data-src="https://i.imgur.com/R9seAn3.jpeg"  data-caption="Αγαπημένοι στο Γαλατά και όχι στην Πίζα"><img src="https://i.imgur.com/R9seAn3.jpeg" loading="lazy" alt=""></div>
-    <div class="gal-cell" data-index="18" data-type="img" data-src="https://i.imgur.com/ogDrmod.jpeg"  data-caption="Αγαπημένοι στην Camera Obscura, Royal Mile"><img src="https://i.imgur.com/ogDrmod.jpeg" loading="lazy" alt=""></div>
-    <div class="gal-cell" data-index="19" data-type="img" data-src="https://i.imgur.com/gWqFJvB.jpeg"  data-caption="Δύο σε ένα"><img src="https://i.imgur.com/gWqFJvB.jpeg" loading="lazy" alt=""></div>
-    <div class="gal-cell" data-index="20" data-type="img" data-src="https://i.imgur.com/mJlIfgz.jpeg"  data-caption="Αγαπημένοι στην Σκωτία"><img src="https://i.imgur.com/mJlIfgz.jpeg" loading="lazy" alt=""></div>
-    <div class="gal-cell" data-index="21" data-type="img" data-src="https://i.imgur.com/PUwdtZ2.jpeg"  data-caption="Αγαπημένοι στον Βοτανικό Κήπο, Γλασκώβη"><img src="https://i.imgur.com/PUwdtZ2.jpeg" loading="lazy" alt=""></div>
-    <div class="gal-cell" data-index="22" data-type="img" data-src="https://i.imgur.com/0elk50l.jpeg"  data-caption="Αγαπημένοι στο Κάστρο Sterling"><img src="https://i.imgur.com/0elk50l.jpeg" loading="lazy" alt=""></div>
-    <div class="gal-cell" data-index="23" data-type="img" data-src="https://i.imgur.com/GjYkdfj.jpeg"  data-caption="Αγαπημένοι στο Κάστρο του Εδιμβούργου"><img src="https://i.imgur.com/GjYkdfj.jpeg" loading="lazy" alt=""></div>
-    <div class="gal-cell" data-index="24" data-type="img" data-src="https://i.imgur.com/59nQk2o.jpeg"  data-caption="Φέραμε τα πάνω κάτω"><img src="https://i.imgur.com/59nQk2o.jpeg" loading="lazy" alt=""></div>
-    <div class="gal-cell" data-index="25" data-type="img" data-src="https://i.imgur.com/Rd5du9v.jpeg"  data-caption="Αγαπημένοι στην Βουλγαρία"><img src="https://i.imgur.com/Rd5du9v.jpeg" loading="lazy" alt=""></div>
-    <div class="gal-cell" data-index="26" data-type="img" data-src="https://i.imgur.com/qebrMFC.jpeg"  data-caption="Αγαπημένοι 200 μέτρα κάτω από την επιφάνεια της γης, Άμφισσα"><img src="https://i.imgur.com/qebrMFC.jpeg" loading="lazy" alt=""></div>
-    <div class="gal-cell" data-index="27" data-type="img" data-src="https://i.imgur.com/3gFtfJR.jpeg"  data-caption="Το χάσαμε το τρένο, Βιετνάμ"><img src="https://i.imgur.com/3gFtfJR.jpeg" loading="lazy" alt=""></div>
-    <div class="gal-cell" data-index="28" data-type="img" data-src="https://i.imgur.com/k3OJx88.jpeg"  data-caption="Μάντεψε ποιός δεν περνάει καλά στα τροπικά κλίματα"><img src="https://i.imgur.com/k3OJx88.jpeg" loading="lazy" alt=""></div>
-    <div class="gal-cell" data-index="29" data-type="img" data-src="https://i.imgur.com/pWozzxj.jpeg"  data-caption="Προσπάθεια καρδιάς ή νυχιάς;"><img src="https://i.imgur.com/pWozzxj.jpeg" loading="lazy" alt=""></div>
-    <div class="gal-cell" data-index="30" data-type="img" data-src="https://i.imgur.com/xxvvilY.jpeg"  data-caption="Καγιάκ στο Halong Bay"><img src="https://i.imgur.com/xxvvilY.jpeg" loading="lazy" alt=""></div>
-    <div class="gal-cell" data-index="31" data-type="img" data-src="https://i.imgur.com/K7DiE3F.jpeg"  data-caption="10 λεπτά πριν την πρόταση Γάμου, Borderless Τόκυο"><img src="https://i.imgur.com/K7DiE3F.jpeg" loading="lazy" alt=""></div>
-    <div class="gal-cell" data-index="32" data-type="img" data-src="https://i.imgur.com/S264uqL.jpeg"  data-caption="Αγαπημένοι στο Εδιμβούργο"><img src="https://i.imgur.com/S264uqL.jpeg" loading="lazy" alt=""></div>
-    <div class="gal-cell" data-index="33" data-type="img" data-src="https://i.imgur.com/yl0mx2q.jpeg"  data-caption="Αγαπημένοι στο Τόκυο"><img src="https://i.imgur.com/yl0mx2q.jpeg" loading="lazy" alt=""></div>
-    <div class="gal-cell" data-index="34" data-type="img" data-src="https://i.imgur.com/bAHQYKW.jpeg"  data-caption="Αγαπημένοι στην Ρουμανία"><img src="https://i.imgur.com/bAHQYKW.jpeg" loading="lazy" alt=""></div>
-    <div class="gal-cell" data-index="35" data-type="img" data-src="https://i.imgur.com/Tk8bL08.jpeg"  data-caption="Αγαπημένοι στον Μαραθώνιο, Θεσσαλονίκη"><img src="https://i.imgur.com/Tk8bL08.jpeg" loading="lazy" alt=""></div>
-    <div class="gal-cell" data-index="36" data-type="img" data-src="https://i.imgur.com/peHY7co.jpeg"  data-caption="Αγαπημένοι στον βυθό"><img src="https://i.imgur.com/peHY7co.jpeg" loading="lazy" alt=""></div>
-    <div class="gal-cell" data-index="37" data-type="img" data-src="https://i.imgur.com/KpNX9O0.jpeg"  data-caption="Αγαπημένοι στις Πρέσπες"><img src="https://i.imgur.com/KpNX9O0.jpeg" loading="lazy" alt=""></div>
-    <div class="gal-cell" data-index="38" data-type="img" data-src="https://i.imgur.com/0okktVc.jpeg"  data-caption="Η Μπου στεγνώνει"><img src="https://i.imgur.com/0okktVc.jpeg" loading="lazy" alt=""></div>
-    <div class="gal-cell" data-index="39" data-type="video" data-src="https://i.imgur.com/OeVqYuj.mp4" data-caption="Εφιάλτης στην Βουδαπέστη"><video src="https://i.imgur.com/OeVqYuj.mp4" muted autoplay loop playsinline></video></div>
-    <div class="gal-cell" data-index="40" data-type="video" data-src="https://i.imgur.com/GtjQS6a.mp4" data-caption="Η σχέση μου με την Ασία"><video src="https://i.imgur.com/GtjQS6a.mp4" muted autoplay loop playsinline></video></div>
-    <div class="gal-cell" data-index="41" data-type="video" data-src="https://i.imgur.com/fPdyh4m.mp4" data-caption="Πολύ αγαπημένοι στην Τουρκία"><video src="https://i.imgur.com/fPdyh4m.mp4" muted autoplay loop playsinline></video></div>
-  </div>
+  <p class="lbl" data-t="gLbl">Στιγμές</p>
+  <h2 data-t="gH">Φωτογραφίες</h2>
+  <p class="ev-hint" data-t="gHint">πάτα στην φωτό για μεγένθυνση</p>
+  <div class="gal-grid" id="galGrid"></div>
 </section></div>
 <div class="rule"></div>
 
 <div id="rsvp"><section class="sec rv">
   <p class="lbl">RSVP</p>
-  <h2>Επιβεβαίωση Παρουσίας</h2>
- <p class="body" style="text-align:center; margin:0 auto; max-width:100%;">
-Παρακαλούμε επιβεβαιώστε την παρουσία σας έως τις 30 Νοεμβρίου 2026.
-</p>
-  <div id="rf">
-    <div class="fr"><div class="fg"><label for="fn">Ονοματεπώνυμο</label><input type="text" id="fn" placeholder="Το ονοματεπώνυμό σας"/></div><div class="fg"><label for="gs">Αριθμός Ατόμων</label><select id="gs"><option value="">Επιλέξτε...</option><option>1 άτομο</option><option>2 άτομα</option><option>3 άτομα</option><option>4 άτομα</option><option>5 άτομα</option><option>6+ άτομα</option></select></div></div>
-    <div class="fr"><div class="fg"><label for="em">Email</label><input type="email" id="em" placeholder="email@example.com"/></div><div class="fg"><label for="ph">Τηλέφωνο</label><input type="tel" id="ph" placeholder="+30 69..."/></div></div>
-    <div class="fg"><label for="dt">Περισσότερες λεπτομέρειες</label><textarea id="dt" placeholder="Θα έχετε μαζί σας μωρό; είστε χορτοφαγοι, έχετε αλλεργίες κ.λπ."></textarea></div>
-    <button class="btn" onclick="doRSVP()">Αποστολή</button>
+  <h2 data-t="rH">Επιβεβαίωση Παρουσίας</h2>
+  <p class="body" data-t="rBody">Παρακαλούμε επιβεβαιώστε την παρουσία σας έως τις 30 Νοεμβρίου 2026.</p>
+  <div id="rf" style="margin-top:2rem">
+    <div class="fr">
+      <div class="fg"><label for="fn" data-t="rName">Ονοματεπώνυμο</label><input type="text" id="fn" autocomplete="name" data-tp="rNameP" placeholder="Το ονοματεπώνυμό σας"/></div>
+      <div class="fg"><label for="gs" data-t="rGuests">Αριθμός Ατόμων</label>
+        <select id="gs"><option value="" data-t="rSel">Επιλέξτε...</option><option value="1" data-t="g1">1 άτομο</option><option value="2" data-t="g2">2 άτομα</option><option value="3" data-t="g3">3 άτομα</option><option value="4" data-t="g4">4 άτομα</option><option value="5" data-t="g5">5 άτομα</option><option value="6+" data-t="g6">6+ άτομα</option></select></div>
+    </div>
+    <div class="fr">
+      <div class="fg"><label for="em">Email</label><input type="email" id="em" autocomplete="email" placeholder="email@example.com"/></div>
+      <div class="fg"><label for="ph" data-t="rPhone">Τηλέφωνο</label><input type="tel" id="ph" autocomplete="tel" placeholder="+30 69..."/></div>
+    </div>
+    <div class="fg"><label for="dt" data-t="rMore">Περισσότερες λεπτομέρειες</label><textarea id="dt" data-tp="rMoreP" placeholder="Θα έχετε μαζί σας μωρό; Είστε χορτοφάγοι, έχετε αλλεργίες κ.λπ."></textarea></div>
+    <button class="btn" type="button" id="rsvpBtn" data-t="rSend">Αποστολή</button>
   </div>
-  <div class="rsvp-ok" id="rok"><div class="ck">✦</div><p class="body" style="max-width:36ch;margin:0 auto">Ευχαριστούμε πολύ. Λάβαμε την επιβεβαίωσή σας και ανυπομονούμε να σας δούμε.</p></div>
+  <div class="rsvp-ok" id="rok"><div class="ck">✦</div><p class="body" style="max-width:36ch" data-t="rThanks">Ευχαριστούμε πολύ. Λάβαμε την επιβεβαίωσή σας και ανυπομονούμε να σας δούμε.</p></div>
 </section></div>
 <div class="rule"></div>
 
 <div id="visit"><section class="sec sec-wide rv">
-  <p class="lbl">Επίσκεψη</p>
-  <h2>Προτάσεις</h2>
+  <p class="lbl" data-t="vLbl">Επίσκεψη</p>
+  <h2 data-t="vH">Προτάσεις</h2>
   <div class="vis-grid">
-    <!-- Πριν το μυστήριο -->
     <div class="vi">
-      <p class="vi-lbl">🦌 Πριν το Μυστήριο</p>
-      <h3>Γεύση & Φύση</h3>
+      <p class="vi-lbl" data-t="v1l">🦌 Πριν το Μυστήριο</p>
+      <h3 data-t="v1h">Γεύση &amp; Φύση</h3>
       <div class="vi-items">
-        <div class="vi-item">
-          <span class="vi-tag">🍽️ Γεύμα</span>
-          <p>Ταβέρνα <strong>«Κεραμαριώ»</strong> — μία από τις ομορφότερες της Ελλάδας, γεμάτη ελάφια και εκπλήξεις, μόλις 10 λεπτά από την εκκλησία. <em>(Μη φάτε πολύ — σας θέλουμε μαζί μας!)</em></p>
-        </div>
-        <div class="vi-item">
-          <span class="vi-tag">🌲 Φύση</span>
-          <p>Περίπατος κατά μήκος του ποταμού Μουζακίου <em>(Διαδρομή ΔΕΗ)</em> — ιστορικές μονές και πανέμορφο τοπίο.</p>
-        </div>
+        <div class="vi-item"><span class="vi-tag" data-t="v1a">🍽️ Γεύμα</span><p data-t="v1ap">Ταβέρνα <strong>«Κεραμαριώ»</strong> — μία από τις ομορφότερες της Ελλάδας, γεμάτη ελάφια και εκπλήξεις, μόλις 10 λεπτά από την εκκλησία. <em>(Μη φάτε πολύ — σας θέλουμε μαζί μας!)</em></p></div>
+        <div class="vi-item"><span class="vi-tag" data-t="v1b">🌲 Φύση</span><p data-t="v1bp">Περίπατος κατά μήκος του ποταμού Μουζακίου <em>(Διαδρομή ΔΕΗ)</em> — ιστορικές μονές και πανέμορφο τοπίο.</p></div>
       </div>
     </div>
-
-    <!-- Μετά το μυστήριο -->
     <div class="vi">
-      <p class="vi-lbl">✨ Μετά το Μυστήριο</p>
-      <h3>Χρόνος για Εξερεύνηση</h3>
+      <p class="vi-lbl" data-t="v2l">✨ Μετά το Μυστήριο</p>
+      <h3 data-t="v2h">Χρόνος για Εξερεύνηση</h3>
       <div class="vi-items">
-        <div class="vi-item">
-          <span class="vi-tag">🎄 Must-See</span>
-          <p><strong>Μύλος των Ξωτικών</strong> — μοναδική χριστουγεννιάτικη εμπειρία, 15 λεπτά από τον χώρο δεξίωσης. Μην το χάσετε!</p>
-        </div>
-        <div class="vi-item">
-          <span class="vi-tag">☕ Καφέ</span>
-          <p>People · Abariza · Mouzaki Palace — ιδανικά για έναν καφέ και χαλαρές βόλτες στο κέντρο του Μουζακίου.</p>
-        </div>
+        <div class="vi-item"><span class="vi-tag" data-t="v2a">🎄 Must-See</span><p data-t="v2ap"><strong>Μύλος των Ξωτικών</strong> — μοναδική χριστουγεννιάτικη εμπειρία, 15 λεπτά από τον χώρο δεξίωσης. Μην το χάσετε!</p></div>
+        <div class="vi-item"><span class="vi-tag" data-t="v2b">☕ Καφέ</span><p data-t="v2bp">People · Abariza · Mouzaki Palace — ιδανικά για έναν καφέ και χαλαρές βόλτες στο κέντρο του Μουζακίου.</p></div>
       </div>
     </div>
-
-    <!-- Διαμονή -->
     <div class="vi">
-      <p class="vi-lbl">🏨 Διαμονή</p>
-      <h3>Πού να Μείνετε</h3>
+      <p class="vi-lbl" data-t="v3l">🏨 Διαμονή</p>
+      <h3 data-t="v3h">Πού να Μείνετε</h3>
       <div class="vi-items">
-        <div class="vi-item">
-          <span class="vi-tag">🏩 Ξενοδοχεία</span>
-          <p>Τρίκαλα & Καρδίτσα — μισή ώρα από το Μουζάκι. Ιδανική επιλογή για άνετη διαμονή.</p>
-        </div>
-        <div class="vi-item">
-          <span class="vi-tag">🏡 Airbnb</span>
-          <p>Υπάρχουν επιλογές και στο ίδιο το Μουζάκι και στις γύρω περιοχές. <em>Μην αφήσετε την κράτηση για τελευταία στιγμή — ο Μύλος τα «κλείνει» όλα!</em></p>
-        </div>
+        <div class="vi-item"><span class="vi-tag" data-t="v3a">🏩 Ξενοδοχεία</span><p data-t="v3ap">Τρίκαλα &amp; Καρδίτσα — μισή ώρα από το Μουζάκι. Ιδανική επιλογή για άνετη διαμονή.</p></div>
+        <div class="vi-item"><span class="vi-tag">🏡 Airbnb</span><p data-t="v3bp">Υπάρχουν επιλογές και στο ίδιο το Μουζάκι και στις γύρω περιοχές. <em>Μην αφήσετε την κράτηση για τελευταία στιγμή — ο Μύλος τα «κλείνει» όλα!</em></p></div>
       </div>
     </div>
-
-    <!-- Μουζάκι -->
     <div class="vi">
-      <p class="vi-lbl">❄️ Το Μέρος μας</p>
-      <h3>Μουζάκι Καρδίτσας</h3>
+      <p class="vi-lbl" data-t="v4l">❄️ Το Μέρος μας</p>
+      <h3 data-t="v4h">Μουζάκι Καρδίτσας</h3>
       <div class="vi-items">
-        <div class="vi-item">
-          <span class="vi-tag">🏔️ Τοπίο</span>
-          <p>Κτισμένο στους πρόποδες της Πίνδου, δίπλα στον ποταμό Πάμισο — πέτρινα γεφύρια, καταπράσινο τοπίο και αυθεντική θεσσαλική φιλοξενία.</p>
-        </div>
-        <div class="vi-item">
-          <span class="vi-tag">🌊 Εξορμήσεις</span>
-          <p>Λίμνη Πλαστήρα, ορεινά χωριά, ιαματικές πηγές και πεζοπορικές διαδρομές — ένας προορισμός για κάθε εποχή.</p>
-        </div>
+        <div class="vi-item"><span class="vi-tag" data-t="v4a">🏔️ Τοπίο</span><p data-t="v4ap">Κτισμένο στους πρόποδες της Πίνδου, δίπλα στον ποταμό Πάμισο — πέτρινα γεφύρια, καταπράσινο τοπίο και αυθεντική θεσσαλική φιλοξενία.</p></div>
+        <div class="vi-item"><span class="vi-tag" data-t="v4b">🌊 Εξορμήσεις</span><p data-t="v4bp">Λίμνη Πλαστήρα, ορεινά χωριά, ιαματικές πηγές και πεζοπορικές διαδρομές — ένας προορισμός για κάθε εποχή.</p></div>
       </div>
     </div>
   </div>
 </section></div>
+<div class="rule"></div>
+
 <div id="family"><section class="sec sec-wide rv">
-  <p class="lbl">Με Αγάπη</p>
-  <h2>Οικογένεια &amp; Κουμπάροι</h2>
+  <p class="lbl" data-t="fLbl">Με Αγάπη</p>
+  <h2 data-t="fH">Οικογένεια &amp; Κουμπάροι</h2>
   <div class="fam-grid">
-    <!-- Κουμπάροι -->
-    <div class="vi">
-      <p class="vi-lbl">💍 Κουμπάροι</p>
-      
-      <div class="vi-items">
-        <div class="vi-item">
-          <span class="vi-tag">✦ Κουμπάρα</span>
-          <p>Μαρία Λέκκου</p>
-        </div>
-        <div class="vi-item">
-          <span class="vi-tag">✦ Κουμπάρος</span>
-          <p>Δημήτρης Χαλάτσης</p>
-        </div>
-      </div>
-    </div>
-
-    <!-- Οικογένεια Γαμπρού -->
-    <div class="vi">
-      <p class="vi-lbl">🤵 Του Γαμπρού</p>
-      
-      <div class="vi-items">
-        <div class="vi-item">
-          <span class="vi-tag">✦ Οικογένεια</span>
-          <p>Ιωάννης Χαλάτσης</p>
-        </div>
-        <div class="vi-item">
-          <span class="vi-tag">✦ Οικογένεια</span>
-          <p>Ελένη Στάχτου</p>
-        </div>
-      </div>
-    </div>
-
-    <!-- Οικογένεια Νύφης -->
-    <div class="vi">
-      <p class="vi-lbl">👰 Της Νύφης</p>
-      
-      <div class="vi-items">
-        <div class="vi-item">
-          <span class="vi-tag">✦ Οικογένεια</span>
-          <p>Γεωργία Κουτσοχρήστου</p>
-        </div>
-        <div class="vi-item">
-          <span class="vi-tag">✦ Οικογένεια</span>
-          <p>Ιωάννης Καραδήμας</p>
-        </div>
-      </div>
-    </div>
+    <div class="vi"><p class="vi-lbl" data-t="f1">💍 Κουμπάροι</p><div class="vi-items">
+      <div class="vi-item"><span class="vi-tag" data-t="fMad">✦ Κουμπάρα</span><p>Μαρία Λέκκου</p></div>
+      <div class="vi-item"><span class="vi-tag" data-t="fBest">✦ Κουμπάρος</span><p>Δημήτρης Χαλάτσης</p></div></div></div>
+    <div class="vi"><p class="vi-lbl" data-t="f2">🤵 Του Γαμπρού</p><div class="vi-items">
+      <div class="vi-item"><span class="vi-tag" data-t="fFam">✦ Οικογένεια</span><p>Ιωάννης Χαλάτσης</p></div>
+      <div class="vi-item"><span class="vi-tag" data-t="fFam">✦ Οικογένεια</span><p>Ελένη Στάχτου</p></div></div></div>
+    <div class="vi"><p class="vi-lbl" data-t="f3">👰 Της Νύφης</p><div class="vi-items">
+      <div class="vi-item"><span class="vi-tag" data-t="fFam">✦ Οικογένεια</span><p>Γεωργία Κουτσοχρήστου</p></div>
+      <div class="vi-item"><span class="vi-tag" data-t="fFam">✦ Οικογένεια</span><p>Ιωάννης Καραδήμας</p></div></div></div>
   </div>
 </section></div>
-<footer>
-  
-  <p class="ft-date">26 Δεκεμβρίου 2026 · Μουζάκι Καρδίτσας</p>
-</footer>
+<div class="rule"></div>
 
-<!-- ── LIGHTBOX ── -->
+<div id="gift"><section class="sec rv">
+  <p class="lbl" data-t="giLbl">Δώρο</p>
+  <h2 data-t="giH">Γαμήλιο Δώρο</h2>
+  <div class="gift-tabs" role="tablist">
+    <button class="gift-tab on" role="tab" data-tab="gr" data-t="giT1">Από Ελλάδα</button>
+    <button class="gift-tab" role="tab" data-tab="intl" data-t="giT2">Από το εξωτερικό</button>
+  </div>
+  <div id="giftPanel"></div>
+</section></div>
+
+<footer><p class="ft-date" data-t="foot">26 Δεκεμβρίου 2026 · Μουζάκι Καρδίτσας</p></footer>
+
 <div id="lb" role="dialog" aria-modal="true">
-  <button id="lb-close" aria-label="Κλείσιμο">✕</button>
+  <button id="lb-close" aria-label="Close">✕</button>
   <div id="lb-inner">
     <img id="lb-media" src="" alt="" style="display:none">
     <video id="lb-media-video" controls autoplay muted playsinline style="display:none"></video>
     <p id="lb-caption"></p>
-    <div id="lb-nav">
-      <button id="lb-prev">← Προηγ.</button>
-      <button id="lb-next">Επόμ. →</button>
-    </div>
+    <div id="lb-nav"><button id="lb-prev" data-t="prev">← Προηγ.</button><button id="lb-next" data-t="next">Επόμ. →</button></div>
   </div>
 </div>
 
 <script>
-/* ───────────────────── sparkle particles (subtle, slow, realistic gold dust) ───────────────────── */
-(function(){
-  const cv=document.getElementById('sparkle');
-  const cx=cv.getContext('2d');
-  let W,H;
-  function rsz(){W=cv.width=window.innerWidth;H=cv.height=window.innerHeight;}
-  window.addEventListener('resize',rsz);rsz();
-  class P{
-    reset(init){
-      this.x=Math.random()*W; this.y=init?Math.random()*H:H+6;
-      this.s=Math.random()*1.5+0.25;; this.sp=Math.random()*0.16+0.025;
-      this.dr=(Math.random()-.5)*0.08; this.life=0;
-      this.ml=Math.random()*900+220;
-      this.tp=Math.random()*Math.PI*2; this.ts=Math.random()*.02+.006;
-      this.warm=Math.random()>0.4;
-    }
-    constructor(){this.reset(true);}
-    tick(){
-    this.y -= this.sp;
-    this.x += this.dr;
-    this.life++;
-    this.tp += this.ts;
+/* ═════════ ΡΥΘΜΙΣΕΙΣ ΠΛΗΡΩΜΩΝ — συμπληρώστε ΜΟΝΟ εδώ ═════════ */
+const GIFT = {
+  holder:   'ΟΝΟΜΑΤΕΠΩΝΥΜΟ ΔΙΚΑΙΟΥΧΟΥ',
+  iris:     '69XXXXXXXX',
+  revtag:   'REVTAG',   // χωρίς το @
+  nbg:      { iban:'GR00 0000 0000 0000 0000 0000 000', bic:'ETHNGRAA' },
+  eurobank: { iban:'GR00 0000 0000 0000 0000 0000 000', bic:'ERBKGRAA' }
+};
 
-    // προσωρινά χωρίς reset
+/* ═════════ ΜΕΤΑΦΡΑΣΕΙΣ ΑΓΓΛΙΚΑ (τα ελληνικά διαβάζονται απευθείας από τη σελίδα) ═════════ */
+const EN = {
+  title:'Dimitris & Chrysoula · 26.12.2026',
+  nav1:'Locations',nav2:'Photos',nav3:'RSVP',nav4:'Visit',nav5:'Family',nav6:'Gift',
+  eyebrow:'You are invited to our wedding',
+  date:'Saturday, 26 December 2026',
+  poem:'In the magic of Christmas<br/>and beneath the light of love,<br/>we invite you to share with us<br/>the most beautiful moment of our lives.',
+  evLbl:'Events',evH:'The Schedule',
+  e1t:'26 Dec',e1l:'Date',e1p:'Saturday<br>26 December 2026',e1h:'tap to add to calendar',
+  e2l:'Ceremony',e2p:'Church of the Dormition<br>of the Virgin Mary · Mouzaki',
+  e3l:'Reception',e3p:'Oneiron Epavlis<br>Pigi, Trikala',hintDir:'tap for directions',
+  gLbl:'Moments',gH:'Photos',gHint:'tap a photo to enlarge',
+  rH:'RSVP',rBody:'Please confirm your attendance by 30 November 2026.',
+  rName:'Full name',rNameP:'Your full name',rGuests:'Number of guests',rSel:'Select...',
+  g1:'1 person',g2:'2 people',g3:'3 people',g4:'4 people',g5:'5 people',g6:'6+ people',
+  rPhone:'Phone',rMore:'Additional details',rMoreP:'Will you bring a baby? Are you vegetarian, do you have allergies, etc.',
+  rSend:'Send',rThanks:'Thank you so much. We have received your reply and we look forward to seeing you.',
+  vLbl:'Visit',vH:'Suggestions',
+  v1l:'🦌 Before the ceremony',v1h:'Food & Nature',
+  v1a:'🍽️ Lunch',v1ap:'Tavern <strong>“Keramario”</strong> — one of the most beautiful in Greece, full of deer and surprises, only 10 minutes from the church. <em>(Don’t eat too much — we want you with us!)</em>',
+  v1b:'🌲 Nature',v1bp:'A walk along the Mouzaki river <em>(the “PPC trail”)</em> — historic monasteries and beautiful scenery.',
+  v2l:'✨ After the ceremony',v2h:'Time to Explore',
+  v2a:'🎄 Must-See',v2ap:'<strong>The Elves’ Mill (Mylos ton Xotikon)</strong> — a unique Christmas experience, 15 minutes from the reception venue. Don’t miss it!',
+  v2b:'☕ Coffee',v2bp:'People · Abariza · Mouzaki Palace — perfect for a coffee and a relaxed stroll in the centre of Mouzaki.',
+  v3l:'🏨 Accommodation',v3h:'Where to Stay',
+  v3a:'🏩 Hotels',v3ap:'Trikala & Karditsa — half an hour from Mouzaki. A great choice for a comfortable stay.',
+  v3bp:'There are options in Mouzaki itself and in the surrounding areas. <em>Don’t leave your booking until the last minute — the Mill fills everything up!</em>',
+  v4l:'❄️ Our place',v4h:'Mouzaki, Karditsa',
+  v4a:'🏔️ Scenery',v4ap:'Built at the foot of the Pindus mountains, next to the Pamisos river — stone bridges, lush green landscapes and genuine Thessalian hospitality.',
+  v4b:'🌊 Day trips',v4bp:'Lake Plastiras, mountain villages, hot springs and hiking trails — a destination for every season.',
+  fLbl:'With Love',fH:'Family & Best Man / Maid of Honour',
+  f1:'💍 Best Man & Maid of Honour',fMad:'✦ Maid of Honour (Koumbara)',fBest:'✦ Best Man (Koumbaros)',
+  f2:'🤵 Groom’s side',f3:'👰 Bride’s side',fFam:'✦ Family',
+  giLbl:'Gift',giH:'Wedding Gift',giT1:'From Greece',giT2:'From abroad',
+  foot:'26 December 2026 · Mouzaki, Karditsa',prev:'← Prev',next:'Next →',
+  alertFields:'Please fill in your full name and number of guests.',alertErr:'Something went wrong. Please try again.',alertNet:'Connection problem. Please try again.',sending:'Sending...'
+};
+const EL_MSG = {alertFields:'Παρακαλούμε συμπληρώστε ονοματεπώνυμο και αριθμό ατόμων.',alertErr:'Υπήρξε πρόβλημα. Δοκιμάστε ξανά.',alertNet:'Υπήρξε πρόβλημα σύνδεσης. Δοκιμάστε ξανά.',sending:'Αποστολή...',title:document.title};
+
+/* Κείμενα πληρωμών ανά γλώσσα */
+const TG = {
+  el:{copy:'Αντιγραφή',done:'✓ Αντιγράφηκε',fail:'Επιλέξτε χειροκίνητα',holder:'Δικαιούχος',phone:'Κινητό',open:'Άνοιγμα στο Revolut',
+      intro:'Η παρουσία σας είναι το πιο όμορφο δώρο. Αν θέλετε να μας συμπαρασταθείτε και στο ξεκίνημα της κοινής μας ζωής, μπορείτε να το κάνετε με όποιον τρόπο σας βολεύει.',
+      irisNote:'Άμεση πληρωμή από την εφαρμογή οποιασδήποτε ελληνικής τράπεζας.',revNote:'Δωρεάν και άμεσα μεταξύ χρηστών Revolut.',bankNote:'',nbg:'Εθνική Τράπεζα',eb:'Eurobank',sepa:'Έμβασμα σε ευρώ μέσω SEPA / SWIFT.'},
+  en:{copy:'Copy',done:'✓ Copied',fail:'Select manually',holder:'Beneficiary',phone:'Mobile',open:'Open in Revolut',
+      intro:'Your presence is the best gift of all. If you would still like to give us something to start our life together, you can do it in whichever way suits you best.',
+      irisNote:'Instant payment from any Greek banking app.',revNote:'Free and instant between Revolut users, from anywhere in the world.',bankNote:'Euro transfer via SEPA / SWIFT.',nbg:'National Bank of Greece',eb:'Eurobank',sepa:'Euro transfer via SEPA / SWIFT.'}
+};
+
+let L = 'el', gTab = 'gr';
+const $ = (s,r=document) => r.querySelector(s);
+const $$ = (s,r=document) => Array.from(r.querySelectorAll(s));
+
+/* ── gallery data: [imgur id, type, ελληνικά, english] ── */
+const GAL = [
+['xrc8vRI','img','Ο Γαμπρός μικρός','The groom as a little boy'],
+['Da18iyN','img','Η Νύφη μικρή','The bride as a little girl'],
+['c9RYBUn','img','Το ζευγάρι μεγάλο, Φλώρινα','The couple, all grown up — Florina'],
+['0HFM7Y2','img','Γνωρίστε την Κουμπάρα','Meet the Maid of Honour'],
+['C8dUB0k','img','Γνωρίστε τον Κουμπάρο','Meet the Best Man'],
+['5u3auar','img','Γνωρίστε τον Άγνωστο Φίλο μας','Meet our Mystery Friend'],
+['rdy8WCj','img','Γνωρίστε την Οικογένεια','Meet the Family'],
+['GL5j6My','img','Περισσότερη Οικογένεια','More Family'],
+['tCxAsz9','img','Τρία τέρατα του Λοχ Νες, μια φωτογραφία','Three Loch Ness monsters, one photo'],
+['8YXR2QP','img','Κρουαζιέρα κάπου','On a cruise somewhere'],
+['jiOWP8z','img','Τετράκαλα','Tetrakala'],
+['tI3JdRm','img','Κάπου στην Τουρκία','Somewhere in Turkey'],
+['pdzmtYH','img','Αγαπημένοι σε έναν πύργο, Σκωτία','Lovebirds in a castle, Scotland'],
+['y0hCFSk','img','Αγαπημένοι στα λουτρά Πόζαρ','Lovebirds at the Pozar hot springs'],
+['yRP44kr','img','Αγαπημένοι στους Δελφούς','Lovebirds in Delphi'],
+['ZV53HBR','img','Αγαπημένοι τα Χριστούγεννα','Lovebirds at Christmas'],
+['35NUPiy','img','Αγαπημένοι στα Χιονισμένα Μετέωρα','Lovebirds at snowy Meteora'],
+['R9seAn3','img','Αγαπημένοι στο Γαλατά και όχι στην Πίζα','Lovebirds at Galata — not in Pisa'],
+['ogDrmod','img','Αγαπημένοι στην Camera Obscura, Royal Mile','Lovebirds at the Camera Obscura, Royal Mile'],
+['gWqFJvB','img','Δύο σε ένα','Two in one'],
+['mJlIfgz','img','Αγαπημένοι στην Σκωτία','Lovebirds in Scotland'],
+['PUwdtZ2','img','Αγαπημένοι στον Βοτανικό Κήπο, Γλασκώβη','Lovebirds at the Botanic Gardens, Glasgow'],
+['0elk50l','img','Αγαπημένοι στο Κάστρο Stirling','Lovebirds at Stirling Castle'],
+['GjYkdfj','img','Αγαπημένοι στο Κάστρο του Εδιμβούργου','Lovebirds at Edinburgh Castle'],
+['59nQk2o','img','Φέραμε τα πάνω κάτω','We turned everything upside down'],
+['Rd5du9v','img','Αγαπημένοι στην Βουλγαρία','Lovebirds in Bulgaria'],
+['qebrMFC','img','Αγαπημένοι 200 μέτρα κάτω από την επιφάνεια της γης, Άμφισσα','Lovebirds 200 metres underground, Amfissa'],
+['3gFtfJR','img','Το χάσαμε το τρένο, Βιετνάμ','We missed the train, Vietnam'],
+['k3OJx88','img','Μάντεψε ποιος δεν περνάει καλά στα τροπικά κλίματα','Guess who does not do well in tropical climates'],
+['pWozzxj','img','Προσπάθεια καρδιάς ή νυχιάς;','A heart… or a claw? A brave attempt'],
+['xxvvilY','img','Καγιάκ στο Halong Bay','Kayaking in Halong Bay'],
+['K7DiE3F','img','10 λεπτά πριν την πρόταση γάμου, Borderless Τόκιο','10 minutes before the proposal, Borderless Tokyo'],
+['S264uqL','img','Αγαπημένοι στο Εδιμβούργο','Lovebirds in Edinburgh'],
+['yl0mx2q','img','Αγαπημένοι στο Τόκιο','Lovebirds in Tokyo'],
+['bAHQYKW','img','Αγαπημένοι στην Ρουμανία','Lovebirds in Romania'],
+['Tk8bL08','img','Αγαπημένοι στον Μαραθώνιο, Θεσσαλονίκη','Lovebirds at the Marathon, Thessaloniki'],
+['peHY7co','img','Αγαπημένοι στον βυθό','Lovebirds on the seabed'],
+['KpNX9O0','img','Αγαπημένοι στις Πρέσπες','Lovebirds at Prespa'],
+['0okktVc','img','Η Μπου στεγνώνει','Boo is drying off'],
+['OeVqYuj','video','Εφιάλτης στη Βουδαπέστη','Nightmare in Budapest'],
+['GtjQS6a','video','Η σχέση μου με την Ασία','My relationship with Asia'],
+['fPdyh4m','video','Πολύ αγαπημένοι στην Τουρκία','Very much in love in Turkey']
+];
+const galGrid = $('#galGrid');
+galGrid.innerHTML = GAL.map(([id,t,el],i) => {
+  const u = 'https://i.imgur.com/'+id+(t==='video'?'.mp4':'.jpeg');
+  return `<div class="gal-cell" data-i="${i}">${t==='video'?`<video src="${u}" muted autoplay loop playsinline></video>`:`<img src="${u}" loading="lazy" alt="${el}">`}</div>`;
+}).join('');
+
+/* ── i18n ── */
+$$('[data-t]').forEach(e => e.dataset.el = e.innerHTML);
+$$('[data-tp]').forEach(e => e.dataset.el = e.placeholder);
+const msg = k => (L==='en'?EN:EL_MSG)[k];
+
+function setLang(l){
+  L = l;
+  document.documentElement.lang = l;
+  document.title = msg('title');
+  $$('[data-t]').forEach(e => { e.innerHTML = (l==='en' && EN[e.dataset.t]!==undefined) ? EN[e.dataset.t] : e.dataset.el; });
+  $$('[data-tp]').forEach(e => { e.placeholder = (l==='en') ? EN[e.dataset.tp] : e.dataset.el; });
+  $$('.lang button').forEach(b => b.setAttribute('aria-pressed', b.dataset.lang===l));
+  $$('.gal-cell img').forEach(im => { im.alt = GAL[im.parentNode.dataset.i][l==='en'?3:2]; });
+  renderGift();
+  if($('#lb').classList.contains('open')) $('#lb-caption').textContent = GAL[cur][L==='en'?3:2];
+  try{ localStorage.setItem('wlang', l); }catch(e){}
 }
-    draw(){
-      const t=this.life/this.ml;
-      const f = t < .08 ? t/.08 : 1;
-      const a = 0.8;
-      cx.beginPath();cx.arc(this.x,this.y,this.s,0,Math.PI*2);
-      cx.fillStyle=this.warm?`rgba(217,184,115,${a})`:`rgba(180,160,120,${a*0.7})`;
-      cx.fill();
-    }
-  }
-  const ps=Array.from({length:700},()=>new P());
-  (function loop(){cx.clearRect(0,0,W,H);ps.forEach(p=>{p.tick();p.draw();});requestAnimationFrame(loop);})();
-})();
+$$('.lang button').forEach(b => b.addEventListener('click', () => setLang(b.dataset.lang)));
 
-/* ───────────────────── scroll reveal ───────────────────── */
-const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('in');}),{threshold:.1});
-document.querySelectorAll('.rv').forEach(el=>io.observe(el));
+/* ── gift ── */
+function renderGift(){
+  const t = TG[L];
+  const row = (k,v,copy) => `<div class="gift-row"><div><span class="gift-k">${k}</span><span class="gift-v">${v}</span></div><button type="button" class="gift-copy" data-copy="${copy||v}">${t.copy}</button></div>`;
+  const card = (tag,rows,note) => `<div class="vi-item"><span class="vi-tag">${tag}</span>${rows}${note?`<p class="gift-note">${note}</p>`:''}</div>`;
+  const iris = () => card('⚡ IRIS', row(t.phone,GIFT.iris), t.irisNote);
+  const revolut = () => card('💳 Revolut', row('Revtag','@'+GIFT.revtag)+`<a class="gift-link" href="https://revolut.me/${GIFT.revtag}" target="_blank" rel="noopener">${t.open}</a>`, t.revNote);
+  const bank = (name,b,bic) => card('🏦 '+name, row(t.holder,GIFT.holder)+row('IBAN',b.iban,b.iban.replace(/\s/g,''))+(bic?row('BIC / SWIFT',b.bic):''), bic?t.sepa:'');
+  const cards = gTab==='gr'
+    ? iris()+revolut()+bank(t.nbg,GIFT.nbg,false)+bank(t.eb,GIFT.eurobank,false)
+    : revolut()+bank(t.nbg,GIFT.nbg,true)+bank(t.eb,GIFT.eurobank,true);
+  $('#giftPanel').innerHTML = `<p class="body">${t.intro}</p><div class="gift-grid">${cards}</div>`;
+  $$('.gift-tab').forEach(b => { const on = b.dataset.tab===gTab; b.classList.toggle('on',on); b.setAttribute('aria-selected',on); });
+}
+$$('.gift-tab').forEach(b => b.addEventListener('click', () => { gTab = b.dataset.tab; renderGift(); }));
 
+function copyText(txt){
+  if(navigator.clipboard && window.isSecureContext) return navigator.clipboard.writeText(txt);
+  return new Promise((ok,no) => {
+    const a = document.createElement('textarea');
+    a.value = txt; a.style.cssText = 'position:fixed;opacity:0';
+    document.body.appendChild(a); a.select();
+    try{ document.execCommand('copy') ? ok() : no(); }catch(e){ no(); }
+    a.remove();
+  });
+}
+$('#gift').addEventListener('click', e => {
+  const b = e.target.closest('.gift-copy'); if(!b) return;
+  const t = TG[L];
+  const reset = () => setTimeout(() => { b.textContent = TG[L].copy; b.classList.remove('done'); }, 1800);
+  copyText(b.dataset.copy)
+    .then(() => { b.textContent = t.done; b.classList.add('done'); reset(); })
+    .catch(() => { b.textContent = t.fail; reset(); });
+});
 
-
-/* ───────────────────── RSVP ───────────────────── */
-function doRSVP(){
-  const name   = document.getElementById('fn').value.trim();
-  const guests = document.getElementById('gs').value;
-  const email  = document.getElementById('em').value.trim();
-  const phone  = document.getElementById('ph').value.trim();
-  const diet   = document.getElementById('dt').value.trim();
-
-  if(!name || !guests){
-    alert('Παρακαλούμε συμπληρώστε ονοματεπώνυμο και αριθμό ατόμων.');return;
-  }
-
-  const btn = document.querySelector('#rf .btn');
-  btn.disabled = true;
-  btn.textContent = 'Αποστολή...';
-
+/* ── RSVP ── */
+$('#rsvpBtn').addEventListener('click', () => {
+  const name = $('#fn').value.trim(), guests = $('#gs').value, email = $('#em').value.trim(),
+        phone = $('#ph').value.trim(), diet = $('#dt').value.trim();
+  if(!name || !guests){ alert(msg('alertFields')); return; }
+  const btn = $('#rsvpBtn');
+  btn.disabled = true; btn.textContent = msg('sending');
+  const restore = () => { btn.disabled = false; btn.textContent = L==='en' ? EN.rSend : btn.dataset.el; };
   fetch('https://api.web3forms.com/submit', {
     method:'POST',
     headers:{'Accept':'application/json','Content-Type':'application/json'},
     body: JSON.stringify({
-      access_key: '4f691138-562e-4730-a0e4-e89ba01ce815',
-      subject: 'RSVP — Δημήτρης & Χρυσούλα',
-      from_name: 'Wedding RSVP',
+      access_key:'4f691138-562e-4730-a0e4-e89ba01ce815',
+      subject:'RSVP — Δημήτρης & Χρυσούλα',
+      from_name:'Wedding RSVP',
       replyto: email || 'noreply@example.com',
       name: name,
       email: email || 'noreply@example.com',
-      message: 'Ονοματεπώνυμο: ' + name + '\nΆτομα: ' + guests + '\nΤηλέφωνο: ' + (phone||'—') + '\nEmail: ' + (email||'—') + '\nΔιατροφικές: ' + (diet||'—')
+      message:'Ονοματεπώνυμο: '+name+'\nΆτομα: '+guests+'\nΤηλέφωνο: '+(phone||'—')+'\nEmail: '+(email||'—')+'\nΛεπτομέρειες: '+(diet||'—')+'\nΓλώσσα σελίδας: '+L
     })
-  })
-  .then(r => {
-    if(r.ok){
-      document.getElementById('rf').style.display='none';
-      document.getElementById('rok').style.display='block';
-    } else {
-      alert('Υπήρξε πρόβλημα. Δοκιμάστε ξανά.');
-      btn.disabled=false; btn.textContent='Αποστολή';
-    }
-  })
-  .catch(() => {
-    alert('Υπήρξε πρόβλημα σύνδεσης. Δοκιμάστε ξανά.');
-    btn.disabled=false; btn.textContent='Αποστολή';
-  });
-}
-/* ───────────────────── LIGHTBOX ───────────────────── */
+  }).then(r => {
+    if(r.ok){ $('#rf').style.display='none'; $('#rok').style.display='block'; }
+    else { alert(msg('alertErr')); restore(); }
+  }).catch(() => { alert(msg('alertNet')); restore(); });
+});
+
+/* ── lightbox ── */
+let cur = 0;
 (function(){
-  const lb = document.getElementById('lb');
-  const lbImg = document.getElementById('lb-media');
-  const lbVid = document.getElementById('lb-media-video');
-  const lbCap = document.getElementById('lb-caption');
-  const cells = Array.from(document.querySelectorAll('.gal-cell'));
-  let cur = 0;
-
-  function openLb(idx){
-    cur = idx;
-    const c = cells[cur];
-    const type = c.dataset.type || 'img';
-    const src  = c.dataset.src  || '';
-    const cap  = c.dataset.caption || '';
-    if(type === 'video'){
-      lbImg.style.display = 'none';
-      lbVid.style.display = 'block';
-      lbVid.src = src;
-      lbVid.play();
-    } else {
-      lbVid.pause(); lbVid.src='';
-      lbVid.style.display = 'none';
-      lbImg.style.display = 'block';
-      lbImg.src = src;
-    }
-    lbCap.textContent = cap;
-    lb.classList.add('open');
-    document.body.style.overflow = 'hidden';
+  const lb=$('#lb'), img=$('#lb-media'), vid=$('#lb-media-video'), cap=$('#lb-caption');
+  function open(i){
+    cur = i; const [id,t] = GAL[i];
+    if(t==='video'){ img.style.display='none'; vid.style.display='block'; vid.src='https://i.imgur.com/'+id+'.mp4'; vid.play().catch(()=>{}); }
+    else { vid.pause(); vid.removeAttribute('src'); vid.style.display='none'; img.style.display='block'; img.src='https://i.imgur.com/'+id+'.jpeg'; }
+    cap.textContent = GAL[i][L==='en'?3:2];
+    lb.classList.add('open'); document.body.style.overflow='hidden';
   }
-
-  function closeLb(){
-    lb.classList.remove('open');
-    lbVid.pause(); lbVid.src='';
-    lbImg.src='';
-    document.body.style.overflow = '';
-  }
-
-  function navigate(dir){
-    cur = (cur + dir + cells.length) % cells.length;
-    openLb(cur);
-  }
-
-  cells.forEach((c, i) => c.addEventListener('click', () => openLb(i)));
-  document.getElementById('lb-close').addEventListener('click', closeLb);
-  document.getElementById('lb-prev').addEventListener('click', () => navigate(-1));
-  document.getElementById('lb-next').addEventListener('click', () => navigate(1));
-  lb.addEventListener('click', e => { if(e.target === lb) closeLb(); });
+  function close(){ lb.classList.remove('open'); vid.pause(); vid.removeAttribute('src'); img.removeAttribute('src'); document.body.style.overflow=''; }
+  const nav = d => open((cur+d+GAL.length)%GAL.length);
+  $$('.gal-cell').forEach(c => c.addEventListener('click', () => open(+c.dataset.i)));
+  $('#lb-close').addEventListener('click', close);
+  $('#lb-prev').addEventListener('click', () => nav(-1));
+  $('#lb-next').addEventListener('click', () => nav(1));
+  lb.addEventListener('click', e => { if(e.target===lb) close(); });
   document.addEventListener('keydown', e => {
     if(!lb.classList.contains('open')) return;
-    if(e.key === 'Escape') closeLb();
-    if(e.key === 'ArrowLeft') navigate(-1);
-    if(e.key === 'ArrowRight') navigate(1);
+    if(e.key==='Escape') close();
+    if(e.key==='ArrowLeft') nav(-1);
+    if(e.key==='ArrowRight') nav(1);
   });
-  // Scroll wheel to navigate
-  lb.addEventListener('wheel', e => {
-    if(!lb.classList.contains('open')) return;
-    e.preventDefault();
-    navigate(e.deltaY > 0 ? 1 : -1);
-  }, {passive:false});
-  // Touch swipe to navigate
-  let tsX = null;
-  lb.addEventListener('touchstart', e => { tsX = e.touches[0].clientX; }, {passive:true});
+  let tx = null;
+  lb.addEventListener('touchstart', e => { tx = e.touches[0].clientX; }, {passive:true});
   lb.addEventListener('touchend', e => {
-    if(tsX === null) return;
-    const dx = e.changedTouches[0].clientX - tsX;
-    if(Math.abs(dx) > 40) navigate(dx < 0 ? 1 : -1);
-    tsX = null;
+    if(tx===null) return;
+    const dx = e.changedTouches[0].clientX - tx;
+    if(Math.abs(dx)>40) nav(dx<0?1:-1);
+    tx = null;
   }, {passive:true});
 })();
 
-/* ───────────────────── tighten spacing + intensify blur after scroll starts ───────────────────── */
+/* ── sparkles ── */
 (function(){
-  const body = document.body;
-  let ticking = false;
-  function applyScrolledState(){
-    if(window.scrollY > 60){
-      body.classList.add('scrolled');
-    } else {
-      body.classList.remove('scrolled');
-    }
-    ticking = false;
+  const cv=$('#sparkle'), cx=cv.getContext('2d'); let W,H;
+  const rsz=()=>{W=cv.width=innerWidth;H=cv.height=innerHeight}; addEventListener('resize',rsz); rsz();
+  class P{
+    constructor(){this.reset(true)}
+    reset(init){this.x=Math.random()*W;this.y=init?Math.random()*H:H+6;this.s=Math.random()*1.5+.25;this.sp=Math.random()*.16+.025;this.dr=(Math.random()-.5)*.08;this.warm=Math.random()>.4}
+    tick(){this.y-=this.sp;this.x+=this.dr;if(this.y<-6||this.x<-6||this.x>W+6)this.reset(false)}
+    draw(){cx.beginPath();cx.arc(this.x,this.y,this.s,0,6.283);cx.fillStyle=this.warm?'rgba(217,184,115,.8)':'rgba(180,160,120,.56)';cx.fill()}
   }
-  applyScrolledState();
-  window.addEventListener('scroll', () => {
-    if(!ticking){
-      requestAnimationFrame(applyScrolledState);
-      ticking = true;
-    }
-  });
+  const ps=Array.from({length:innerWidth<700?220:450},()=>new P());
+  (function loop(){cx.clearRect(0,0,W,H);ps.forEach(p=>{p.tick();p.draw()});requestAnimationFrame(loop)})();
 })();
 
-const nav = document.getElementById('mobileNav');
-
-if(window.innerWidth <= 760){
-  // MOBILE: show on scroll (unchanged)
-  function toggleNav(){
-    if(window.scrollY > 250){ nav.classList.add('show'); }
-    else{ nav.classList.remove('show'); }
-  }
-  toggleNav();
-  window.addEventListener('scroll', toggleNav);
-} else {
-  // DESKTOP: show only when scrolled
-  function toggleNavDesktop(){
-    if(window.scrollY > 80){ nav.classList.add('nav-visible'); }
-    else{ nav.classList.remove('nav-visible'); }
-  }
-  toggleNavDesktop();
-  window.addEventListener('scroll', toggleNavDesktop);
+/* ── scroll reveal, scrolled state, nav ── */
+const io = new IntersectionObserver(es => es.forEach(e => { if(e.isIntersecting) e.target.classList.add('in'); }), {threshold:.1});
+$$('.rv').forEach(el => io.observe(el));
+const navEl = $('#mobileNav'), mobile = innerWidth <= 760;
+let tick = false;
+function onScroll(){
+  document.body.classList.toggle('scrolled', scrollY > 60);
+  navEl.classList.toggle('nav-visible', scrollY > (mobile?250:80));
+  tick = false;
 }
+addEventListener('scroll', () => { if(!tick){ requestAnimationFrame(onScroll); tick = true; } }, {passive:true});
+onScroll();
+
+/* ── start: γλώσσα από αποθήκευση ή από τη γλώσσα του browser · καρτέλα δώρου από ζώνη ώρας ── */
+let tz=''; try{ tz = Intl.DateTimeFormat().resolvedOptions().timeZone || ''; }catch(e){}
+gTab = (tz && tz!=='Europe/Athens') ? 'intl' : 'gr';
+let saved=null; try{ saved = localStorage.getItem('wlang'); }catch(e){}
+setLang(saved || ((navigator.language||'el').toLowerCase().startsWith('el') ? 'el' : 'en'));
 </script>
 </body>
 </html>
